@@ -24,6 +24,8 @@ Route::middleware('auth')->as('admin.')->group(function() {
 
 Route::as('application.')->group(function() {
 	Route::post('subscribe', 'SubscriberController@subscribe')->name('subscribe');
+	Route::post('order', 'OrderController@store')->name('order');
+
 	Route::get('/', 'ApplicationController@index')->name('index');
 	Route::get('about', 'ApplicationController@about')->name('about');
 	Route::get('contact', 'ApplicationController@contact')->name('contact');

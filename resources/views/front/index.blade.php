@@ -245,12 +245,13 @@
         </div>
       </div>
       <div class="cell-sm-10 cell-md-6 wow fadeInLeft">
-        <article class="box-line"><span></span><span></span><span></span><span></span>
-          <div class="box-line__main">
+        <article class="">
+          <div class="" style="padding: 100px">
             <!-- RD Mailform-->
-            <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <form action="{{ route('application.order') }}" class="request-event" data-form-output="form-output-global" method="post">
+              @csrf
               <div class="form-wrap">
-                <input class="form-input" id="contact-date" type="text" data-time-picker="date" name="date" data-constraints="@Required">
+                <input class="form-input" id="contact-date" type="text" data-time-picker="date" name="event_date" data-constraints="@Required">
                 <label class="form-label" for="contact-date">Event Date</label>
               </div>
               <div class="form-wrap">
