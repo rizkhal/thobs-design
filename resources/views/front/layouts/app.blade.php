@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   @include('front.layouts.partials.head')
+  @stack('styles')
   <body>
     @include('front.layouts.partials.loader')
     <div class="page">
@@ -15,6 +16,8 @@
     <!-- Javascript-->
     <script src="{{ asset('front/js/core.min.js') }}"></script>
     <script src="{{ asset('front/js/script.js') }}"></script>
+    <script src="{{ asset('front/js/myjs.js') }}"></script>
     <!-- coded by starlight-->
+    @stack('scripts')
   </body>
 </html>

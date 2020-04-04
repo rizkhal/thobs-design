@@ -912,6 +912,7 @@ $document.ready(function () {
 
 
 	// Campaign Monitor ajax subscription
+	// subscribe
 	if (plugins.campaignMonitor.length) {
 		for (i = 0; i < plugins.campaignMonitor.length; i++) {
 			var $campaignItem = $(plugins.campaignMonitor[i]);

@@ -17,9 +17,13 @@ Auth::routes();
 
 Route::middleware('auth')->as('admin.')->group(function() {
 	Route::get('home', 'HomeController@index')->name('index');
+	Route::prefix('subscribers')->as('subscriber.')->group(function() {
+		Route::get('/', 'SubscriberController@index')->name('index');
+	});
 });
 
 Route::as('application.')->group(function() {
+	Route::post('subscribe', 'SubscriberController@subscribe')->name('subscribe');
 	Route::get('/', 'ApplicationController@index')->name('index');
 	Route::get('about', 'ApplicationController@about')->name('about');
 	Route::get('contact', 'ApplicationController@contact')->name('contact');

@@ -17,8 +17,10 @@ class CreatePortofoliosTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('note');
-            $table->integer('type');
-            $table->boolean('status');
+            $table->bigInteger('type');
+            $table->boolean('status')->default(true);
+            $table->bigInteger('is_broadcast');
+            $table->foreignId('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
