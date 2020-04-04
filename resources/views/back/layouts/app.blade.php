@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('back/vendor/charts/c3charts/c3.css') }}">
     <link rel="stylesheet" href="{{ asset('back/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
     <title>Welcome - {{isset($title) ? $title : "Dashboard"}}</title>
+    @stack('styles')
 </head>
 
 <body>
@@ -68,13 +69,15 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="{{ asset('back/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('back/vendor/jquery/jquery-3.3.1.min.js') }}"></script> --}}
+    <script src="{{ asset('back/vendor/datatables/js/datatables.min.js') }}"></script>
     <!-- bootstap bundle js -->
     <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <!-- slimscroll js -->
     <script src="{{ asset('back/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('back/libs/js/main-js.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

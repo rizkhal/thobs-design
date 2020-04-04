@@ -19,9 +19,22 @@ class SubscriberDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
-            ->eloquent($query)
-            ->addColumn('action', 'subscriber.action');
+        return datatables()->eloquent($query)
+                ->addIndexColumn()
+                ->editColumn('created_at', function($model) {
+                    return date('d F Y H:i', strtotime($model->created_at));
+                })
+                ->editColumn('status', function($model) {
+                    return ($model->status == 1)
+                            ?'<span class="badge badge-info">Active</span>'
+                            :'<span class="badge badge-warning">In active</span>';
+                })
+                ->addColumn('action', function($model) {
+                    return '
+                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    ';
+                })
+                ->rawColumns(['status', 'action']);
     }
 
     /**
@@ -32,7 +45,8 @@ class SubscriberDataTable extends DataTable
      */
     public function query(Subscriber $model)
     {
-        return $model->newQuery();
+        $query = $model->newQuery();
+        return $this->applyScopes($query);
     }
 
     /**
@@ -44,15 +58,14 @@ class SubscriberDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('subscriber-table')
+                    ->addTableClass('table table-hover table-bordered')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
                         Button::make('export'),
                         Button::make('print'),
-                        Button::make('reset'),
                         Button::make('reload')
                     );
     }
@@ -65,15 +78,25 @@ class SubscriberDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::computed('No')
+                    ->defaultContent('')
+                    ->data('DT_RowIndex')
+                    ->name('DT_RowIndex')
+                    ->title('No')
+                    ->render(null)
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->footer(''),
+            Column::make('email'),
+            Column::make('status')
+                  ->addClass('text-center'),
+            Column::make('created_at')
+                  ->title('Subscribe At'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 

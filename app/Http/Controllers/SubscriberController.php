@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\SubscriberDataTable;
 use App\Http\Requests\Subscriber\SubsRequest;
 use App\Repository\Subscriber\SubscriberRepo;
 
@@ -15,9 +16,9 @@ class SubscriberController extends Controller
         $this->subs = $subs;
     }
 
-    public function index()
+    public function index(SubscriberDataTable $dataTable)
     {
-    	return view('back.subscriber.index');
+    	return $dataTable->render('back.subscriber.index');
     }
 
     public function subscribe(SubsRequest $request)
