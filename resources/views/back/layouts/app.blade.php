@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('back/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('back/vendor/charts/c3charts/c3.css') }}">
     <link rel="stylesheet" href="{{ asset('back/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('back/vendor/toastr/css/toastr.min.css') }}">
     <title>Welcome - {{isset($title) ? $title : "Dashboard"}}</title>
     @stack('styles')
 </head>
@@ -41,6 +42,29 @@
     {{-- <script src="{{ asset('back/vendor/jquery/jquery-3.3.1.min.js') }}"></script> --}}
     {{-- this datatable include jquery 3.3.1 --}}
     <script src="{{ asset('back/vendor/datatables/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('back/vendor/toastr/js/toastr.min.js') }}"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "progressBar": true,
+        };
+    </script>
+
+    @if (session()->has('notice'))
+        @php
+            $values = session()->get('notice');
+        @endphp
+        @if (is_array($values))
+            <script type="text/javascript">
+                @foreach ($values as $value)
+                    toastr["{{$value['type']}}"]("{{ $value['message'] }}");
+                @endforeach
+            </script>
+        @endif
+        @php
+            session()->forget('notice');
+        @endphp
+    @endif
+
     <!-- bootstap bundle js -->
     <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <!-- slimscroll js -->

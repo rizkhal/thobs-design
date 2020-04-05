@@ -2,32 +2,39 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
 Route::middleware('auth')->as('admin.')->group(function() {
 	Route::get('home', 'HomeController@index')->name('index');
+
+	Route::prefix('select2')->as('select2.')->group(function() {
+		Route::get('category', 'Service\Select2Controller@category')->name('category');
+	});
+
+	Route::prefix('uploads')->as('upload.')->group(function() {
+		Route::post('project', 'Service\UploadController@project')->name('project');
+	});
+
 	Route::prefix('subscribers')->as('subscriber.')->group(function() {
 		Route::get('/', 'SubscriberController@index')->name('index');
 	});
+
 	Route::prefix('appointments')->as('appointment.')->group(function() {
 		Route::get('/', 'AppointmentController@index')->name('index');
 		Route::get('/{id}', 'AppointmentController@show')->name('show');
 	});
+
 	Route::prefix('projects')->as('project.')->group(function() {
 		Route::get('/', 'ProjectController@index')->name('index');
 		Route::get('create', 'ProjectController@create')->name('create');
+		Route::post('store', 'ProjectController@store')->name('store');
 	});
+
+	Route::prefix('category')->as('category.')->group(function() {
+		Route::get('/', 'CategoryController@index')->name('index');
+		Route::post('store', 'CategoryController@store')->name('store');
+	});
+
 });
 
 Route::as('application.')->group(function() {

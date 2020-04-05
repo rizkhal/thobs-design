@@ -2,6 +2,29 @@
 
 use Illuminate\Support\Facades\Auth;
 
+if (! function_exists('notice')) {
+	/**
+	 * Notification
+	 * @param  string $type
+	 * @param  string $message
+	 * @return array
+	 */
+	function notice($type, $message)
+	{
+		$notices = session()->get('notice');
+        if (!is_array($notices)) {
+            $notices = [];
+        }
+
+        array_push($notices, [
+            'type'    => $type,
+            'message' => $message,
+        ]);
+
+        session()->put('notice', $notices);
+	}
+}
+
 if (! function_exists("is_active")) {
 	/**
 	 * Active url

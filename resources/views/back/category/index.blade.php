@@ -1,5 +1,5 @@
 @extends('back.layouts.master', [
-    'title' => 'Projects'
+    'title' => 'Category'
 ])
 
 @push('styles')
@@ -8,22 +8,30 @@
 
 @push('scripts')
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script src="{{ asset('back/myjs.js') }}"></script>
     {{$dataTable->scripts()}}
     <script lang="javascript">
         $(document).ready(function() {
-            $('.buttons-create').click(function() {
-                window.location = window.location.href.replace(/\/+$/, "") + '/create';
+            $(".buttons-create").on("click", function() {
+                $(".modal-create").modal("show");
+                $(".btn-submit").on("click", function() {
+                    var form  = $(".form");
+                    ajaxStore(form, $(this), function() {
+                        $(".table").DataTable().ajax.reload();
+                    });
+                });
             });
         });
     </script>
 @endpush
 
 @section('content')
+    @include('back.category.partials.create')
 	<div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <h5 class="card-header">
-                    Daftar projects anda
+                    Daftar category
                 </h5>
                 <div class="card-body">
                 	{!!$dataTable->table()!!}

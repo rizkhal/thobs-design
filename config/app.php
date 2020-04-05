@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+        App\Providers\UploadServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -226,7 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Upload' => App\Facade\File\UploadFacade::class,
     ],
 
 ];

@@ -260,10 +260,9 @@
         text: function (dt) {
             return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Create');
         },
-
-        action: function (e, dt, button, config) {
-            window.location = window.location.href.replace(/\/+$/, "") + '/create';
-        }
+        // action: function (e, dt, button, config) {
+        //     window.location = window.location.href.replace(/\/+$/, "") + '/create';
+        // }
     };
 
     DataTable.ext.buttons.compose = {

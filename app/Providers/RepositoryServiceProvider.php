@@ -22,6 +22,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repository\Appointment\AppointmentRepo::class,
             \App\Repository\Appointment\Eloquent\AppointmentEloquent::class
         );
+
+        $this->app->bind(
+            \App\Repository\Project\ProjectRepo::class,
+            \App\Repository\Project\Eloquent\ProjectEloquent::class
+        );
+
+        $this->app->bind(
+            \App\Repository\Category\CategoryRepo::class,
+            \App\Repository\Category\Eloquent\CategoryEloquent::class
+        );
     }
 
     /**

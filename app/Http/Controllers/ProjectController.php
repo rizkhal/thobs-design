@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\ProjectDataTable;
+use App\Http\Requests\ProjectRequest;
+use App\Repository\Project\ProjectRepo;
 
 class ProjectController extends Controller
 {
+    protected $project;
+
+    public function __construct(ProjectRepo $project)
+    {
+        $this->project = $project;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +41,11 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $this->project->save($request->all());
+        notice('info', 'Berhasil mengupload project');
+        return redirect()->back();
     }
 
     /**
