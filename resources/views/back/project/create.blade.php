@@ -69,7 +69,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select name="categories[]" class="category form-control"></select>
+                                    <select name="category_id" class="category form-control"></select>
                                     @error("categories")
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -87,6 +87,17 @@
                                             {{$message}}
                                         </div>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                <div class="form-group mt-2">
+                                    <label>Broadcast Email</label>
+                                    <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                        <div class="switch-button switch-button-info">
+                                            <input type="checkbox" name="is_broadcast" id="switch16"><span>
+                                        <label for="switch16"></label></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">

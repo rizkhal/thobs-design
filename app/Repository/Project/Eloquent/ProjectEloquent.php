@@ -16,9 +16,18 @@ class ProjectEloquent implements ProjectRepo
 
     public function save(array $data)
     {
+        if (isset($data['is_broadcast'])) {
+            $broadcast = true;
+        } else {
+            $broadcast = false;
+        }
+
         $project = $this->project->create([
-            'title'   => $data['title'],
-            'content' => $data['content'],
+            'title'        => $data['title'],
+            'content'      => $data['content'],
+            'is_broadcast' => $broadcast,
+            'category_id'  => $data['category_id'],
+            'created_by'   => logged_in_user()->id,
         ]);
 
         $project->file()->create([

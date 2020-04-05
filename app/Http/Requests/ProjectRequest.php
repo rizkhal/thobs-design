@@ -26,16 +26,8 @@ class ProjectRequest extends FormRequest
         return [
             'title'   => 'required|string',
             'content' => 'required|string',
+            'category_id' => 'required',
             'file'    => 'required',
-        ];
-    }
-
-    public function data():  ? array
-    {
-        return [
-            'title'   => $this->title,
-            'content' => $this->content,
-            'file'    => $this->file,
         ];
     }
 }
