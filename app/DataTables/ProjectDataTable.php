@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Subscriber;
+use App\Models\Project;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SubscriberDataTable extends DataTable
+class ProjectDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,32 +21,18 @@ class SubscriberDataTable extends DataTable
     {
         return datatables()->eloquent($query)
                 ->addIndexColumn()
-                ->editColumn('created_at', function($model) {
-                    return convert_date($model->created_at);
-                })
-                ->editColumn('status', function($model) {
-                    return ($model->status == 1)
-                            ?'<span class="badge badge-info">Active</span>'
-                            :'<span class="badge badge-warning">In active</span>';
-                })
-                ->addColumn('action', function($model) {
-                    return '
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    ';
-                })
-                ->rawColumns(['status', 'action']);
+                ->addColumn('action', 'project.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Subscriber $model
+     * @param \App\Project $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Subscriber $model)
+    public function query(Project $model)
     {
-        $query = $model->newQuery();
-        return $this->applyScopes($query);
+        return $model->newQuery();
     }
 
     /**
@@ -57,8 +43,8 @@ class SubscriberDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('subscriber-table')
-                    ->addTableClass('table table-hover table-bordered')
+                    ->setTableId('project-table')
+                    ->addClass('table table-hover table-bordered')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -66,6 +52,7 @@ class SubscriberDataTable extends DataTable
                     ->buttons(
                         Button::make('export'),
                         Button::make('print'),
+                        Button::make('create'),
                         Button::make('reload')
                     );
     }
@@ -79,19 +66,17 @@ class SubscriberDataTable extends DataTable
     {
         return [
             Column::computed('No')
-                    ->defaultContent('')
-                    ->data('DT_RowIndex')
-                    ->name('DT_RowIndex')
-                    ->title('No')
-                    ->render(null)
-                    ->orderable(false)
-                    ->searchable(false)
-                    ->footer(''),
-            Column::make('email'),
-            Column::make('status')
-                  ->addClass('text-center'),
-            Column::make('created_at')
-                  ->title('Subscribe At'),
+                ->defaultContent('')
+                ->data('DT_RowIndex')
+                ->name('DT_RowIndex')
+                ->title('No')
+                ->render(null)
+                ->orderable(false)
+                ->searchable(false)
+                ->footer(''),
+            Column::make('title'),
+            Column::make('status'),
+            Column::make('created_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
@@ -107,6 +92,6 @@ class SubscriberDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Subscriber_' . date('YmdHis');
+        return 'Project_' . date('YmdHis');
     }
 }

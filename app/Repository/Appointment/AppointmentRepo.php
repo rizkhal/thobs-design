@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository\Order;
+namespace App\Repository\Appointment;
 
-interface OrderRepo {
+interface AppointmentRepo {
 
 	/**
 	 * List all your event
@@ -16,5 +16,12 @@ interface OrderRepo {
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
 	public function store(array $data);
+
+	/**
+	 * Detail
+	 * @param  string $id
+	 * @return \Illuminate\Contracts\Support\Renderable
+	 */
+	public function detail($id);
 
 }

@@ -19,8 +19,8 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \App\Repository\Order\OrderRepo::class,
-            \App\Repository\Order\Eloquent\OrderEloquent::class
+            \App\Repository\Appointment\AppointmentRepo::class,
+            \App\Repository\Appointment\Eloquent\AppointmentEloquent::class
         );
     }
 

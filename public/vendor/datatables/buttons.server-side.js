@@ -266,6 +266,19 @@
         }
     };
 
+    DataTable.ext.buttons.compose = {
+        className: 'buttons-compose',
+
+        text: function (dt) {
+            return '<i class="fas fa-edit"></i> ' + dt.i18n('buttons.compose', 'Compose');
+        },
+
+        action: function (e, dt, button, config) {
+            console.log(e);
+            console.log(dt);
+        }
+    };
+
     if (typeof DataTable.ext.buttons.copyHtml5 !== 'undefined') {
         $.extend(DataTable.ext.buttons.copyHtml5, {
             text: function (dt) {

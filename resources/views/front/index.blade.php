@@ -248,10 +248,10 @@
         <article class="">
           <div class="" style="padding: 100px">
             <!-- RD Mailform-->
-            <form action="{{ route('application.order') }}" class="request-event" data-form-output="form-output-global" method="post">
+            <form action="{{ route('application.appointment') }}" class="request-event" data-form-output="form-output-global" method="post">
               @csrf
               <div class="form-wrap">
-                <input class="form-input" id="contact-date" type="text" data-time-picker="date" name="event_date" data-constraints="@Required">
+                <input class="form-input" id="contact-date" type="text" data-time-picker="date" name="appointment_at" data-constraints="@Required">
                 <label class="form-label" for="contact-date">Event Date</label>
               </div>
               <div class="form-wrap">

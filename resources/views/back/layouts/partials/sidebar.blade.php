@@ -14,11 +14,14 @@
                         <a class="nav-link {{is_active('home*')}}" href="{{ route('admin.index') }}"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
+                        <a class="nav-link {{is_active(['appointments*'])}}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-inbox"></i>App</a>
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Cards <span class="badge badge-secondary">New</span></a>
+                                    <a class="nav-link {{ is_active('appointments*') }}" href="{{ route('admin.appointment.index') }}">Appointment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ is_active('projects*') }}" href="{{ route('admin.project.index') }}">Upload Project</a>
                                 </li>
                             </ul>
                         </div>

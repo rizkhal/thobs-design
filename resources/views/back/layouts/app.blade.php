@@ -28,48 +28,18 @@
         <!-- ============================================================== -->
         @include('back.layouts.partials.sidebar')
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
-            <div class="dashboard-ecommerce">
-                <div class="container-fluid dashboard-content ">
-                    <!-- ============================================================== -->
-                    <!-- pageheader  -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="page-header">
-                                <h2 class="pageheader-title">Dashboard </h2>
-                                <div class="page-breadcrumb">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end pageheader  -->
-                    <!-- ============================================================== -->
-
-                    @yield('content')
-
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            @include('back.layouts.partials.footer')
-        </div>
+        @yield('app')
         <!-- ============================================================== -->
-        <!-- end wrapper  -->
-        <!-- ============================================================== -->
+        @include('back.layouts.partials.footer')
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
+
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
     {{-- <script src="{{ asset('back/vendor/jquery/jquery-3.3.1.min.js') }}"></script> --}}
+    {{-- this datatable include jquery 3.3.1 --}}
     <script src="{{ asset('back/vendor/datatables/js/datatables.min.js') }}"></script>
     <!-- bootstap bundle js -->
     <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
