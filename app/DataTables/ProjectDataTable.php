@@ -21,7 +21,31 @@ class ProjectDataTable extends DataTable
     {
         return datatables()->eloquent($query)
                 ->addIndexColumn()
-                ->addColumn('action', 'project.action');
+                ->editColumn('created_at', function($model) {
+                    return convert_date($model->created_at);
+                })
+                ->addColumn('action', function($model) {
+                    $status = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
+                    return '
+                        <button data-url="'.route('admin.projects.status').'"
+                                data-id="'.$model->id.'"
+                                data-status="'.$model->status.'"
+                                class="btn btn-status btn-sm btn-primary">
+                            <i class="fa '.$status.'"></i>
+                        </button>
+                        <button class="btn btn-sm btn-info">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <a href="'.route('admin.projects.edit', $model->id).'" class="btn btn-sm btn-warning">
+                            <i class="fa fa-edit" style="color:white;"></i>
+                        </a>
+                        <button data-url="'.route('admin.projects.destroy', $model->id).'"
+                                class="btn btn-delete btn-sm btn-danger">
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    ';
+                })
+                ->rawColumns(['action', 'status']);
     }
 
     /**
@@ -75,12 +99,11 @@ class ProjectDataTable extends DataTable
                 ->searchable(false)
                 ->footer(''),
             Column::make('title'),
-            Column::make('status'),
             Column::make('created_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(180)
                   ->addClass('text-center'),
         ];
     }

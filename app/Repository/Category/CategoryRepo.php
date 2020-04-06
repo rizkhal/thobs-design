@@ -5,6 +5,12 @@ namespace App\Repository\Category;
 interface CategoryRepo {
 
 	/**
+	 * List all category
+	 * @return object
+	 */
+	public function all();
+
+	/**
 	 * Save into database
 	 * @param  array  $data
 	 * @return [type]

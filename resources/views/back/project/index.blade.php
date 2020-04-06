@@ -8,11 +8,27 @@
 
 @push('scripts')
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script src="{{ asset('back/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('back/myjs.js') }}"></script>
     {{$dataTable->scripts()}}
     <script lang="javascript">
         $(document).ready(function() {
             $('.buttons-create').click(function() {
                 window.location = window.location.href.replace(/\/+$/, "") + '/create';
+            });
+
+            $(document).on('click', '.btn-status', function() {
+                var _token = "{!! csrf_token() !!}";
+                updateStatus($(this), _token, function() {
+                    $('.table').DataTable().ajax.reload();
+                });
+            });
+
+            $(document).on('click', '.btn-delete', function() {
+                var _token = "{!! csrf_token() !!}";
+                ajaxDestroy($(this), _token, function() {
+                    $('.table').DataTable().ajax.reload();
+                });
             });
         });
     </script>

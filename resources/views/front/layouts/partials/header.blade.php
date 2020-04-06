@@ -24,14 +24,10 @@
             </div>
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
-              <li class="active"><a href="index.html">Home</a>
-              </li>
-              <li><a href="about-me.html">About Me</a>
-              </li>
-              <li><a href="typography.html">Typography</a>
-              </li>
-              <li><a href="contact-me.html">Contact Me</a>
-              </li>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="about-me.html">About Me</a></li>
+              <li><a href="about-me.html">Galery</a></li>
+              <li><a href="contact-me.html">Contact Me</a></li>
             </ul>
           </div>
         </div>

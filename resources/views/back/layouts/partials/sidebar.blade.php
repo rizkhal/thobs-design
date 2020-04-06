@@ -31,7 +31,7 @@
                                     <a class="nav-link {{ is_active('appointments*') }}" href="{{ route('admin.appointment.index') }}">Appointment</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ is_active('projects*') }}" href="{{ route('admin.project.index') }}">Upload Project</a>
+                                    <a class="nav-link {{ is_active('projects*') }}" href="{{ route('admin.projects.index') }}">Upload Project</a>
                                 </li>
                             </ul>
                         </div>

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\DataTables\ProjectDataTable;
 use App\Http\Requests\ProjectRequest;
+use App\Repository\Category\CategoryRepo;
 use App\Repository\Project\ProjectRepo;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     protected $project;
 
-    public function __construct(ProjectRepo $project)
+    protected $category;
+
+    public function __construct(ProjectRepo $project, CategoryRepo $category)
     {
-        $this->project = $project;
+        $this->project  = $project;
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -48,6 +52,17 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+            $this->project->changeStatus($request->id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diupdate',
+            ], 200);
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -67,7 +82,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = $this->project->findById($id);
+        $categories = $this->category->all();
+        return view('back.project.edit', compact('project', 'categories'));
     }
 
     /**
@@ -77,9 +94,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
-        //
+        $this->project->update($id, $request->all());
+        notice('info', 'Project berhasil diubah');
+        return redirect()->back();
     }
 
     /**
@@ -90,6 +109,12 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(request()->ajax()) {
+            $this->project->delete($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Project berhasil dihapus',
+            ], 200);
+        }
     }
 }

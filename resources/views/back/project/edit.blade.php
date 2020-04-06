@@ -52,13 +52,14 @@
             <div class="card">
                 <h5 class="card-header">Upload your project</h5>
                 <div class="card-body">
-                    <form method="post" novalidate action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" class="needs-validation">
+                    <form method="post" novalidate action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" class="needs-validation">
                         @csrf
+                        @method('put')
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input class="form-control @error("title") is-invalid @enderror" value="{{old('title')}}" type="text" name="title" required>
+                                    <input class="form-control @error("title") is-invalid @enderror" value="{{old('title', $project->title)}}" type="text" name="title" required>
                                     @error("title")
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -69,7 +70,14 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select name="categories[]" class="category form-control"></select>
+                                    <select name="categories[]" class="category form-control">
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}"
+                                                {{$project->categories->pluck('id')->first()==$category->id?'selected':''}}>{{$category->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                     @error("categories")
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -81,7 +89,7 @@
                                 <div class="form-group">
                                     <label>File</label>
                                     <input type="file" accept="image/*" class="thumbnail-input form-control" onchange="uploadFile()">
-                                    <input type="hidden" name="file" name="{{old('file')}}" class="thumbnail-file">
+                                    <input type="hidden" name="file" name="{{old('file')}}" value="{{$project->file->filename}}" class="thumbnail-file">
                                     @error("file")
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -94,7 +102,7 @@
                                     <label>Broadcast Email</label>
                                     <div class="col-12 col-sm-8 col-lg-6 pt-1">
                                         <div class="switch-button switch-button-info">
-                                            <input type="checkbox" name="is_broadcast" id="switch16"><span>
+                                            <input type="checkbox" {{($project->status == true) ? 'checked' : ''}} name="is_broadcast" id="switch16"><span>
                                         <label for="switch16"></label></span>
                                         </div>
                                     </div>
@@ -103,7 +111,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
                                     <label>Message</label>
-                                    <textarea name="content" cols="30" rows="10" class="form-control @error("content") @enderror">{{old('content')}}</textarea>
+                                    <textarea name="content" cols="30" rows="10" class="form-control @error("content") @enderror">{{old('content', $project->content)}}</textarea>
                                     @error("content")
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -125,7 +133,7 @@
             <div class="card">
                 <h5 class="card-header">Preview file</h5>
                 <div class="card-body">
-                    <img src="{{ asset('back/images/bitbucket.png') }}" alt="" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
+                    <img src="{{ $project->project_file_url }}" alt="" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
                 </div>
             </div>
         </div>

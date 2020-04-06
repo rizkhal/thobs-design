@@ -15,8 +15,7 @@ class AddColumnIsBroadcastToProjects extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->bigInteger('is_broadcast')->after('status');
-            $table->foreignId('category_id')->after('is_broadcast');
-            $table->foreignId('created_by')->after('category_id');
+            $table->foreignId('created_by')->after('is_broadcast');
         });
     }
 

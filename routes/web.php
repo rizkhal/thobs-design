@@ -24,10 +24,9 @@ Route::middleware('auth')->as('admin.')->group(function() {
 		Route::get('/{id}', 'AppointmentController@show')->name('show');
 	});
 
-	Route::prefix('projects')->as('project.')->group(function() {
-		Route::get('/', 'ProjectController@index')->name('index');
-		Route::get('create', 'ProjectController@create')->name('create');
-		Route::post('store', 'ProjectController@store')->name('store');
+	Route::resource('projects', 'ProjectController');
+	Route::prefix('projects')->as('projects.')->group(function() {
+		Route::post('update-status', 'ProjectController@status')->name('status');
 	});
 
 	Route::prefix('category')->as('category.')->group(function() {

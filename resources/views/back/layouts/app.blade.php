@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="{{ asset('back/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('back/vendor/toastr/css/toastr.min.css') }}">
     <title>Welcome - {{isset($title) ? $title : "Dashboard"}}</title>
+    <style type="text/css">
+        div.dt-buttons {
+            float: left;
+            margin-bottom: 20px;
+        }
+    </style>
     @stack('styles')
 </head>
 

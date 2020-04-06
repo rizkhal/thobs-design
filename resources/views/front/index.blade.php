@@ -52,57 +52,21 @@
 
 <section class="section section-md bg-white text-center">
   <div class="shell-fluid">
-    <p class="heading-1">Portfolio</p>
+    <p class="heading-1">Project</p>
     <div class="isotope thumb-ruby-wrap wow fadeIn" data-isotope-layout="masonry" data-isotope-group="gallery" data-lightgallery="group">
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="images/gallery-image-1-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-1-440x327.jpg" alt="" width="440" height="327"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">Jane &amp; James</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-3 thumb-mixed_md" href="images/gallery-image-9-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-9-444x683.jpg" alt="" width="444" height="683"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">George &amp; Kate</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="images/gallery-image-15-1200x801-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-15-440x327.jpg" alt="" width="440" height="327"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">Beach Wedding</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-3 thumb-mixed_md" href="images/gallery-image-10-835x1200-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-10-444x683.jpg" alt="" width="444" height="683"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">Feelings</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="images/gallery-image-14-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-14-440x327.jpg" alt="" width="440" height="327"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">Ann’s Story</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item"><a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="images/gallery-image-2-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ruby__image" src="images/gallery-image-2-440x327.jpg" alt="" width="440" height="327"/>
-                  <div class="thumb-ruby__caption">
-                    <p class="thumb-ruby__title heading-3">Lisa’s Wedding</p>
-                    <p class="thumb-ruby__text">If you are looking for high quality wedding photography, I will be glad to help you.
-                      <!-- Portfolio-->
-                    </p>
-                  </div></a>
-        </div>
+        @forelse ($projects as $project)
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+            <a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="{{$project->project_file_url}}" data-lightgallery="item">
+              <img class="thumb-ruby__image" src="{{$project->project_file_url}}" alt="" width="440" height="327"/>
+              <div class="thumb-ruby__caption">
+                <p class="thumb-ruby__title heading-3">{{$project->title}}</p>
+                <p class="thumb-ruby__text">{{$project->content}}</p>
+              </div></a>
+          </div>
+        @empty
+          <h3>Maaf untuk saat ini belum ada file yang diupload.</h3>
+        @endforelse
       </div>
     </div>
   </div>

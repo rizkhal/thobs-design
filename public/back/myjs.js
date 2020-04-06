@@ -114,8 +114,40 @@ function ajaxUpdate(_token, url, form, btn, callback) {
     }
 }
 
-function ajaxDestroy(_token, url, id, callback) {
+function updateStatus(btn, _token, callback) {
     if (typeof callback == 'function') {
+        var url = btn.data('url'),
+            id  = btn.data('id'),
+            st  = btn.data('status');
+
+        Swal.fire({
+            title: "Apakah anda yakin?",
+            text: (st == true) ? "Yakin ingin unpublish?" : "Yakin ingin publish?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, saya yakin!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.value) {
+                $.post(url, {
+                    id: id,
+                    _method: "post",
+                    _token: _token
+                }).done(function(response) {
+                    toastr["info"]("Status file berhasil diubah..");
+                    callback();
+                });
+            }
+        });
+    }
+}
+
+function ajaxDestroy(btn, _token, callback) {
+    if (typeof callback == 'function') {
+        var url = btn.data('url');
+
         Swal.fire({
             title: "Yakin untuk menghapus?",
             text: "Data yang telah dihapus tidak dapat dikembalikan!",
@@ -128,11 +160,10 @@ function ajaxDestroy(_token, url, id, callback) {
         }).then((result) => {
             if (result.value) {
                 $.post(url, {
-                    id: id,
                     _method: "DELETE",
                     _token: _token
                 }).done(function(response) {
-                    messageSwal("success", "destroy");
+                    toastr["info"]("Project berhasil dihapus..");
                     callback();
                 });
             }
