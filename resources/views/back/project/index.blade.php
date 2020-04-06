@@ -30,6 +30,13 @@
                     $('.table').DataTable().ajax.reload();
                 });
             });
+
+            $(document).on('click', '.btn-slick', function() {
+                var _token = "{!! csrf_token() !!}";
+                slickIt($(this), _token, function() {
+                    $('.table').DataTable().ajax.reload();
+                });
+            });
         });
     </script>
 @endpush

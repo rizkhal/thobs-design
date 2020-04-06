@@ -6,46 +6,22 @@
   <!-- Slick Carousel-->
   <div class="slick-wrap">
     <div class="slick-slider slick-style-1" data-arrows="true" data-autoplay="false" data-loop="true" data-dots="true" data-swipe="true" data-xs-swipe="true" data-sm-swipe="false" data-items="1" data-sm-items="3" data-md-items="3" data-lg-items="3" data-center-mode="true" data-lightgallery="group-slick">
-      <div class="item">
-        <div class="slick-slide-inner">
-          <div class="slick-slide-caption"><a class="thumb-ann thumb-mixed_large" href="images/group-image-4-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ann__image" src="images/home1-1-961x664.jpg" alt="" width="961" height="664"/>
-              <div class="thumb-ann__caption">
-                <p class="thumb-ann__title heading-3">Philip &amp; Gloria</p>
-                <p class="thumb-ann__text">With the experience of more than 10 years, I am glad to offer you a wide variety of love story photography services at affordable prices.</p>
-              </div></a>
+      @foreach ($projects as $project)
+        @if ($project->is_corausel)
+          <div class="item">
+            <div class="slick-slide-inner">
+              <div class="slick-slide-caption">
+                <a class="thumb-ann thumb-mixed_large" href="{{ $project->project_file_url }}" data-lightgallery="item">
+                  <img class="thumb-ann__image" src="{{ $project->project_file_url }}" alt="" width="961" height="664"/>
+                  <div class="thumb-ann__caption">
+                    <p class="thumb-ann__title heading-3">{{$project->title}}</p>
+                    <p class="thumb-ann__text">{{$project->content}}</p>
+                  </div></a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="slick-slide-inner">
-          <div class="slick-slide-caption"><a class="thumb-ann thumb-mixed_large" href="images/group-image-3-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ann__image" src="images/home1-2-961x664.jpg" alt="" width="961" height="664"/>
-              <div class="thumb-ann__caption">
-                <p class="thumb-ann__title heading-3">Ronald &amp; Karen</p>
-                <p class="thumb-ann__text">With the experience of more than 10 years, I am glad to offer you a wide variety of love story photography services at affordable prices.</p>
-              </div></a>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="slick-slide-inner">
-          <div class="slick-slide-caption"><a class="thumb-ann thumb-mixed_large" href="images/home1-4-1200x695-original.jpg" data-lightgallery="item"><img class="thumb-ann__image" src="images/home1-3-961x664.jpg" alt="" width="961" height="664"/>
-              <div class="thumb-ann__caption">
-                <p class="thumb-ann__title heading-3">Eric &amp; Amanda</p>
-                <p class="thumb-ann__text">With the experience of more than 10 years, I am glad to offer you a wide variety of love story photography services at affordable prices.</p>
-              </div></a>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="slick-slide-inner">
-          <div class="slick-slide-caption"><a class="thumb-ann thumb-mixed_large" href="images/group-image-2-1200x800-original.jpg" data-lightgallery="item"><img class="thumb-ann__image" src="images/home1-4-961x664.jpg" alt="" width="961" height="664"/>
-              <div class="thumb-ann__caption">
-                <p class="thumb-ann__title heading-3">Harold &amp; Mary</p>
-                <p class="thumb-ann__text">With the experience of more than 10 years, I am glad to offer you a wide variety of love story photography services at affordable prices.</p>
-              </div></a>
-          </div>
-        </div>
-      </div>
+        @endif
+      @endforeach
     </div>
   </div>
 </section>

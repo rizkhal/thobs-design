@@ -27,6 +27,7 @@ Route::middleware('auth')->as('admin.')->group(function() {
 	Route::resource('projects', 'ProjectController');
 	Route::prefix('projects')->as('projects.')->group(function() {
 		Route::post('update-status', 'ProjectController@status')->name('status');
+		Route::post('slick-corausel', 'ProjectController@slick')->name('slick');
 	});
 
 	Route::prefix('category')->as('category.')->group(function() {

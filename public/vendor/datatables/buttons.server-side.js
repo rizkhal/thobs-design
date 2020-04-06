@@ -265,6 +265,17 @@
         // }
     };
 
+    DataTable.ext.buttons.setting = {
+        className: 'buttons-setting',
+
+        text: function (dt) {
+            return '<i class="fa fa-cog"></i> ' + dt.i18n('buttons.setting', 'Setting');
+        },
+        action: function (e, dt, button, config) {
+            window.location = window.location.href.replace(/\/+$/, "") + '/setting';
+        }
+    };
+
     DataTable.ext.buttons.compose = {
         className: 'buttons-compose',
 

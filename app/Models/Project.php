@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Models\Category;
-use App\Models\ProjectFile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
@@ -23,7 +23,7 @@ class Project extends Model
     	'project_file_url'
     ];
 
-    public function file()
+    public function file(): HasOne
     {
     	return $this->hasOne(ProjectFile::class)->withDefault('project_files');
     }

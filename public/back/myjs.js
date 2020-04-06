@@ -144,6 +144,34 @@ function updateStatus(btn, _token, callback) {
     }
 }
 
+function slickIt(btn, _token, callback) {
+    if (typeof callback == 'function') {
+        var url     = btn.data('url'),
+            id      = btn.data('id');
+
+        Swal.fire({
+            title: "Apakah anda yakin?",
+            text: "Status corausel ini akan diubah!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, saya yakin!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.value) {
+                $.post(url, {
+                    id: id,
+                    _token: _token
+                }).done(function(response) {
+                    toastr["info"](response.message);
+                    callback();
+                });
+            }
+        });
+    }
+}
+
 function ajaxDestroy(btn, _token, callback) {
     if (typeof callback == 'function') {
         var url = btn.data('url');

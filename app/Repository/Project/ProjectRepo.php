@@ -8,7 +8,7 @@ interface ProjectRepo
      * All project
      * @return object
      */
-    public function all(): ?object;
+    public function all();
 
     /**
      * Find project by id
@@ -30,6 +30,8 @@ interface ProjectRepo
      * @return object
      */
     public function save(array $data): ?object;
+
+    public function slick(string $id): ?bool;
 
     /**
      * Update project

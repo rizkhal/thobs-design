@@ -25,7 +25,9 @@ class ProjectDataTable extends DataTable
                     return convert_date($model->created_at);
                 })
                 ->addColumn('action', function($model) {
-                    $status = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
+                    $status   = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
+                    $corausel = ($model->is_corausel == true) ? 'fa-minus' : 'fa-plus';
+
                     return '
                         <button data-url="'.route('admin.projects.status').'"
                                 data-id="'.$model->id.'"
@@ -33,8 +35,10 @@ class ProjectDataTable extends DataTable
                                 class="btn btn-status btn-sm btn-primary">
                             <i class="fa '.$status.'"></i>
                         </button>
-                        <button class="btn btn-sm btn-info">
-                            <i class="fa fa-eye"></i>
+                        <button data-url="'.route('admin.projects.slick').'"
+                                data-id="'.$model->id.'"
+                                class="btn btn-slick btn-sm btn-secondary">
+                            <i class="fa '.$corausel.'"></i>
                         </button>
                         <a href="'.route('admin.projects.edit', $model->id).'" class="btn btn-sm btn-warning">
                             <i class="fa fa-edit" style="color:white;"></i>
@@ -56,7 +60,8 @@ class ProjectDataTable extends DataTable
      */
     public function query(Project $model)
     {
-        return $model->newQuery();
+        $query = $model->newQuery();
+        return $this->applyScopes($query);
     }
 
     /**
@@ -103,7 +108,7 @@ class ProjectDataTable extends DataTable
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(180)
+                  ->width(220)
                   ->addClass('text-center'),
         ];
     }

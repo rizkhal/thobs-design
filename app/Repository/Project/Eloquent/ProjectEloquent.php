@@ -5,7 +5,9 @@ namespace App\Repository\Project\Eloquent;
 use Storage;
 use App\Models\Project;
 use App\Constants\ProjectStatus;
+use App\Constants\CorauselStatus;
 use App\Repository\Project\ProjectRepo;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProjectEloquent implements ProjectRepo
 {
@@ -94,6 +96,16 @@ class ProjectEloquent implements ProjectRepo
         ]);
 
         return $project;
+    }
+
+    public function slick(string $id): ?bool
+    {
+        $project = $this->findById($id);
+        return $project->update([
+                'is_corausel' => $project->is_corausel == false
+                                ? CorauselStatus::ISCORAUSEL
+                                : CorauselStatus::ISNOTCORAUSEL
+        ]);
     }
 
     public function delete($id)

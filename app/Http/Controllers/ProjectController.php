@@ -101,6 +101,17 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
+    public function slick(Request $request)
+    {
+        if ($request->ajax()) {
+            $slick = $this->project->slick($request->id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Status corausel berhasil diubah'
+            ], 200);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
