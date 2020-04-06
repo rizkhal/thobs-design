@@ -43,5 +43,6 @@ Route::as('application.')->group(function() {
 
 	Route::get('/', 'ApplicationController@index')->name('index');
 	Route::get('about', 'ApplicationController@about')->name('about');
+	Route::get('galery', 'ApplicationController@galery')->name('galery');
 	Route::get('contact', 'ApplicationController@contact')->name('contact');
 });

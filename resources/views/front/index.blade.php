@@ -6,7 +6,7 @@
   <!-- Slick Carousel-->
   <div class="slick-wrap">
     <div class="slick-slider slick-style-1" data-arrows="true" data-autoplay="false" data-loop="true" data-dots="true" data-swipe="true" data-xs-swipe="true" data-sm-swipe="false" data-items="1" data-sm-items="3" data-md-items="3" data-lg-items="3" data-center-mode="true" data-lightgallery="group-slick">
-      @foreach ($projects as $project)
+      @foreach ($projects as $key => $project)
         @if ($project->is_corausel)
           <div class="item">
             <div class="slick-slide-inner">

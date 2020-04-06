@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
     protected $guarded = [];
+
+    public function project()
+    {
+    	return $this->belongsToMany(Project::class);
+    }
 }

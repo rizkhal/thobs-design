@@ -10,7 +10,9 @@
             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
             <!-- RD Navbar Brand-->
             <div class="rd-navbar-brand"><a class="brand" href="index.html">
-                <div class="brand__name"><img class="brand__logo-dark" src="images/logo-243x57.png" alt="" width="243" height="57"/><img class="brand__logo-light" src="images/logo-inverse-243x57.png" alt="" width="243" height="57"/>
+                <div class="brand__name">
+                  <img class="brand__logo-dark" src="{{ asset('front/images/logo-243x57.png') }}" alt="" width="243" height="57"/>
+                  <img class="brand__logo-light" src="{{ asset('front/images/logo-inverse-243x57.png') }}" alt="" width="243" height="57"/>
                 </div></a></div>
           </div>
           <!-- RD Navbar Nav-->
@@ -24,10 +26,10 @@
             </div>
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about-me.html">About Me</a></li>
-              <li><a href="about-me.html">Galery</a></li>
-              <li><a href="contact-me.html">Contact Me</a></li>
+              <li class="{{ is_active('/') }}"><a href="{{ route('application.index') }}">Home</a></li>
+              <li class=""><a href="#">About Me</a></li>
+              <li class="{{ is_active('galery*') }}"><a href="{{ route('application.galery') }}">Galery</a></li>
+              <li class=""><a href="contact-me.html">Contact Me</a></li>
             </ul>
           </div>
         </div>
