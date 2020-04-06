@@ -10,7 +10,7 @@ interface CategoryRepo {
 	 */
 	public function all();
 
-	public function hasProject();
+	public function hasProject(object $data);
 
 	/**
 	 * Save into database

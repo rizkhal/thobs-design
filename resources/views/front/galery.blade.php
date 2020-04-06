@@ -24,9 +24,9 @@
               <div class="isotope-filters isotope-filters_modern">
                 <ul class="inline-list">
             		<li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" href="#">All</a></li>
-		        	@foreach ($categories as $category)
-			          	<li><a data-isotope-filter="{{$category->name}}" data-isotope-group="gallery" href="#">{{$category->name}} </a></li>
-		        	@endforeach
+                  @foreach ($categories as $category)
+                    <li><a data-isotope-filter="{{$category->name}}" data-isotope-group="gallery" href="#">{{$category->name}} </a></li>
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -45,10 +45,11 @@
                  	</a>
               	</div>
               @empty
-				<h3>Sorry, galery is empty</h3>
+				        <h3>Sorry, galery is empty</h3>
               @endforelse
             </div>
           </div>
+          {!! $projects->links() !!}
         </div>
       </section>
 @endsection

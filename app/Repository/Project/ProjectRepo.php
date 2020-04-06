@@ -10,6 +10,8 @@ interface ProjectRepo
      */
     public function all();
 
+    public function galery();
+
     /**
      * Find project by id
      * @param  string $id

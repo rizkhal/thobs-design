@@ -2,8 +2,8 @@
 
 namespace App\Repository\Project\Eloquent;
 
-use Storage;
 use App\Models\Project;
+use App\Jobs\ProjectBroadcastJob;
 use App\Constants\ProjectStatus;
 use App\Constants\CorauselStatus;
 use App\Repository\Project\ProjectRepo;
@@ -25,6 +25,11 @@ class ProjectEloquent implements ProjectRepo
     public function all(): ?object
     {
         return $this->project->projectActive()->latest()->get();
+    }
+
+    public function galery()
+    {
+        return $this->project->projectActive()->latest()->paginate(9);
     }
 
     public function findById(string $id): ?object
@@ -68,6 +73,10 @@ class ProjectEloquent implements ProjectRepo
             'project_id' => $project->id,
             'filename'   => $data['file'],
         ]);
+
+        if($broadcast == true) {
+            ProjectBroadcastJob::dispatch($project);
+        }
 
         return $project;
     }

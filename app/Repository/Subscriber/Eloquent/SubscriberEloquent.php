@@ -16,7 +16,7 @@ class SubscriberEloquent implements SubscriberRepo
 
 	public function all()
 	{
-		# code...
+		return $this->subs->all();
 	}
 
 	public function store(array $data)

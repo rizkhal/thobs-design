@@ -31,7 +31,7 @@
     <p class="heading-1">Project</p>
     <div class="isotope thumb-ruby-wrap wow fadeIn" data-isotope-layout="masonry" data-isotope-group="gallery" data-lightgallery="group">
       <div class="row">
-        @forelse ($projects as $project)
+        @forelse ($projects->take(8) as $project)
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
             <a class="thumb-ruby thumb-mixed_height-2 thumb-mixed_md" href="{{$project->project_file_url}}" data-lightgallery="item">
               <img class="thumb-ruby__image" src="{{$project->project_file_url}}" alt="" width="440" height="327"/>

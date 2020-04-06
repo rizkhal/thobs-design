@@ -19,9 +19,13 @@ class CategoryEloquent implements CategoryRepo
 		return $this->category->all();
 	}
 
-	public function hasProject()
+	public function hasProject(object $data): ?object
 	{
-		return $this->category->whereHas('project')->get();
+		$c = $data->map(function($item) use($data){
+			return $item;
+		});
+
+		return $this->category->whereIn('id', $c->flatMap->categories->pluck('id'))->get();
 	}
 
 	public function save(array $data)
