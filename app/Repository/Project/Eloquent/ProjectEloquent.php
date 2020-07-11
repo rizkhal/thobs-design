@@ -24,12 +24,12 @@ class ProjectEloquent implements ProjectRepo
      */
     public function all(): ?object
     {
-        return $this->project->projectActive()->latest()->get();
+        return $this->project->active()->latest()->get();
     }
 
     public function galery()
     {
-        return $this->project->projectActive()->latest()->paginate(9);
+        return $this->project->active()->latest()->paginate(9);
     }
 
     public function findById(string $id): ?object
@@ -107,13 +107,19 @@ class ProjectEloquent implements ProjectRepo
         return $project;
     }
 
-    public function slick(string $id): ?bool
+    public function corausel()
+    {
+        return $this->project->corausel();
+    }
+
+    public function slick(string $id)
     {
         $project = $this->findById($id);
+
         return $project->update([
-                'is_corausel' => $project->is_corausel == false
-                                ? CorauselStatus::ISCORAUSEL
-                                : CorauselStatus::ISNOTCORAUSEL
+            'is_corausel' => $project->is_corausel == false
+                            ? CorauselStatus::ISCORAUSEL
+                            : CorauselStatus::ISNOTCORAUSEL
         ]);
     }
 

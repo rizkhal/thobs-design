@@ -73,7 +73,7 @@ class ProjectDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('project-table')
-                    ->addClass('table table-hover table-bordered')
+                    ->addTableClass('table table-hover table-bordered')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')

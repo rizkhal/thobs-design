@@ -49,48 +49,48 @@
 </section>
 
 <!-- Awards-->
-      <section class="section parallax-container bg-image-dark" data-parallax-img="images/bg-image-7-1920x1244.jpg">
-        <div class="parallax-content">
-          <div class="section-md text-center">
-            <div class="shell">
-              <div class="range range-50 range-lg-bottom">
-                <div class="cell-xs-6 cell-md-3 wow fadeIn">
-                  <!-- Box award-->
-                  <article class="box-award"><img class="box-award__image" src="images/award-1-134x98-inverse.png" alt="" width="134" height="98"/>
-                    <h3 class="box-award__title">Best photo of the year</h3>
-                    <div class="box-award__divider"></div>
-                    <time class="box-award__time" datetime="2010">2010</time>
-                  </article>
-                </div>
-                <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".1s">
-                  <!-- Box award-->
-                  <article class="box-award"><img class="box-award__image" src="images/award-2-115x117-inverse.png" alt="" width="115" height="117"/>
-                    <h3 class="box-award__title">Best couple photo</h3>
-                    <div class="box-award__divider"></div>
-                    <time class="box-award__time" datetime="2014">2014</time>
-                  </article>
-                </div>
-                <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".2s">
-                  <!-- Box award-->
-                  <article class="box-award"><img class="box-award__image" src="images/award-3-116x103-inverse.png" alt="" width="116" height="103"/>
-                    <h3 class="box-award__title">Best love story photo</h3>
-                    <div class="box-award__divider"></div>
-                    <time class="box-award__time" datetime="2015">2015</time>
-                  </article>
-                </div>
-                <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".3s">
-                  <!-- Box award-->
-                  <article class="box-award"><img class="box-award__image" src="images/award-4-131x96-inverse.png" alt="" width="131" height="96"/>
-                    <h3 class="box-award__title">Best photo shoot</h3>
-                    <div class="box-award__divider"></div>
-                    <time class="box-award__time" datetime="2016">2016</time>
-                  </article>
-                </div>
-              </div>
-            </div>
+{{-- <section class="section parallax-container bg-image-dark" data-parallax-img="images/bg-image-7-1920x1244.jpg">
+  <div class="parallax-content">
+    <div class="section-md text-center">
+      <div class="shell">
+        <div class="range range-50 range-lg-bottom">
+          <div class="cell-xs-6 cell-md-3 wow fadeIn">
+            <!-- Box award-->
+            <article class="box-award"><img class="box-award__image" src="images/award-1-134x98-inverse.png" alt="" width="134" height="98"/>
+              <h3 class="box-award__title">Best photo of the year</h3>
+              <div class="box-award__divider"></div>
+              <time class="box-award__time" datetime="2010">2010</time>
+            </article>
+          </div>
+          <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".1s">
+            <!-- Box award-->
+            <article class="box-award"><img class="box-award__image" src="images/award-2-115x117-inverse.png" alt="" width="115" height="117"/>
+              <h3 class="box-award__title">Best couple photo</h3>
+              <div class="box-award__divider"></div>
+              <time class="box-award__time" datetime="2014">2014</time>
+            </article>
+          </div>
+          <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".2s">
+            <!-- Box award-->
+            <article class="box-award"><img class="box-award__image" src="images/award-3-116x103-inverse.png" alt="" width="116" height="103"/>
+              <h3 class="box-award__title">Best love story photo</h3>
+              <div class="box-award__divider"></div>
+              <time class="box-award__time" datetime="2015">2015</time>
+            </article>
+          </div>
+          <div class="cell-xs-6 cell-md-3 wow fadeIn" data-wow-delay=".3s">
+            <!-- Box award-->
+            <article class="box-award"><img class="box-award__image" src="images/award-4-131x96-inverse.png" alt="" width="131" height="96"/>
+              <h3 class="box-award__title">Best photo shoot</h3>
+              <div class="box-award__divider"></div>
+              <time class="box-award__time" datetime="2016">2016</time>
+            </article>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section> --}}
 
 
 <!-- Blog-->

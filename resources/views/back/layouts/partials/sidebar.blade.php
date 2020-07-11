@@ -28,10 +28,10 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ is_active('appointments*') }}" href="{{ route('admin.appointment.index') }}">Appointment</a>
+                                    <a class="nav-link {{ is_active('projects*') }}" href="{{ route('admin.projects.index') }}">All Projects</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ is_active('projects*') }}" href="{{ route('admin.projects.index') }}">Project</a>
+                                    <a class="nav-link {{ is_active('appointments*') }}" href="{{ route('admin.appointment.index') }}">Appointments</a>
                                 </li>
                             </ul>
                         </div>

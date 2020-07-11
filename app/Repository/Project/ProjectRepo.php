@@ -33,7 +33,9 @@ interface ProjectRepo
      */
     public function save(array $data): ?object;
 
-    public function slick(string $id): ?bool;
+    public function slick(string $id);
+
+    public function corausel();
 
     /**
      * Update project

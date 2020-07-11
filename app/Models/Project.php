@@ -42,8 +42,13 @@ class Project extends Model
     	}
     }
 
-    public function scopeProjectActive($query)
+    public function scopeActive($query)
     {
     	return $query->where('status', true);
+    }
+
+    public function scopeCorausel($query)
+    {
+        return $query->active()->where('is_corausel', true)->get();
     }
 }

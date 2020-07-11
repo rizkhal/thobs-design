@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProjectDataTable;
+use App\DataTables\TestDataTable;
 use App\Http\Requests\ProjectRequest;
 use App\Repository\Category\CategoryRepo;
 use App\Repository\Project\ProjectRepo;
@@ -24,7 +25,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProjectDataTable $dataTable)
+    public function index(TestDataTable $dataTable)
     {
         return $dataTable->render('back.project.index');
     }
@@ -104,10 +105,12 @@ class ProjectController extends Controller
     public function slick(Request $request)
     {
         if ($request->ajax()) {
-            $slick = $this->project->slick($request->id);
+
+            $this->project->slick($request->id);
+
             return response()->json([
                 'success' => true,
-                'message' => 'Status corausel berhasil diubah'
+                'message' => 'Berhasil menambah corausel..'
             ], 200);
         }
     }

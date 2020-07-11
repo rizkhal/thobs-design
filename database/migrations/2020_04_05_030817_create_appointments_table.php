@@ -17,9 +17,15 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->text('message');
-            $table->boolean('is_read')->default(false);
-            $table->dateTime('appointment_at');
+            $table->string('title');
+            $table->text('body')->nullabele();
+            $table->string('url')->nullable();
+            $table->date('start_date_at');
+            $table->date('end_date_at')->nullable();
+            $table->time('start_time_at')->nullable();
+            $table->time('end_time_at')->nullable();
+            $table->string('background_color')->nullable();
+            $table->string('border_color')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
