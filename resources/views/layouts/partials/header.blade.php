@@ -38,6 +38,7 @@
                         <i class="icon-submenu lnr lnr-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url('/') }}"><i class="lnr lnr-earth"></i> <span>View Site</span></a></li>
                         <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                         <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
                         <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>

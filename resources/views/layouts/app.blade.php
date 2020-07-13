@@ -75,8 +75,15 @@
     <script src="{{asset('vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
     <script src="{{asset('vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
     <script src="{{asset('vendor/chartist/js/chartist.min.js')}}"></script>
-    <script src="{{asset('scripts/klorofil-common.js')}}"></script>
+    <script src="{{asset('js/klorofil-common.js')}}"></script>
     <!-- push stack scripts -->
+    <script lang="javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

@@ -23,16 +23,23 @@ class CategoryDataTable extends DataTable
     {
         return datatables()->eloquent($this->query)
             ->addIndexColumn()
+            ->editColumn('description', function($model) {
+                if (is_null($model->description)) {
+                    return '<span class="label label-info">empty</span>';
+                }
+
+                return $model->description;
+            })
             ->editColumn('created_at', function($model) {
                 return convert_date($model->created_at);
             })
             ->addColumn('action', function($model) {
                 return '
-                    <button class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button type="button" data-url="'.route('admin.category.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                    <button type="button" data-url="'.route('admin.category.destroy', $model->id).'" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['description', 'action']);
     }
 
     /**
@@ -60,7 +67,7 @@ class CategoryDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(3)
                     ->buttons(
                         Button::make('create'),
                     );
@@ -83,9 +90,9 @@ class CategoryDataTable extends DataTable
                 ->orderable(false)
                 ->searchable(false)
                 ->footer(''),
-            Column::make('name'),
+            Column::make('name')->title('Category'),
             Column::make('description'),
-            Column::make('created_at'),
+            Column::make('created_at')->title('Created'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

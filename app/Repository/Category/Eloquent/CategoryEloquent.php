@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Category\Eloquent;
 
 use App\Models\Category;
@@ -14,11 +16,22 @@ class CategoryEloquent implements CategoryRepo
 		$this->category = $category;
 	}
 
-	public function all()
+    /**
+     * Get all category
+     * 
+     * @return ?object
+     */
+	public function all(): ?object
 	{
 		return $this->category->all();
 	}
 
+    /**
+     * Get project has category
+     * 
+     * @param  object  $data
+     * @return ?object
+     */
 	public function hasProject(object $data): ?object
 	{
 		$c = $data->map(function($item) use($data){
@@ -28,12 +41,35 @@ class CategoryEloquent implements CategoryRepo
 		return $this->category->whereIn('id', $c->flatMap->categories->pluck('id'))->get();
 	}
 
-	public function save(array $data)
+    /**
+     * Edit category
+     * 
+     * @param  string $id
+     * @return ?object
+     */
+    public function edit(string $id): ?object
+    {
+        return $this->category->findOrFail($id);
+    }
+
+    /**
+     * Save category
+     * 
+     * @param  array  $data
+     * @return ?object
+     */
+	public function save(array $data): ?object
 	{
 		return $this->category->create($data);
 	}
 
-	public function searchByName(array $param)
+    /**
+     * Search Category by select2
+     * 
+     * @param  array  $param
+     * @return array
+     */
+	public function searchByName(array $param): array
     {
         $query = $this->category->query();
 
@@ -42,5 +78,17 @@ class CategoryEloquent implements CategoryRepo
         }
 
         return $query = $query->take(10)->get();
+    }
+
+    /**
+     * Delete category
+     * 
+     * @param  string $id
+     * @return bool
+     */
+    public function delete(string $id): bool
+    {
+        $category = Category::findOrFail($id);
+        return $category->delete();
     }
 }

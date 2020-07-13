@@ -28,7 +28,7 @@
 
 <section class="section section-md bg-white text-center">
   <div class="shell-fluid">
-    <p class="heading-1">Project</p>
+    <p class="heading-1">Projects</p>
     <div class="isotope thumb-ruby-wrap wow fadeIn" data-isotope-layout="masonry" data-isotope-group="gallery" data-lightgallery="group">
       <div class="row">
         @forelse ($projects->take(8) as $project)

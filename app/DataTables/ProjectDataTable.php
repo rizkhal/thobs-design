@@ -11,15 +11,17 @@ use Yajra\DataTables\Services\DataTable;
 
 class ProjectDataTable extends DataTable
 {
+    private $query;
+
     /**
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable()
     {
-        return datatables()->eloquent($query)
+        return datatables()->eloquent($this->query)
                 ->addIndexColumn()
                 ->editColumn('created_at', function($model) {
                     return convert_date($model->created_at);
@@ -41,11 +43,11 @@ class ProjectDataTable extends DataTable
                             <i class="fa '.$corausel.'"></i>
                         </button>
                         <a href="'.route('admin.projects.edit', $model->id).'" class="btn btn-sm btn-warning">
-                            <i class="fa fa-edit" style="color:white;"></i>
+                            <i class="fa fa-pencil" style="color:white;"></i>
                         </a>
                         <button data-url="'.route('admin.projects.destroy', $model->id).'"
                                 class="btn btn-delete btn-sm btn-danger">
-                            <i class="fa fa-trash-alt"></i>
+                            <i class="fa fa-trash"></i>
                         </button>
                     ';
                 })
@@ -60,8 +62,8 @@ class ProjectDataTable extends DataTable
      */
     public function query(Project $model)
     {
-        $query = $model->newQuery();
-        return $this->applyScopes($query);
+        $this->query = $model->newQuery();
+        return $this->applyScopes($this->query);
     }
 
     /**

@@ -1,10 +1,10 @@
-<div class="modal modal-create fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="form" method="post" action="{{ route('admin.category.store') }}">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Category</h5>
+                    <h5 class="modal-title">New Category</h5>
                     <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </a>
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Tutup</a>
-                    <button type="button" data-loading-text="Loading..." class="btn-submit btn btn-primary">Simpan</button>
+                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    <button type="submit" data-loading-text="Loading..." class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

@@ -8,6 +8,7 @@ Auth::routes();
 Route::middleware('auth')->as('admin.')->group(function() {
 	Route::get('home', 'HomeController@index')->name('index');
 
+	Route::resource('category', 'CategoryController');
 	Route::prefix('select2')->as('select2.')->group(function() {
 		Route::get('category', 'Service\Select2Controller@category')->name('category');
 	});
@@ -30,12 +31,6 @@ Route::middleware('auth')->as('admin.')->group(function() {
 		Route::post('update-status', 'ProjectController@status')->name('status');
 		Route::post('slick-corausel', 'ProjectController@slick')->name('slick');
 	});
-
-	Route::prefix('category')->as('category.')->group(function() {
-		Route::get('/', 'CategoryController@index')->name('index');
-		Route::post('store', 'CategoryController@store')->name('store');
-	});
-
 });
 
 Route::as('application.')->group(function() {

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProjectDataTable;
-use App\DataTables\TestDataTable;
 use App\Http\Requests\ProjectRequest;
 use App\Repository\Category\CategoryRepo;
 use App\Repository\Project\ProjectRepo;
@@ -25,7 +24,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(TestDataTable $dataTable)
+    public function index(ProjectDataTable $dataTable)
     {
         return $dataTable->render('back.project.index');
     }

@@ -26,9 +26,9 @@
             </div>
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
-              <li class="{{ is_active('/') }}"><a href="{{ route('application.index') }}">Home</a></li>
+              <li class="{{ active('/') }}"><a href="{{ route('application.index') }}">Home</a></li>
               <li class=""><a href="#">About Me</a></li>
-              <li class="{{ is_active('galery*') }}"><a href="{{ route('application.galery') }}">Galery</a></li>
+              <li class="{{ active('galery*') }}"><a href="{{ route('application.galery') }}">Galery</a></li>
               <li class=""><a href="contact-me.html">Contact Me</a></li>
             </ul>
           </div>

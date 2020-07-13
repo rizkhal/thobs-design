@@ -10,7 +10,7 @@
                     <a href="{{ route('admin.index') }}" class="{{ active('home') }}"><i class="lnr lnr-bullhorn"></i> <span>Blog</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="{{ active('home') }}"><i class="lnr lnr-store"></i> <span>Project</span></a>
+                    <a href="{{ route('admin.projects.index') }}" class="{{ active('projects*') }}"><i class="lnr lnr-store"></i> <span>Project</span></a>
                 </li>
                 <li>
                     <a href="#master" data-toggle="collapse" class="{{ active('category') }}">
