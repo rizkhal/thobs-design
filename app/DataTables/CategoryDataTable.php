@@ -11,22 +11,25 @@ use Yajra\DataTables\Services\DataTable;
 
 class CategoryDataTable extends DataTable
 {
+    private $query;
+
     /**
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable()
     {
-        return datatables()->eloquent($query)
+        return datatables()->eloquent($this->query)
             ->addIndexColumn()
             ->editColumn('created_at', function($model) {
                 return convert_date($model->created_at);
             })
             ->addColumn('action', function($model) {
                 return '
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button>
+                    <button class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })
             ->rawColumns(['action']);
@@ -40,7 +43,8 @@ class CategoryDataTable extends DataTable
      */
     public function query(Category $model)
     {
-        return $model->newQuery();
+        $this->query = $model->newQuery();
+        return $this->applyScopes($this->query);
     }
 
     /**
@@ -52,15 +56,13 @@ class CategoryDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('category-table')
+                    ->addTableClass('table table-hover')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('export'),
-                        Button::make('print'),
                         Button::make('create'),
-                        Button::make('reload')
                     );
     }
 
@@ -87,7 +89,6 @@ class CategoryDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
                 ->addClass('text-center'),
         ];
     }

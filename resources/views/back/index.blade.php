@@ -1,3 +1,5 @@
-@extends('back.layouts.app', [
-    'title' => 'Dashboard'
-])
+<x-app-layout title="Dashboard Page">
+    @section('app')
+        <h1>Halaman Dashboard</h1>
+    @stop
+</x-app-layout>

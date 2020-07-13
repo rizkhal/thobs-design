@@ -11,10 +11,10 @@
         } else {
             params.visible_columns = null;
         }
-
+        
         return params;
     };
-
+    
     var _getVisibleColumns = function () {
 
         var visible_columns = [];
@@ -85,7 +85,7 @@
         if (url.indexOf('?') > -1) {
             return url + '&' + $.param(params);
         }
-
+        
         return url + '?' + $.param(params);
     };
 
@@ -116,7 +116,7 @@
             _downloadFromUrl(url, params);
         }
     };
-
+    
     DataTable.ext.buttons.postExcelVisibleColumns = {
         className: 'buttons-excel',
 
@@ -171,7 +171,7 @@
             _downloadFromUrl(url, params);
         }
     };
-
+    
     DataTable.ext.buttons.postCsv = {
         className: 'buttons-csv',
 
@@ -246,7 +246,7 @@
         className: 'buttons-reload',
 
         text: function (dt) {
-            return '<i class="fas fa-undo"></i> ' + dt.i18n('buttons.reload', 'Reload');
+            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Reload');
         },
 
         action: function (e, dt, button, config) {
@@ -263,30 +263,6 @@
         // action: function (e, dt, button, config) {
         //     window.location = window.location.href.replace(/\/+$/, "") + '/create';
         // }
-    };
-
-    DataTable.ext.buttons.setting = {
-        className: 'buttons-setting',
-
-        text: function (dt) {
-            return '<i class="fa fa-cog"></i> ' + dt.i18n('buttons.setting', 'Setting');
-        },
-        action: function (e, dt, button, config) {
-            window.location = window.location.href.replace(/\/+$/, "") + '/setting';
-        }
-    };
-
-    DataTable.ext.buttons.compose = {
-        className: 'buttons-compose',
-
-        text: function (dt) {
-            return '<i class="fas fa-edit"></i> ' + dt.i18n('buttons.compose', 'Compose');
-        },
-
-        action: function (e, dt, button, config) {
-            console.log(e);
-            console.log(dt);
-        }
     };
 
     if (typeof DataTable.ext.buttons.copyHtml5 !== 'undefined') {
