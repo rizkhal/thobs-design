@@ -56,6 +56,7 @@ class ProjectEloquent implements ProjectRepo
     public function changeStatus(string $id): bool
     {
         $project = $this->project->findOrFail($id);
+
         return $project->update([
             'status' => $project->status == true
             ? ProjectStatus::UNPUBLISH

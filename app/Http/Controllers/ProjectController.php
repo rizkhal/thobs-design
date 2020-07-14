@@ -66,12 +66,12 @@ class ProjectController extends Controller
         if ($request->ajax()) {
             if ($this->project->changeStatus($request->id)) {
                 return response()->json([
-                    'success' => 'success',
+                    'status' => 'success',
                     'message' => 'The project status is updated.',
                 ], 200);
             } else {
                 return response()->json([
-                    'success' => 'danger',
+                    'status' => 'danger',
                     'message' => 'Something went wrong, please the contact administrator.',
                 ], 500);
             }

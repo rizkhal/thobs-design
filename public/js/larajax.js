@@ -72,7 +72,6 @@
                         data = formValue(form),
                         btn = $(this).find("button[type='submit']"),
                         defaultText = btn.text();
-
                     $.ajax({
                         url: url,
                         type: "post",
@@ -131,6 +130,29 @@
                             data: {
                                 _method: "DELETE",
                             },
+                        }).done(function(response) {
+                            callback();
+                            toastr[response.status](response.message);
+                        });
+                    }
+                });
+            }
+        }
+        _larajaxObject.dialog = function(btn, callback) {
+            if (typeof callback === 'function') {
+                var id = btn.data("id"),
+                    url = btn.data("url");
+                swal({
+                    title: "Yakin untuk menghapus?",
+                    text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((result) => {
+                    if (result) {
+                        $.post(url, {
+                            id: id,
+                            _method: "post",
                         }).done(function(response) {
                             callback();
                             toastr[response.status](response.message);

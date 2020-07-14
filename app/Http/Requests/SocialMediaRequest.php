@@ -24,8 +24,8 @@ class SocialMediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => 'url',
-            'platform' => 'integer'
+            'link'     => ['url', 'unique:social_media'],
+            'platform' => ['integer'],
         ];
     }
 }

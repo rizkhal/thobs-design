@@ -26,40 +26,10 @@
                     });
                 });
 
-                function updateStatus(btn, _token, callback) {
-                    if (typeof callback == 'function') {
-                        var url = btn.data('url'),
-                            id  = btn.data('id'),
-                            st  = btn.data('status');
-
-                        Swal.fire({
-                            title: "Apakah anda yakin?",
-                            text: (st == true) ? "Yakin ingin unpublish?" : "Yakin ingin publish?",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Ya, saya yakin!",
-                            cancelButtonText: "Batal"
-                        }).then((result) => {
-                            if (result.value) {
-                                $.post(url, {
-                                    id: id,
-                                    _method: "post",
-                                    _token: _token
-                                }).done(function(response) {
-                                    toastr["info"]("Status file berhasil diubah..");
-                                    callback();
-                                });
-                            }
-                        });
-                    }
-                }
-
-                $('.table').on('click', '.btn-status', function(e) {
-                    e.preventDefault();
-
-                    alert("cleicked");
+                $('.table').on('click', '.btn-status', function() {
+                    Larajax.dialog($(this), function() {
+                        $(".table").DataTable().ajax.reload();
+                    });
                 });
             });
         </script>
