@@ -28,14 +28,4 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repository\SocialMedia\Eloquent\SocialMediaEloquent::class
         );
     }
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 }

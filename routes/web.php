@@ -18,17 +18,9 @@ Route::middleware('auth')->as('admin.')->group(function() {
 		Route::get('category', 'Service\Select2Controller@category')->name('category');
 	});
 
+	/** Upload facade */
 	Route::prefix('uploads')->as('upload.')->group(function() {
 		Route::post('project', 'Service\UploadController@project')->name('project');
-	});
-
-	Route::prefix('subscribers')->as('subscriber.')->group(function() {
-		Route::get('/', 'SubscriberController@index')->name('index');
-	});
-
-	Route::prefix('appointments')->as('appointment.')->group(function() {
-		Route::get('/', 'AppointmentController@index')->name('index');
-		Route::get('/{id}', 'AppointmentController@show')->name('show');
 	});
 
 	Route::resource('projects', 'ProjectController')->except('show');
@@ -39,9 +31,6 @@ Route::middleware('auth')->as('admin.')->group(function() {
 });
 
 Route::as('application.')->group(function() {
-	Route::post('subscribe', 'SubscriberController@subscribe')->name('subscribe');
-	Route::post('appointment', 'AppointmentController@store')->name('appointment');
-
 	Route::get('/', 'ApplicationController@index')->name('index');
 	Route::get('about', 'ApplicationController@about')->name('about');
 	Route::get('galery', 'ApplicationController@galery')->name('galery');
