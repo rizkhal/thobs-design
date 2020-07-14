@@ -2,10 +2,10 @@
 
 namespace App\Repository\Project\Eloquent;
 
-use App\Constants\CorauselStatus;
 use App\Constants\ProjectStatus;
 use App\Models\Project;
 use App\Repository\Project\ProjectRepo;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectEloquent implements ProjectRepo
 {
@@ -17,7 +17,7 @@ class ProjectEloquent implements ProjectRepo
     }
 
     /**
-     * All project where status active
+     * All active projects
      *
      * @return object
      */
@@ -26,11 +26,22 @@ class ProjectEloquent implements ProjectRepo
         return $this->project->active()->latest()->get();
     }
 
-    public function galery()
+    /**
+     * Galery of the project
+     *
+     * @return object
+     */
+    public function galery(): object
     {
         return $this->project->active()->latest()->paginate(9);
     }
 
+    /**
+     * Find project where id
+     *
+     * @param  string $id
+     * @return object
+     */
     public function findById(string $id): object
     {
         return $this->project->findOrFail($id);
@@ -42,7 +53,7 @@ class ProjectEloquent implements ProjectRepo
      * @param  int $id
      * @return bool
      */
-    public function changeStatus($id): bool
+    public function changeStatus(string $id): bool
     {
         $project = $this->project->findOrFail($id);
         return $project->update([
@@ -52,6 +63,12 @@ class ProjectEloquent implements ProjectRepo
         ]);
     }
 
+    /**
+     * Save project
+     *
+     * @param  array  $data
+     * @return object
+     */
     public function save(array $data): object
     {
         $project = $this->project->create([
@@ -68,6 +85,13 @@ class ProjectEloquent implements ProjectRepo
         return $project;
     }
 
+    /**
+     * Update project
+     *
+     * @param  string $id
+     * @param  array  $data
+     * @return object
+     */
     public function update(string $id, array $data): object
     {
         $project = $this->findById($id);
@@ -86,25 +110,16 @@ class ProjectEloquent implements ProjectRepo
         return $project;
     }
 
-    public function corausel()
-    {
-        return $this->project->corausel();
-    }
-
-    public function slick(string $id)
-    {
-        $project = $this->findById($id);
-
-        return $project->update([
-            'is_corausel' => $project->is_corausel == false
-            ? CorauselStatus::ISCORAUSEL
-            : CorauselStatus::ISNOTCORAUSEL,
-        ]);
-    }
-
-    public function delete($id): bool
+    /**
+     * Delete project
+     *
+     * @param  string $id
+     * @return bool
+     */
+    public function delete(string $id): bool
     {
         $project = $this->findById($id);
-        $project->delete();
+        Storage::delete("uploads/project/{$project->file->filename}");
+        return $project->delete();
     }
 }

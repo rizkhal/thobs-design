@@ -11,14 +11,14 @@ interface ProjectRepo
      *
      * @return object
      */
-    public function all();
+    public function all(): object;
 
     /**
      * Galery of the project
      *
-     * @return
+     * @return object
      */
-    public function galery();
+    public function galery(): object;
 
     /**
      * Find project by id
@@ -43,10 +43,6 @@ interface ProjectRepo
      * @return object
      */
     public function save(array $data): object;
-
-    public function slick(string $id);
-
-    public function corausel();
 
     /**
      * Update project

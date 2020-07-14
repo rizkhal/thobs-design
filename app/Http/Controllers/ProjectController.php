@@ -50,11 +50,17 @@ class ProjectController extends Controller
             notice('success', 'Successfully upload the project.');
             return redirect()->route('admin.projects.index');
         } else {
-            notice('danger', 'Something went wrong, please contact administrator.');
+            notice('danger', 'Something went wrong, please the contact administrator.');
             return redirect()->back();
         }
     }
 
+    /**
+     * Change project status
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function status(Request $request)
     {
         if ($request->ajax()) {
@@ -66,7 +72,7 @@ class ProjectController extends Controller
             } else {
                 return response()->json([
                     'success' => 'danger',
-                    'message' => 'Something went wrong, please contact administrator.',
+                    'message' => 'Something went wrong, please the contact administrator.',
                 ], 500);
             }
         }
@@ -99,20 +105,8 @@ class ProjectController extends Controller
             notice('success', 'Successfully update the project.');
             return redirect()->route('admin.projects.index');
         } else {
-            notice('danger', 'Something went wrong, please contact administrator.');
+            notice('danger', 'Something went wrong, please the contact administrator.');
             return redirect()->back();
-        }
-    }
-
-    public function slick(Request $request)
-    {
-        if ($request->ajax()) {
-            $this->project->slick($request->id);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Berhasil menambah corausel..',
-            ], 200);
         }
     }
 
@@ -125,11 +119,17 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         if (request()->ajax()) {
-            $this->project->delete($id);
-            return response()->json([
-                'success' => true,
-                'message' => 'Project berhasil dihapus',
-            ], 200);
+            if ($this->project->delete($id)) {
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'The project has been deleted.',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status'  => 'danger',
+                    'message' => 'Something went wrong, pelase the contact administrator.',
+                ], 200);
+            }
         }
     }
 }

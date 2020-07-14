@@ -20,6 +20,12 @@
                     window.location = window.location.href.replace(/\/+$/, "") + '/create';
                 });
 
+                $(".table").on("click", ".btn-destroy", function() {
+                    Larajax.delete($(this), function() {
+                        $(".table").DataTable().ajax.reload();
+                    });
+                });
+
                 function updateStatus(btn, _token, callback) {
                     if (typeof callback == 'function') {
                         var url = btn.data('url'),

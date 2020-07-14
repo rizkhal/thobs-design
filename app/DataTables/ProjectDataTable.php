@@ -40,7 +40,7 @@ class ProjectDataTable extends DataTable
                             <i class="fa fa-pencil" style="color:white;"></i>
                         </a>
                         <button type="button" data-url="' . route('admin.projects.destroy', $model->id) . '"
-                                class="btn btn-delete btn-sm btn-danger">
+                                class="btn btn-destroy btn-sm btn-danger">
                             <i class="fa fa-trash"></i>
                         </button>
                     ';
@@ -69,7 +69,7 @@ class ProjectDataTable extends DataTable
     {
         return $this->builder()
             ->setTableId('project-table')
-            ->addTableClass('table table-hover table-bordered')
+            ->addTableClass('table table-hover')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')

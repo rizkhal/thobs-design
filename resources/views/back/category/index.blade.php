@@ -42,7 +42,7 @@
                     Larajax.delete($(this), function() {
                         $(".table").DataTable().ajax.reload();
                     });
-                })
+                });
             });
         </script>
     @endpush
