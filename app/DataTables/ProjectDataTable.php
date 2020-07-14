@@ -5,8 +5,6 @@ namespace App\DataTables;
 use App\Models\Project;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ProjectDataTable extends DataTable
@@ -22,36 +20,29 @@ class ProjectDataTable extends DataTable
     public function dataTable()
     {
         return datatables()->eloquent($this->query)
-                ->addIndexColumn()
-                ->editColumn('created_at', function($model) {
-                    return convert_date($model->created_at);
-                })
-                ->addColumn('action', function($model) {
-                    $status   = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
-                    $corausel = ($model->is_corausel == true) ? 'fa-minus' : 'fa-plus';
-
-                    return '
-                        <button data-url="'.route('admin.projects.status').'"
-                                data-id="'.$model->id.'"
-                                data-status="'.$model->status.'"
+            ->addIndexColumn()
+            ->editColumn('created_at', function ($model) {
+                return convert_date($model->created_at);
+            })
+            ->addColumn('action', function ($model) {
+                $status = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
+                return '
+                        <button data-url="' . route('admin.projects.status') . '"
+                                data-id="' . $model->id . '"
+                                data-status="' . $model->status . '"
                                 class="btn btn-status btn-sm btn-primary">
-                            <i class="fa '.$status.'"></i>
+                            <i class="fa ' . $status . '"></i>
                         </button>
-                        <button data-url="'.route('admin.projects.slick').'"
-                                data-id="'.$model->id.'"
-                                class="btn btn-slick btn-sm btn-secondary">
-                            <i class="fa '.$corausel.'"></i>
-                        </button>
-                        <a href="'.route('admin.projects.edit', $model->id).'" class="btn btn-sm btn-warning">
+                        <a href="' . route('admin.projects.edit', $model->id) . '" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil" style="color:white;"></i>
                         </a>
-                        <button data-url="'.route('admin.projects.destroy', $model->id).'"
+                        <button type="button" data-url="' . route('admin.projects.destroy', $model->id) . '"
                                 class="btn btn-delete btn-sm btn-danger">
                             <i class="fa fa-trash"></i>
                         </button>
                     ';
-                })
-                ->rawColumns(['action', 'status']);
+            })
+            ->rawColumns(['action']);
     }
 
     /**
@@ -74,18 +65,15 @@ class ProjectDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('project-table')
-                    ->addTableClass('table table-hover table-bordered')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('create'),
-                        Button::make('reload')
-                    );
+            ->setTableId('project-table')
+            ->addTableClass('table table-hover table-bordered')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(3)
+            ->buttons(
+                Button::make('create')
+            );
     }
 
     /**
@@ -106,12 +94,13 @@ class ProjectDataTable extends DataTable
                 ->searchable(false)
                 ->footer(''),
             Column::make('title'),
-            Column::make('created_at'),
+            Column::make('content')->title('Description'),
+            Column::make('created_at')->title('Created'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(220)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(170)
+                ->addClass('text-center'),
         ];
     }
 

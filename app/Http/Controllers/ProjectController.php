@@ -19,6 +19,7 @@ class ProjectController extends Controller
         $this->project  = $project;
         $this->category = $category;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,8 +49,8 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $this->project->save($request->all());
-        notice('info', 'Berhasil mengupload project');
-        return redirect()->back();
+        notice('success', 'Berhasil mengupload project');
+        return redirect()->route('admin.projects.index');
     }
 
     public function status(Request $request)
@@ -80,11 +81,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        $project = $this->project->findById($id);
-        $categories = $this->category->all();
-        return view('back.project.edit', compact('project', 'categories'));
+        return view('back.project.edit', [
+            'project' => $this->project->findById($id),
+        ]);
     }
 
     /**
@@ -109,7 +110,7 @@ class ProjectController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Berhasil menambah corausel..'
+                'message' => 'Berhasil menambah corausel..',
             ], 200);
         }
     }
@@ -122,7 +123,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             $this->project->delete($id);
             return response()->json([
                 'success' => true,

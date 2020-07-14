@@ -1,34 +1,34 @@
 <x-app-layout title="New Project Page">
 
     @push('styles')
-        <link rel="stylesheet" href="{{ asset('back/vendor/select2/css/select2.css') }}">
-        <style scoped="css">
-            .select2-container--default
-            .select2-selection {
-                display: block;
-                width: 100%;
-                font-size: 14px;
-                height: 35px;
-                color: #71748d;
-                background-color: #fff;
-                background-image: none;
-                border: 1px solid #d2d2e4;
-                border-radius: 2px;
-            }
-            .select2-container--default
-            .select2-selection
-            .select2-selection__choice {
-                margin-top: 0;
-            }
-            .select2-container--default .select2-selection--single .select2-selection__rendered {
-                color: #444;
-                line-height: 35px;
-            }
-        </style>
+    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
+    <style scoped="css">
+        .select2-container--default
+        .select2-selection {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            height: 35px;
+            color: #71748d;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #d2d2e4;
+            border-radius: 2px;
+        }
+        .select2-container--default
+        .select2-selection
+        .select2-selection__choice {
+            margin-top: 0;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 35px;
+        }
+    </style>
     @endpush
 
     @push('scripts')
-        <script src="{{ asset('back/vendor/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
         <script lang="javascript">
             $('.category').select2({
                 ajax: {
@@ -104,7 +104,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                            <div class="form-group">
+                                            <div class="form-group right">
                                                 <button class="btn btn-primary" type="submit">Upload</button>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                 <h3 class="panel-title">Preview Project File</h3>
                             </div>
                             <div class="panel-body">
-                                <img src="{{ asset('images/bitbucket.png') }}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
+                                <img src="{{ asset('images/default.png') }}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                 if(file) {
                     reader.readAsDataURL(file);
                 } else {
-                    preview.src = "{{ asset('back/images/bitbucket.png') }}"
+                    preview.src = "{{ asset('images/default.png') }}"
                 }
             }
         </script>

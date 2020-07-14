@@ -10,6 +10,11 @@ interface ProjectRepo
      */
     public function all();
 
+    /**
+     * Galery of the project
+     * 
+     * @return
+     */
     public function galery();
 
     /**
@@ -17,21 +22,21 @@ interface ProjectRepo
      * @param  string $id
      * @return object
      */
-    public function findById(string $id): ?object;
+    public function findById(string $id):  ? object;
 
     /**
      * Change project status
      * @param  string $id
      * @return bool
      */
-    public function changeStatus(string $id): ?bool;
+    public function changeStatus(string $id) :  ? bool;
 
     /**
      * Save project
      * @param  array  $data
      * @return object
      */
-    public function save(array $data): ?object;
+    public function save(array $data) :  ? object;
 
     public function slick(string $id);
 
@@ -42,7 +47,7 @@ interface ProjectRepo
      * @param  array $data
      * @return object
      */
-    public function update(string $id, array $data): ?object;
+    public function update(string $id, array $data) :  ? object;
 
     public function delete(string $id);
 

@@ -19,6 +19,12 @@
                 $('.buttons-create').click(function() {
                     window.location = window.location.href.replace(/\/+$/, "") + '/create';
                 });
+
+                $('.table').on('click', '.btn-status', function(e) {
+                    e.preventDefault();
+
+                    alert("cleicked");
+                });
             });
         </script>
     @endpush

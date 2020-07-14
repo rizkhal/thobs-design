@@ -60,7 +60,7 @@
         @if (is_array($values))
             <script type="text/javascript">
                 @foreach ($values as $value)
-                    toastr["{{$value["type"]}}"]({{$value["message"]}});
+                    toastr["{{$value["type"]}}"]("{{$value["message"]}}");
                 @endforeach
             </script>
         @endif
