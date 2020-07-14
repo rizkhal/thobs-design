@@ -16,7 +16,9 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
+            $table->text('description');
+            $table->boolean('status')->default(true);
+            $table->foreignId('category_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -24,6 +24,9 @@ class ProjectDataTable extends DataTable
             ->editColumn('created_at', function ($model) {
                 return convert_date($model->created_at);
             })
+            ->addColumn('category', function($model) {
+                return '<span class="label label-info">'.$model->category->name.'</span>';
+            })
             ->addColumn('action', function ($model) {
                 $status = ($model->status == true) ? 'fa-unlock' : 'fa-lock';
                 return '
@@ -42,7 +45,7 @@ class ProjectDataTable extends DataTable
                         </button>
                     ';
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['category', 'action']);
     }
 
     /**
@@ -94,7 +97,8 @@ class ProjectDataTable extends DataTable
                 ->searchable(false)
                 ->footer(''),
             Column::make('title'),
-            Column::make('content')->title('Description'),
+            Column::make('description'),
+            Column::computed('category', 'Category')->addClass('text-center'),
             Column::make('created_at')->title('Created'),
             Column::computed('action')
                 ->exportable(false)

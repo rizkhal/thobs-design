@@ -72,6 +72,7 @@
                         data = formValue(form),
                         btn = $(this).find("button[type='submit']"),
                         defaultText = btn.text();
+
                     $.ajax({
                         url: url,
                         type: "post",

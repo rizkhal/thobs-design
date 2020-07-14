@@ -1,4 +1,6 @@
-<?php declare (strict_types = 1);
+<?php
+
+declare (strict_types = 1);
 
 namespace App\Http\Requests;
 
@@ -24,10 +26,25 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'      => 'required|string',
-            'content'    => 'required|string',
-            'categories' => 'required',
-            'file'       => 'required',
+            'title'       => ['required', 'string'],
+            'file'        => [$this->method() == 'POST' ? 'required' : 'nullable', 'string'],
+            'category_id' => ['required', 'integer'],
+            'description' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Get the data
+     *
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'title'       => $this->title,
+            'file'        => $this->file,
+            'category_id' => $this->category_id,
+            'description' => $this->description,
         ];
     }
 }

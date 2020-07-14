@@ -28,9 +28,9 @@ class Project extends Model
     	return $this->hasOne(ProjectFile::class)->withDefault('project_files');
     }
 
-    public function categories(): BelongsToMany
+    public function category(): HasOne
     {
-    	return $this->belongsToMany(Category::class);
+    	return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function getProjectFileUrlAttribute()

@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::middleware('auth')->as('admin.')->group(function() {
+	/** Setting */
+	Route::prefix('setting')->as('setting.')->group(function() {
+		Route::resource('social', 'SocialMediaController');
+	});
+
 	Route::get('home', 'HomeController@index')->name('index');
 
 	Route::resource('category', 'CategoryController');
@@ -26,7 +31,7 @@ Route::middleware('auth')->as('admin.')->group(function() {
 		Route::get('/{id}', 'AppointmentController@show')->name('show');
 	});
 
-	Route::resource('projects', 'ProjectController');
+	Route::resource('projects', 'ProjectController')->except('show');
 	Route::prefix('projects')->as('projects.')->group(function() {
 		Route::post('update-status', 'ProjectController@status')->name('status');
 		Route::post('slick-corausel', 'ProjectController@slick')->name('slick');

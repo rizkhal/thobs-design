@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    protected $project;
-
-    protected $category;
+    protected $project, $category;
 
     public function __construct(ProjectRepo $project, CategoryRepo $category)
     {
@@ -27,7 +25,7 @@ class ProjectController extends Controller
      */
     public function index(ProjectDataTable $dataTable)
     {
-        return $dataTable->render('back.project.index');
+        return $dataTable->render('backend::project.index');
     }
 
     /**
@@ -37,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('back.project.create');
+        return view('backend::project.create');
     }
 
     /**
@@ -48,31 +46,30 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
-        $this->project->save($request->all());
-        notice('success', 'Berhasil mengupload project');
-        return redirect()->route('admin.projects.index');
+        if ($this->project->save($request->data())) {
+            notice('success', 'Successfully upload the project.');
+            return redirect()->route('admin.projects.index');
+        } else {
+            notice('danger', 'Something went wrong, please contact administrator.');
+            return redirect()->back();
+        }
     }
 
     public function status(Request $request)
     {
         if ($request->ajax()) {
-            $this->project->changeStatus($request->id);
-            return response()->json([
-                'success' => true,
-                'message' => 'Status berhasil diupdate',
-            ], 200);
+            if ($this->project->changeStatus($request->id)) {
+                return response()->json([
+                    'success' => 'success',
+                    'message' => 'The project status is updated.',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => 'danger',
+                    'message' => 'Something went wrong, please contact administrator.',
+                ], 500);
+            }
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -83,8 +80,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        return view('back.project.edit', [
-            'project' => $this->project->findById($id),
+        return view('backend::project.edit', [
+            'project'    => $this->project->findById($id),
+            'categories' => $this->category->all(),
         ]);
     }
 
@@ -97,15 +95,18 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, $id)
     {
-        $this->project->update($id, $request->all());
-        notice('info', 'Project berhasil diubah');
-        return redirect()->back();
+        if ($this->project->update($id, $request->data())) {
+            notice('success', 'Successfully update the project.');
+            return redirect()->route('admin.projects.index');
+        } else {
+            notice('danger', 'Something went wrong, please contact administrator.');
+            return redirect()->back();
+        }
     }
 
     public function slick(Request $request)
     {
         if ($request->ajax()) {
-
             $this->project->slick($request->id);
 
             return response()->json([

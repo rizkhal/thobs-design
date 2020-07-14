@@ -15,7 +15,7 @@ abstract class BaseConstant
 	 * @param  int $id
 	 * @return string
 	 */
-	public function label(int $id): ?string
+	public static function label(int $id): ?string
 	{
 		return static::labels()[$id];
 	}

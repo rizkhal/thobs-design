@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnStatusToProjects extends Migration
+class CreateSocialMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddColumnStatusToProjects extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->boolean('status')->default(true)->after('content');
+        Schema::create('social_media', function (Blueprint $table) {
+            $table->id();
+            $table->string('link');
+            $table->integer('platform');
+            $table->boolean('status')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddColumnStatusToProjects extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('social_media');
     }
 }
