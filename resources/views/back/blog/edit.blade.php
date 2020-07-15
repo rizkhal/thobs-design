@@ -55,14 +55,14 @@
                                 <h3 class="panel-title">Update Project</h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" novalidate action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" class="needs-validation">
+                                <form method="post" novalidate action="{{ route('admin.projects.update', $posts->id) }}" enctype="multipart/form-data" class="needs-validation">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input class="form-control" value="{{old('title', $project->title)}}" type="text" name="title" required>
+                                                <input class="form-control" value="{{old('title', $posts->title)}}" type="text" name="title" required>
                                                 @error("title")
                                                     <div class="text-danger">
                                                         {{$message}}
@@ -75,7 +75,7 @@
                                                 <label>Category</label>
                                                 <select name="category_id" class="category form-control">
                                                     @foreach ($categories as $category)
-                                                        <option value="{{$category->id}}" {{$category->id == $project->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                        <option value="{{$category->id}}" {{$category->id == $posts->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error("category_id")
@@ -89,7 +89,7 @@
                                             <div class="form-group">
                                                 <label>File</label>
                                                 <input type="file" accept="image/*" class="thumbnail-input form-control" onchange="uploadFile()">
-                                                <input type="hidden" name="file" name="{{old('file', $project->project_file_url)}}" class="thumbnail-file">
+                                                <input type="hidden" name="file" name="{{old('file', $posts->project_file_url)}}" class="thumbnail-file">
                                                 @error("file")
                                                     <div class="text-danger">
                                                         {{$message}}
@@ -100,7 +100,7 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea name="description" cols="30" rows="10" class="form-control @error("description") @enderror">{{old('description', $project->description)}}</textarea>
+                                                <textarea name="description" cols="30" rows="10" class="form-control @error("description") @enderror">{{old('description', $posts->description)}}</textarea>
                                                 @error("description")
                                                     <div class="invalid-feedback">
                                                         {{$message}}
@@ -126,7 +126,7 @@
                                 <h3 class="panel-title">Preview Project File</h3>
                             </div>
                             <div class="panel-body">
-                                <img src="{{$project->project_file_url}}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
+                                <img src="{{$posts->project_file_url}}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
                             </div>
                         </div>
                     </div>

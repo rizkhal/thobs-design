@@ -4,8 +4,10 @@ declare (strict_types = 1);
 
 namespace App\Repository\Blog\Eloquent;
 
+use App\Constants\ProjectStatus;
 use App\Models\Blog;
 use App\Repository\Blog\BlogRepo;
+use Illuminate\Support\Facades\Storage;
 
 class BlogEloquent implements BlogRepo
 {
@@ -25,6 +27,22 @@ class BlogEloquent implements BlogRepo
     public function findBySlug(string $slug)
     {
         return $this->blog->where('slug', $slug)->firstOrFail();
+    }
+
+    /**
+     * Change the blog post status
+     *
+     * @param  string $id
+     * @return bool
+     */
+    public function changeStatus(string $id): bool
+    {
+        $blog = $this->blog->findOrFail($id);
+        return $blog->update([
+            'status' => $blog->status == true
+            ? ProjectStatus::UNPUBLISH
+            : ProjectStatus::PUBLISH,
+        ]);
     }
 
     /**
@@ -61,5 +79,18 @@ class BlogEloquent implements BlogRepo
     {
         $blog = $this->findBySlug($slug);
         return $this->blog->update($data);
+    }
+
+    /**
+     * Delete the blog post
+     *
+     * @param  string $slug
+     * @return bool
+     */
+    public function delete(string $slug): bool
+    {
+        $blog = $this->findBySlug($slug);
+        Storage::delete("uploads/blog/{$blog->file->filename}");
+        return $blog->delete();
     }
 }

@@ -1,0 +1,11 @@
+SUCCESS="[\e[32m ✔ \e[0m]"
+
+init:
+	composer install
+
+	@if [ ! -f .env ]
+		then cp .env.example .env;\
+		php artisan key:generate
+		echo -e SUCCESS " \e[33m Copied from .env.example \e[0m";\
+		echo -e SUCCESS " \e[33m APP_KEY Generated \e[0m";\
+	fi

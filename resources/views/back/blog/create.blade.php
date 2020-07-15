@@ -28,7 +28,17 @@
 
     @push('scripts')
         <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+        <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
         <script lang="javascript">
+            const options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+            };
+
+            CKEDITOR.replace('content', options);
+
             $('.category').select2({
                 ajax: {
                     url: "{{ route('admin.select2.category') }}",
@@ -81,7 +91,7 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <label>File</label>
+                                                <label>Thumbnail</label>
                                                 <input type="file" accept="image/*" class="thumbnail-input form-control" onchange="uploadFile()">
                                                 <input type="hidden" name="file" name="{{old('file')}}" class="thumbnail-file">
                                                 @error("file")
@@ -94,7 +104,7 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
                                                 <label>Content</label>
-                                                <textarea name="body" cols="30" rows="10" class="form-control @error("body") @enderror">{{old('body')}}</textarea>
+                                                <textarea name="body" id="content" cols="30" rows="10" class="form-control @error("body") @enderror">{{old('body')}}</textarea>
                                                 @error("body")
                                                     <div class="text-danger">
                                                         {{$message}}

@@ -1,7 +1,9 @@
 <!-- navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="brand">
-        <a href="#"><img src="{{asset('images/logo-dark.png')}}" alt="Klorofil Logo" class="img-responsive logo"></a>
+    <div class="brand" style="padding: 12px 18px;">
+        <a href="{{ url('home') }}">
+            <img src="{{asset('images/logo.jpg')}}" alt="Daeng Thobs" class="img-responsive logo">
+        </a>
     </div>
     <div class="container-fluid">
         <div class="navbar-btn">

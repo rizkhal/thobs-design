@@ -29,6 +29,29 @@ class BlogController extends Controller
     }
 
     /**
+     * Change the blog post status
+     * 
+     * @param  Request $request
+     * @return \Illuminate\Http\Response   
+     */
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($this->blog->changeStatus($request->id)) {
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'The blog post status is updated.',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status'  => 'danger',
+                    'message' => 'Something went wrong, please the contact administrator.',
+                ], 500);
+            }
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -77,7 +100,7 @@ class BlogController extends Controller
     public function edit(string $slug)
     {
         return view('backend::blog.edit', [
-            'posts' => $this->blog->findBySlug($slug)
+            'posts' => $this->blog->findBySlug($slug),
         ]);
     }
 
@@ -102,11 +125,23 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(string $slug)
     {
-        //
+        if (request()->ajax()) {
+            if ($this->blog->delete($slug)) {
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'Successfully delete the blog post.',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status'  => 'danger',
+                    'message' => 'Something went wrong, please contact the administrator.',
+                ], 500);
+            }
+        }
     }
 }

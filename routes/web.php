@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+/** Laravel File Manager */
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+ });
+
 Route::middleware('auth')->as('admin.')->group(function() {
 	Route::get('home', 'HomeController@index')->name('index');
 
@@ -28,11 +33,13 @@ Route::middleware('auth')->as('admin.')->group(function() {
 	Route::resource('projects', 'ProjectController')->except('show');
 	Route::prefix('projects')->as('projects.')->group(function() {
 		Route::post('update-status', 'ProjectController@status')->name('status');
-		Route::post('slick-corausel', 'ProjectController@slick')->name('slick');
 	});
 
 	/** blog */
 	Route::resource('blog', 'BlogController');
+	Route::prefix('blog')->as('blog.')->group(function() {
+		Route::post('update-status', 'BlogController@status')->name('status');
+	});
 });
 
 Route::as('application.')->group(function() {

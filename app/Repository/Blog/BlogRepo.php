@@ -31,5 +31,13 @@ if (! interface_exists('BlogRepo')) {
          * @return object
          */
         public function edit(string $slug, array $data): object;
+
+        /**
+         * Delete the blog post
+         * 
+         * @param  string $slug
+         * @return bool
+         */
+        public function delete(string $slug): bool;
     }
 }

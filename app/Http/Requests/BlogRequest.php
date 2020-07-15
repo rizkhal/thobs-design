@@ -44,7 +44,7 @@ class BlogRequest extends FormRequest
         return [
             'title'       => $this->title,
             'file'        => $this->file,
-            'slug'        => Str::slug($this->title, '-' . time()),
+            'slug'        => Str::slug($this->title, '-') . time(),
             'content'     => $this->body,
             'category_id' => $this->category_id,
         ];

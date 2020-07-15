@@ -13,7 +13,7 @@
             <img src="{{ asset('front/images/logo-inverse-243x57.png') }}" alt="" width="243" height="57"/>
           </div></a>
           <!-- RD Mailform-->
-          <form method="post" action="{{ route('application.subscribe') }}" data-form-output="form-output-global" class="subscribe form_inline">
+          <form method="post" action="" data-form-output="form-output-global" class="subscribe form_inline">
             @csrf
             <div class="form__inner">
               <div class="form-wrap">
