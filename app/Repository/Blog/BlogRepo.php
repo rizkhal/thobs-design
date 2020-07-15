@@ -19,17 +19,17 @@ if (! interface_exists('BlogRepo')) {
          * Save the blog post
          * 
          * @param  array  $data
-         * @return bool
+         * @return object
          */
-        public function save(array $data): bool;
+        public function save(array $data): object;
 
         /**
          * Edit the blog post
          * 
          * @param  string $slug
          * @param  array  $data
-         * @return bool
+         * @return object
          */
-        public function edit(string $slug, array $data): bool;
+        public function edit(string $slug, array $data): object;
     }
 }

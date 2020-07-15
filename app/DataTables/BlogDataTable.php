@@ -63,9 +63,9 @@ class BlogDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('title'),
+            Column::make('content'),
+            Column::make('created_at')->title('Created'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

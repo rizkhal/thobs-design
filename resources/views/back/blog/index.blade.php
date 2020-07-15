@@ -1,4 +1,4 @@
-<x-app-layout title="Project Page">
+<x-app-layout title="Blog Page">
     @push('styles')
         <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
         <style scoped="css">

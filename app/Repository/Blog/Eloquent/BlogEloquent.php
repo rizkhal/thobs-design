@@ -31,11 +31,23 @@ class BlogEloquent implements BlogRepo
      * Save the blog post
      *
      * @param  array  $data
-     * @return bool
+     * @return object
      */
-    public function save(array $data): bool
+    public function save(array $data): object
     {
-        return $this->blog->create($data);
+        $blog = $this->blog->create([
+            'title'       => $data['title'],
+            'slug'        => $data['slug'],
+            'content'     => $data['content'],
+            'category_id' => $data['category_id'],
+        ]);
+
+        $blog->file()->create([
+            'blog_id'  => $blog->id,
+            'filename' => $data['file'],
+        ]);
+
+        return $blog;
     }
 
     /**
@@ -43,9 +55,9 @@ class BlogEloquent implements BlogRepo
      *
      * @param  string $slug
      * @param  array  $data
-     * @return bool
+     * @return object
      */
-    public function edit(string $slug, array $data): bool
+    public function edit(string $slug, array $data): object
     {
         $blog = $this->findBySlug($slug);
         return $this->blog->update($data);

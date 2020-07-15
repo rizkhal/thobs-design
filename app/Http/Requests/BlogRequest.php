@@ -1,8 +1,11 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class BlogRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class BlogRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +24,29 @@ class BlogRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'title'       => ['string', 'required'],
+            'body'        => ['string', 'required'],
+            'file'        => [$this->method() == 'POST' ? 'required' : 'nullable', 'string'],
+            'category_id' => ['integer', 'required'],
+        ];
+    }
+
+    /**
+     * Get the blog post data from incoming form request
+     *
+     * @param array
+     */
+    public function data(): array
+    {
+        return [
+            'title'       => $this->title,
+            'file'        => $this->file,
+            'slug'        => Str::slug($this->title, '-' . time()),
+            'content'     => $this->body,
+            'category_id' => $this->category_id,
         ];
     }
 }

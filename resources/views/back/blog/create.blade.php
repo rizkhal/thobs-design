@@ -1,4 +1,4 @@
-<x-app-layout title="New Project Page">
+<x-app-layout title="Blog Page">
     @push('styles')
         <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
         <style scoped="css">
@@ -45,16 +45,16 @@
 
     @section('app')
         <div class="container-fluid">
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-info" style="margin-bottom: 1em;"><i class="fa fa-arrow-left"></i> Back</a>
+            <a href="{{ route('admin.blog.index') }}" class="btn btn-info" style="margin-bottom: 1em;"><i class="fa fa-arrow-left"></i> Back</a>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel">
                         <div class="panel panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Add New Project</h3>
+                                <h3 class="panel-title">Add New Blog Post</h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" novalidate action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" class="needs-validation">
+                                <form method="post" novalidate action="{{ route('admin.blog.store') }}" enctype="multipart/form-data" class="needs-validation">
                                     @csrf
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -93,9 +93,9 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea name="description" cols="30" rows="10" class="form-control @error("description") @enderror">{{old('description')}}</textarea>
-                                                @error("description")
+                                                <label>Content</label>
+                                                <textarea name="body" cols="30" rows="10" class="form-control @error("body") @enderror">{{old('body')}}</textarea>
+                                                @error("body")
                                                     <div class="text-danger">
                                                         {{$message}}
                                                     </div>
@@ -117,7 +117,7 @@
                     <div class="panel">
                         <div class="panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Preview Project File</h3>
+                                <h3 class="panel-title">Preview Post Thumbnail</h3>
                             </div>
                             <div class="panel-body">
                                 <img src="{{ asset('images/default.png') }}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
@@ -129,6 +129,9 @@
         </div>
 
         <!-- handle file upload -->
-        @include('backend::project.partials.script')
+        @include('layouts.partials.script', [
+            'filename' => 'blog',
+            'location' => 'blogs'
+        ]);
     @stop
 </x-app-layout>
