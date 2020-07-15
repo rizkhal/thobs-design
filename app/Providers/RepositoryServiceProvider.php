@@ -19,6 +19,11 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \App\Repository\Blog\BlogRepo::class,
+            \App\Repository\Blog\Eloquent\BlogEloquent::class
+        );
+
+        $this->app->bind(
             \App\Repository\Category\CategoryRepo::class,
             \App\Repository\Category\Eloquent\CategoryEloquent::class
         );
