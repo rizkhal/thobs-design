@@ -78,7 +78,18 @@ class BlogEloquent implements BlogRepo
     public function edit(string $slug, array $data): object
     {
         $blog = $this->findBySlug($slug);
-        return $this->blog->update($data);
+        $blog->update([
+            'title'       => $data['title'],
+            'content'     => $data['content'],
+            'category_id' => $data['category_id'],
+        ]);
+
+        $blog->file()->update([
+            'blog_id'  => $blog->id,
+            'filename' => is_null($data['file']) ? $blog->file->filename : $data['file'],
+        ]);
+
+        return $blog;
     }
 
     /**

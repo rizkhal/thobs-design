@@ -105,7 +105,7 @@ class ProjectEloquent implements ProjectRepo
 
         $project->file()->update([
             'project_id' => $project->id,
-            'filename'   => is_null($data['file']) ? $project->project_file_url : $data['file'],
+            'filename'   => is_null($data['file']) ? $project->file->name : $data['file'],
         ]);
 
         return $project;

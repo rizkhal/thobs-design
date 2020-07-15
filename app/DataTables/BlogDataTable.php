@@ -26,6 +26,9 @@ class BlogDataTable extends DataTable
             ->editColumn('content', function ($model) {
                 return Str::words(strip_tags($model->content), 20);
             })
+            ->editColumn('category.name', function($model) {
+                return '<span class="label label-info">'.$model->category->name.'</span>';
+            })
             ->editColumn('created_at', function ($model) {
                 return convert_date($model->created_at);
             })
@@ -47,7 +50,7 @@ class BlogDataTable extends DataTable
                         </button>
                     ';
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['category.name', 'action']);
     }
 
     /**
@@ -99,11 +102,14 @@ class BlogDataTable extends DataTable
                 ->footer(''),
             Column::make('title'),
             Column::make('content'),
-            Column::make('category.name')->title('Category'),
-            Column::make('created_at')->title('Created'),
+            Column::make('category.name')
+                ->title('Category'),
+            Column::make('created_at')
+                ->title('Created'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
+                ->width(160)
                 ->addClass('text-center'),
         ];
     }

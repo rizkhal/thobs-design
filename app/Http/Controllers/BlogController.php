@@ -100,7 +100,8 @@ class BlogController extends Controller
     public function edit(string $slug)
     {
         return view('backend::blog.edit', [
-            'posts' => $this->blog->findBySlug($slug),
+            'post' => $this->blog->findBySlug($slug),
+            'categories' => $this->category->all(),
         ]);
     }
 

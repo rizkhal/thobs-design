@@ -1,35 +1,44 @@
-<x-app-layout title="Update Project Page">
-
+<x-app-layout title="Blog Page">
     @push('styles')
-    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
-    <style scoped="css">
-        .select2-container--default
-        .select2-selection {
-            display: block;
-            width: 100%;
-            font-size: 14px;
-            height: 35px;
-            color: #71748d;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #d2d2e4;
-            border-radius: 2px;
-        }
-        .select2-container--default
-        .select2-selection
-        .select2-selection__choice {
-            margin-top: 0;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: #444;
-            line-height: 35px;
-        }
-    </style>
+        <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
+        <style scoped="css">
+            .select2-container--default
+            .select2-selection {
+                display: block;
+                width: 100%;
+                font-size: 14px;
+                height: 35px;
+                color: #71748d;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #d2d2e4;
+                border-radius: 2px;
+            }
+            .select2-container--default
+            .select2-selection
+            .select2-selection__choice {
+                margin-top: 0;
+            }
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                color: #444;
+                line-height: 35px;
+            }
+        </style>
     @endpush
 
     @push('scripts')
         <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+        <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
         <script lang="javascript">
+            const options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+            };
+
+            CKEDITOR.replace('content', options);
+
             $('.category').select2({
                 ajax: {
                     url: "{{ route('admin.select2.category') }}",
@@ -46,23 +55,23 @@
 
     @section('app')
         <div class="container-fluid">
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-info" style="margin-bottom: 1em;"><i class="fa fa-arrow-left"></i> Back</a>
+            <a href="{{ route('admin.blog.index') }}" class="btn btn-info" style="margin-bottom: 1em;"><i class="fa fa-arrow-left"></i> Back</a>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel">
                         <div class="panel panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Update Project</h3>
+                                <h3 class="panel-title">Add New Blog Post</h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" novalidate action="{{ route('admin.projects.update', $posts->id) }}" enctype="multipart/form-data" class="needs-validation">
+                                <form method="post" novalidate action="{{ route('admin.blog.update', $post->slug) }}" enctype="multipart/form-data" class="needs-validation">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input class="form-control" value="{{old('title', $posts->title)}}" type="text" name="title" required>
+                                                <input class="form-control" value="{{old('title', $post->title)}}" type="text" name="title" required>
                                                 @error("title")
                                                     <div class="text-danger">
                                                         {{$message}}
@@ -74,8 +83,9 @@
                                             <div class="form-group">
                                                 <label>Category</label>
                                                 <select name="category_id" class="category form-control">
+                                                    <option selected disabled></option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{$category->id}}" {{$category->id == $posts->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                        <option value="{{$category->id}}"{{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error("category_id")
@@ -87,9 +97,9 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <label>File</label>
+                                                <label>Thumbnail</label>
                                                 <input type="file" accept="image/*" class="thumbnail-input form-control" onchange="uploadFile()">
-                                                <input type="hidden" name="file" name="{{old('file', $posts->project_file_url)}}" class="thumbnail-file">
+                                                <input type="hidden" name="file" name="{{old('file', $post->blog_file_url)}}" class="thumbnail-file">
                                                 @error("file")
                                                     <div class="text-danger">
                                                         {{$message}}
@@ -99,10 +109,10 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea name="description" cols="30" rows="10" class="form-control @error("description") @enderror">{{old('description', $posts->description)}}</textarea>
-                                                @error("description")
-                                                    <div class="invalid-feedback">
+                                                <label>Content</label>
+                                                <textarea name="body" id="content" cols="30" rows="10" class="form-control @error("body") @enderror">{{old('body', $post->content)}}</textarea>
+                                                @error("body")
+                                                    <div class="text-danger">
                                                         {{$message}}
                                                     </div>
                                                 @enderror
@@ -123,10 +133,10 @@
                     <div class="panel">
                         <div class="panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Preview Project File</h3>
+                                <h3 class="panel-title">Preview Post Thumbnail</h3>
                             </div>
                             <div class="panel-body">
-                                <img src="{{$posts->project_file_url}}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
+                                <img src="{{$post->blog_file_url}}" alt="Thumbnail Preview" class="thumbnail-preview" style="width: 100%; max-width: 100%;">
                             </div>
                         </div>
                     </div>
@@ -135,6 +145,9 @@
         </div>
 
         <!-- handle file upload -->
-        @include('backend::project.partials.script')
+        @include('layouts.partials.script', [
+            'filename' => 'blog',
+            'location' => 'blogs'
+        ]);
     @stop
 </x-app-layout>
