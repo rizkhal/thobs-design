@@ -1,4 +1,4 @@
-<x-app-layout title="Setting Social Media Page">
+<x-back-layout title="Setting Social Media Page">
     @push('styles')
         <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
         <style scoped="css">
@@ -61,4 +61,4 @@
             </div>   
         </div>
     @stop
-</x-app-layout>
+</x-back-layout>

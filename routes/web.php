@@ -44,7 +44,5 @@ Route::middleware('auth')->as('admin.')->group(function() {
 
 Route::as('application.')->group(function() {
 	Route::get('/', 'ApplicationController@index')->name('index');
-	Route::get('about', 'ApplicationController@about')->name('about');
-	Route::get('galery', 'ApplicationController@galery')->name('galery');
-	Route::get('contact', 'ApplicationController@contact')->name('contact');
+	Route::get('project', 'ApplicationController@project')->name('project');
 });

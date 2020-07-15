@@ -14,7 +14,9 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::component('layouts.app', 'app-layout');
+        Blade::component('layouts.back.app', 'back-layout');
+        Blade::component('layouts.front.app', 'front-layout');
+        
         $this->loadViewsFrom(resource_path('views/back'), 'backend');
         $this->loadViewsFrom(resource_path('views/front'), 'frontend');
     }

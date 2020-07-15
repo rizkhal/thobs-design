@@ -33,7 +33,7 @@
                     <div id="master" class="collapse {{ active('category') }}">
                         <ul class="nav">
                             <li>
-                                <a href="{{ route('admin.category.index') }}" class="{{ active('category') }}"><i class="lnr lnr-select"></i> <span>Category</span></a>
+                                <a href="{{ route('admin.category.index') }}" class="{{ active('category') }}"><i class="lnr lnr-list"></i> <span>Category</span></a>
                             </li>
                         </ul>
                     </div>

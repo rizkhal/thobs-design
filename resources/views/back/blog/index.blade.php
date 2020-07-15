@@ -1,11 +1,6 @@
-<x-app-layout title="Blog Page">
+<x-back-layout title="Blog Page">
     @push('styles')
         <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
-        <style scoped="css">
-            .dt-buttons {
-                float: left;
-            }
-        </style>
     @endpush
 
     @push('scripts')
@@ -40,7 +35,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-headline">
-                        <div class="panel-body" style="margin-top:16px!important;">
+                        <div class="panel-body">
                             {!!$dataTable->table()!!}
                         </div>
                     </div>
@@ -48,4 +43,4 @@
             </div>   
         </div>
     @stop
-</x-app-layout>
+</x-back-layout>

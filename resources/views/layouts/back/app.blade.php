@@ -23,13 +23,27 @@
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <!-- push stack styles -->
     @stack('styles')
+    <style lang="css">
+        /** datatable */
+        .dt-buttons {
+            float: left;
+        }
+        /** panel */
+        .panel-body {
+            margin-top: 16px!important;
+        }
+        /** table */
+        .table {
+            margin-top: 10px!important;
+        }
+    </style>
 </head>
 <body>
 
     <div id="wrapper">
         @auth
-            @include('layouts.partials.header')
-            @include('layouts.partials.sidebar')
+            @include('layouts.back.partials.header')
+            @include('layouts.back.partials.sidebar')
         @endauth
         <!-- main wrapper -->
         <div class="main">
@@ -38,7 +52,7 @@
             </div>
         </div>
         @auth
-            @include('layouts.partials.footer')
+            @include('layouts.back.partials.footer')
         @endauth
     </div>
 

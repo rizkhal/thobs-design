@@ -1,6 +1,6 @@
 <head>
     <!-- Site Title-->
-    <title>Welcome - {{isset($title) ? $title : "Home Page"}}</title>
+    <title>Daeng Tobs Studio - {{isset($title) ? $title : "Daeng Tobs Studio"}}</title>
     <!-- meta -->
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">

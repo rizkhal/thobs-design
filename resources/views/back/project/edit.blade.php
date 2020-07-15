@@ -1,30 +1,8 @@
-<x-app-layout title="Update Project Page">
+<x-back-layout title="Update Project Page">
 
     @push('styles')
-    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
-    <style scoped="css">
-        .select2-container--default
-        .select2-selection {
-            display: block;
-            width: 100%;
-            font-size: 14px;
-            height: 35px;
-            color: #71748d;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #d2d2e4;
-            border-radius: 2px;
-        }
-        .select2-container--default
-        .select2-selection
-        .select2-selection__choice {
-            margin-top: 0;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: #444;
-            line-height: 35px;
-        }
-    </style>
+        <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/select2/css/custom.css') }}">
     @endpush
 
     @push('scripts')
@@ -55,7 +33,7 @@
                                 <h3 class="panel-title">Update Project</h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" novalidate action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" class="needs-validation">
+                                <form method="post" action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" class="needs-validation">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
@@ -135,6 +113,9 @@
         </div>
 
         <!-- handle file upload -->
-        @include('backend::project.partials.script')
+        @include('layouts.partials.script', [
+            'filename' => 'project',
+            'location' => 'projects'
+        ]);
     @stop
-</x-app-layout>
+</x-back-layout>

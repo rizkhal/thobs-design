@@ -255,7 +255,7 @@
     };
 
     DataTable.ext.buttons.create = {
-        className: 'buttons-create',
+        className: 'buttons-create btn-info',
 
         text: function (dt) {
             return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Create');
