@@ -19,6 +19,16 @@ class BlogEloquent implements BlogRepo
     }
 
     /**
+     * Get all the active blog posts
+     *
+     * @return object
+     */
+    public function all(): object
+    {
+        return $this->blog->active()->latest()->take(3)->get();
+    }
+
+    /**
      * Find the blog post where slug
      *
      * @param  string $slug

@@ -36,7 +36,7 @@ class Project extends Model
     public function getProjectFileUrlAttribute()
     {
     	if (! is_null($this->file->filename)) {
-    		return asset('storage/uploads/project/'
+    		return asset('storage/uploads/projects/'
 	    			.$this->file->filename
 	    		);
     	}

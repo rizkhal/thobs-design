@@ -6,7 +6,7 @@
 
     @push('scripts')
         <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
-        <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
         <script lang="javascript">
             const options = {
                 filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
@@ -117,7 +117,7 @@
         </div>
 
         <!-- handle file upload -->
-        @include('layouts.partials.script', [
+        @include('layouts.back.partials.script', [
             'filename' => 'blog',
             'location' => 'blogs'
         ]);

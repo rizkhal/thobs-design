@@ -7,7 +7,7 @@ namespace App\Repository\Project;
 interface ProjectRepo
 {
     /**
-     * Get all project
+     * Get all the active projects
      *
      * @return object
      */

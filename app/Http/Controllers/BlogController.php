@@ -30,9 +30,9 @@ class BlogController extends Controller
 
     /**
      * Change the blog post status
-     * 
+     *
      * @param  Request $request
-     * @return \Illuminate\Http\Response   
+     * @return \Illuminate\Http\Response
      */
     public function status(Request $request)
     {
@@ -100,7 +100,7 @@ class BlogController extends Controller
     public function edit(string $slug)
     {
         return view('backend::blog.edit', [
-            'post' => $this->blog->findBySlug($slug),
+            'post'       => $this->blog->findBySlug($slug),
             'categories' => $this->category->all(),
         ]);
     }
@@ -144,5 +144,18 @@ class BlogController extends Controller
                 ], 500);
             }
         }
+    }
+
+    /**
+     * Show the blog post on frontend page
+     *
+     * @param  string $slug
+     * @return object
+     */
+    public function frontShow(string $slug)
+    {
+        return view('frontend::blog.show', [
+            'post' => $this->blog->findBySlug($slug),
+        ]);
     }
 }

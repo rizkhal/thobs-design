@@ -23,7 +23,7 @@ class ProjectEloquent implements ProjectRepo
      */
     public function all(): object
     {
-        return $this->project->active()->latest()->get();
+        return $this->project->active()->latest()->take(8)->get();
     }
 
     /**

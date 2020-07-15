@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Project;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -23,6 +24,9 @@ class ProjectDataTable extends DataTable
             ->addIndexColumn()
             ->editColumn('created_at', function ($model) {
                 return convert_date($model->created_at);
+            })
+            ->editColumn('description', function($model) {
+                return Str::words($model->description, 20);
             })
             ->editColumn('category.name', function($model) {
                 return '<span class="label label-info">'.$model->category->name.'</span>';
@@ -73,7 +77,7 @@ class ProjectDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(3)
+            ->orderBy(4)
             ->buttons(
                 Button::make('create')
             );

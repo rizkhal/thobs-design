@@ -113,7 +113,7 @@
         </div>
 
         <!-- handle file upload -->
-        @include('layouts.partials.script', [
+        @include('layouts.back.partials.script', [
             'filename' => 'project',
             'location' => 'projects'
         ]);

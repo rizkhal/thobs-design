@@ -132,4 +132,11 @@ class ProjectController extends Controller
             }
         }
     }
+
+    public function galery()
+    {
+        $projects   = $this->project->galery();
+        $categories = $this->category->hasProject($projects);
+        return view('front.galery', compact('projects', 'categories'));
+    }
 }

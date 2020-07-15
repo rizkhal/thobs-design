@@ -11,6 +11,9 @@ class Platform extends BaseConstant
     const WHATSAPP  = 3;
     const TWITTER   = 4;
     const TELEGRAM  = 5;
+    const GITHUB    = 6;
+    const REDDIT    = 7;
+    const WEBSITE   = 8;
 
     public static function labels():  ? array
     {
@@ -20,6 +23,9 @@ class Platform extends BaseConstant
             self::WHATSAPP  => "WHATSAPP",
             self::TWITTER   => "TWITTER",
             self::TELEGRAM  => "TELEGRAM",
+            self::GITHUB    => "GITHUB",
+            self::REDDIT    => "REDDIT",
+            self::WEBSITE   => "WEBSITE",
         ];
     }
 }

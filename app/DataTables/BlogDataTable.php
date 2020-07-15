@@ -77,7 +77,7 @@ class BlogDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(4)
             ->buttons(
                 Button::make('create')
             );
