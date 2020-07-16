@@ -1,4 +1,4 @@
-<x-app-layout title="Login Page">
+<x-back-layout title="Login Page">
     @section('app')
         <div class="container">
             <div class="row justify-content-center">
@@ -70,4 +70,4 @@
             </div>
         </div>
     @stop
-</x-app-layout>
+</x-back-layout>

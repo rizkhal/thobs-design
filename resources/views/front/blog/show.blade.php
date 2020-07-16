@@ -17,7 +17,7 @@
                   <p class="heading-1 post-single__title">{{ucfirst($post->title)}}</p>
                 </div>
                 <ul class="post-single__meta">
-                  <li> <span>by</span><span class="post-single__author">Admin</span></li>
+                  <li> <span>by</span><span class="post-single__author">{{$post->author->name}}</span></li>
                   <li>
                     <ul class="list-inline list-inline_iconed list-inline-sm">
                       <li><span class="icon mdi mdi-eye"></span><span class="text">343</span></li>

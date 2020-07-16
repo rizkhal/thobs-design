@@ -35,7 +35,7 @@
             <article class="post-boxed">
               <ul class="post-boxed__meta">
                 <li>
-                  <time datetime="2019">Jul 15, 2019</time>
+                  <time datetime="{{date('Y')}}">{{$post->created_at->diffForHumans()}}</time>
                 </li>
                 <li><a href="#">3 comments</a></li>
               </ul>
@@ -48,7 +48,7 @@
                   <div class="unit__left"><img class="post-boxed__avatar" src="images/user-6-46x46.jpg" alt="" width="46" height="46"/>
                   </div>
                   <div class="unit__body">
-                    <h6 class="text-uppercase">by Admin</h6>
+                    <h6 class="text-uppercase">by {{$post->author->name}}</h6>
                   </div>
                 </div>
               </div>

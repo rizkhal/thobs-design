@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -41,6 +42,16 @@ class Blog extends Model
     public function category(): HasOne
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    /**
+     * Author of the blog post
+     * 
+     * @return BelongsTo
+     */
+    public function author(): BelongsTo
+    {
+        return $this->BelongsTo(User::class, 'created_by');
     }
 
     /**

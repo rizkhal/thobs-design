@@ -12,7 +12,7 @@
               <div class="cell-sm-9 cell-md-6">
                 <article class="post-modern">
                   <div class="post-modern__header">
-                    <h3 class="post-modern__title"><a href="blog-post.html">{{$post->title}}</a></h3>
+                    <h3 class="post-modern__title"><a href="{{ route('application.blog.show', $post->slug) }}">{{$post->title}}</a></h3>
                   </div>
                   <div class="post-modern__body">
                     <figure><img src="{{$post->blog_file_url}}" alt="" width="570" height="320"/>
