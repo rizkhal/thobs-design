@@ -9,7 +9,7 @@
           <div class="rd-navbar-panel">
             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
             <!-- RD Navbar Brand-->
-            <div class="rd-navbar-brand"><a class="brand" href="index.html">
+            <div class="rd-navbar-brand"><a class="brand" href="{{ url('/') }}">
                 <div class="brand__name">
                   <img class="brand__logo-dark" src="{{ asset('images/logo.jpg') }}" alt="" width="243" height="57"/>
                   {{-- <img class="brand__logo-light" src="{{ asset('front/images/logo-inverse-243x57.png') }}" alt="" width="243" height="57"/> --}}

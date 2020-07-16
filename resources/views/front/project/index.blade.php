@@ -1,8 +1,9 @@
 <x-front-layout title="All Projects">
   @section('content')
       <!-- Gallery-->
-        <section class="section section-md bg-white oh text-center">
+        <section class="section section-md bg-white oh text-center" style="padding-top: 2.5em!important;">
           <div class="shell">
+            <p class="heading-1" style="margin-bottom: 1.2em!important;">Projects</p>
             <div class="navigation-custom">
               <button class="button navigation-custom__toggle" data-custom-toggle=".navigation-custom__content" data-custom-toggle-hide-on-blur="true">Filter</button>
               <div class="navigation-custom__content">
@@ -25,7 +26,7 @@
                       <img class="thumb-ruby__image" src="{{$project->project_file_url}}" alt="" width="371" height="276"/>
                       <div class="thumb-ruby__caption">
                           <p class="thumb-ruby__title heading-3">{{$project->title}}</p>
-                          <p class="thumb-ruby__text">{{$project->content}}</p>
+                          <p class="thumb-ruby__text">{{$project->description}}</p>
                       </div>
                     </a>
                   </div>

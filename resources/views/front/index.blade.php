@@ -60,48 +60,5 @@
       </div>
     </div>
   </section>
-
-  <!-- Book Your Photo Shoot-->
-  <section class="section section-md bg-white">
-    <div class="shell">
-      <div class="range range-50 range-sm-center range-md-left range-md-reverse range-md-middle">
-        <div class="cell-sm-10 cell-md-6 wow fadeInRight">
-          <div class="box-width-4 box-centered">
-            <p class="heading-1">Book Your <br> Photo Shoot</p>
-            <p>I will appreciate as many details about your particular wedding venue, dates, theme and other aspects, as you’d be willing to share. I will be giving you my feedback immediately!</p>
-          </div>
-        </div>
-        <div class="cell-sm-10 cell-md-6 wow fadeInLeft">
-          <article class="">
-            <div class="" style="padding: 100px">
-              <!-- RD Mailform-->
-              <form action="" class="request-event" data-form-output="form-output-global" method="post">
-                @csrf
-                <div class="form-wrap">
-                  <input class="form-input" id="contact-date" type="text" data-time-picker="date" name="appointment_at" data-constraints="@Required">
-                  <label class="form-label" for="contact-date">Event Date</label>
-                </div>
-                <div class="form-wrap">
-                  <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
-                  <label class="form-label" for="contact-name">Your Name</label>
-                </div>
-                <div class="form-wrap">
-                  <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
-                  <label class="form-label" for="contact-email">E-mail</label>
-                </div>
-                <div class="form-wrap">
-                  <label class="form-label" for="contact-message">Your Message</label>
-                  <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
-                </div>
-                <div class="form-wrap form-button offset-1">
-                  <button class="button button-block button-primary-outline button-ujarak" type="submit">make an appointment</button>
-                </div>
-              </form>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
   @stop
 </x-front-layout>
