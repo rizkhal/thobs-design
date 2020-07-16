@@ -7,6 +7,13 @@ namespace App\Repository\SocialMedia;
 interface SocialMediaRepo
 {
     /**
+     * Get all social media
+     * 
+     * @return object
+     */
+    public function all(): object;
+
+    /**
      * Save social media
      *
      * @param  array  $data

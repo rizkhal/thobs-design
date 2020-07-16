@@ -17,6 +17,16 @@ class SocialMediaEloquent implements SocialMediaRepo
     }
 
     /**
+     * Get the all social media
+     * 
+     * @return object
+     */
+    public function all(): object
+    {
+        return $this->model->all();
+    }
+
+    /**
      * Save social media
      *
      * @param  array  $data

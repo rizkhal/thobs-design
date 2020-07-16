@@ -19,9 +19,9 @@
           <div class="rd-navbar-nav-wrap">
             <div class="rd-navbar-element">
               <ul class="list-icons list-inline-sm">
-                <li><a class="icon icon-sm fa fa-instagram icon-style-camera" href="#"><span></span><span></span><span></span><span></span></a></li>
-                <li><a class="icon icon-sm fa fa-facebook icon-style-camera" href="#"><span></span><span></span><span></span><span></span></a></li>
-                <li><a class="icon icon-sm fa fa-pinterest icon-style-camera" href="#"><span></span><span></span><span></span><span></span></a></li>
+                @foreach ($socials as $key => $social)
+                  <li><a href="#" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
+                @endforeach
               </ul>
             </div>
             <!-- RD Navbar Nav-->
