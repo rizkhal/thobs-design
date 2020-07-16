@@ -45,7 +45,8 @@
               </div>
               <div class="post-boxed__aside">
                 <div class="unit unit-horizontal unit-middle unit-spacing-xs">
-                  <div class="unit__left"><img class="post-boxed__avatar" src="images/user-6-46x46.jpg" alt="" width="46" height="46"/>
+                  <div class="unit__left">
+                    <img class="post-boxed__avatar" src="{{$post->author->profile_picture_url}}" alt="" width="46" height="46"/>
                   </div>
                   <div class="unit__body">
                     <h6 class="text-uppercase">by {{$post->author->name}}</h6>

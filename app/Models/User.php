@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -36,4 +35,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'profile_picture_url',
+    ];
+
+    public function getProfilePictureUrlAttribute()
+    {
+        if (!is_null($this->profile_picture)) {
+            return asset('storage/uploads/users/'
+                . $this->profile_picture
+            );
+        }
+
+        return 'https://via.placeholder.com/40';
+    }
 }
