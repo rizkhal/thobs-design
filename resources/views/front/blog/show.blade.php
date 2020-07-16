@@ -12,7 +12,7 @@
             <div class="cell-md-10 cell-lg-8">
               <!-- Single post-->
               <article class="post-single">
-                <time class="post-single__time" datetime="2017">May 9, 2017</time>
+                <time class="post-single__time" datetime="2017">{{date('F d, Y', strtotime($post->created_at))}}</time>
                 <div class="post-single__header">
                   <p class="heading-1 post-single__title">{{ucfirst($post->title)}}</p>
                 </div>
