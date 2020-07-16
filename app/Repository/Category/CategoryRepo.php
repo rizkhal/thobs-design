@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace App\Repository\Category;
 
 interface CategoryRepo
@@ -8,41 +10,41 @@ interface CategoryRepo
     /**
      * List all category
      *
-     * @return ?object
+     * @return object
      */
-    public function all();
+    public function all(): object;
 
     /**
      * Category Has Project
      *
      * @param  object  $data
-     * @return ?object
+     * @return object
      */
-    public function hasProject(object $data);
+    public function hasProject(object $data): object;
 
     /**
      * Save into database
      *
      * @param  array  $data
-     * @return ?object
+     * @return bool
      */
-    public function save(array $data);
+    public function save(array $data): bool;
 
     /**
      * Handle select2 request
      *
      * @param  string $param
-     * @return ?object
+     * @return object
      */
-    public function searchByName(array $param): ? object;
+    public function searchByName(array $param): object;
 
     /**
      * Get category for where id
      *
      * @param  string $id
-     * @return ?object
+     * @return object
      */
-    public function edit(string $id) :  ? object;
+    public function edit(string $id): object;
 
     /**
      * Delete category
@@ -50,6 +52,6 @@ interface CategoryRepo
      * @param  string $id
      * @return bool
      */
-    public function delete(string $id) : bool;
+    public function delete(string $id): bool;
 
 }

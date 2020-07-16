@@ -27,7 +27,7 @@
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
               <li class="{{ active('/') }}"><a href="{{ route('application.index') }}">Home</a></li>
-              <li class="{{ active('pages/projects*') }}"><a href="#">Project</a></li>
+              <li class="{{ active('pages/projects*') }}"><a href="{{ route('application.project.index') }}">Project</a></li>
               <li class="{{ active('pages/blog*') }}"><a href="{{ route('application.blog.index') }}">Blog</a></li>
               <li class=""><a href="#">Kontak</a></li>
               <li class=""><a href="#">Tentang</a></li>

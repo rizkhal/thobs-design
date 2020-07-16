@@ -1,4 +1,4 @@
-@extends('front.layouts.app')
+<x-front-layout title="Semua Postingan">
 
 @section('content')
 <!-- My Best Photos-->
@@ -216,4 +216,4 @@
     </div>
   </div>
 </section>
-@endsection
+</x-front-layout>

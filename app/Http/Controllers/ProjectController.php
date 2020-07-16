@@ -66,12 +66,12 @@ class ProjectController extends Controller
         if ($request->ajax()) {
             if ($this->project->changeStatus($request->id)) {
                 return response()->json([
-                    'status' => 'success',
+                    'status'  => 'success',
                     'message' => 'The project status is updated.',
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'danger',
+                    'status'  => 'danger',
                     'message' => 'Something went wrong, please the contact administrator.',
                 ], 500);
             }
@@ -133,10 +133,11 @@ class ProjectController extends Controller
         }
     }
 
-    public function galery()
+    public function frontIndex()
     {
-        $projects   = $this->project->galery();
-        $categories = $this->category->hasProject($projects);
-        return view('front.galery', compact('projects', 'categories'));
+        return view('front.project.index', [
+            'projects'   => $projects = $this->project->project(),
+            'categories' => $this->category->hasProject($projects),
+        ]);
     }
 }

@@ -31,7 +31,7 @@ class ProjectEloquent implements ProjectRepo
      *
      * @return object
      */
-    public function galery(): object
+    public function project(): object
     {
         return $this->project->active()->latest()->paginate(9);
     }

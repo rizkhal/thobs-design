@@ -19,9 +19,9 @@ class CategoryEloquent implements CategoryRepo
     /**
      * Get all category
      *
-     * @return ?object
+     * @return object
      */
-    public function all():  ? object
+    public function all(): object
     {
         return $this->category->all();
     }
@@ -30,9 +30,9 @@ class CategoryEloquent implements CategoryRepo
      * Get project has category
      *
      * @param  object  $data
-     * @return ?object
+     * @return object
      */
-    public function hasProject(object $data) :  ? object
+    public function hasProject(object $data): object
     {
         $c = $data->map(function ($item) use ($data) {
             return $item;
@@ -45,9 +45,9 @@ class CategoryEloquent implements CategoryRepo
      * Edit category
      *
      * @param  string $id
-     * @return ?object
+     * @return object
      */
-    public function edit(string $id) :  ? object
+    public function edit(string $id): object
     {
         return $this->category->findOrFail($id);
     }
@@ -56,9 +56,9 @@ class CategoryEloquent implements CategoryRepo
      * Save category
      *
      * @param  array  $data
-     * @return ?object
+     * @return bool
      */
-    public function save(array $data) :  ? object
+    public function save(array $data): bool
     {
         return $this->category->create($data);
     }
@@ -67,9 +67,9 @@ class CategoryEloquent implements CategoryRepo
      * Search Category by select2
      *
      * @param  array  $param
-     * @return ?object
+     * @return object
      */
-    public function searchByName(array $param) :  ? object
+    public function searchByName(array $param): object
     {
         $query = $this->category->query();
 
@@ -86,7 +86,7 @@ class CategoryEloquent implements CategoryRepo
      * @param  string $id
      * @return bool
      */
-    public function delete(string $id) : bool
+    public function delete(string $id): bool
     {
         $category = Category::findOrFail($id);
         return $category->delete();

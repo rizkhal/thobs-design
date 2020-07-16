@@ -18,7 +18,7 @@ interface ProjectRepo
      *
      * @return object
      */
-    public function galery(): object;
+    public function project(): object;
 
     /**
      * Find project by id
