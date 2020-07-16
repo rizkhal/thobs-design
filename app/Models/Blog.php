@@ -62,7 +62,7 @@ class Blog extends Model
      */
     public function scopeActive(object $query): object
     {
-        return $query->where('status', true);
+        return $query->where('status', true)->with('author');
     }
 
     /**

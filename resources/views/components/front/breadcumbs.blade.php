@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0)">
                     Pages
                 </a>
             </li>

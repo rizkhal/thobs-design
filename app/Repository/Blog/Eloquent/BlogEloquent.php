@@ -20,7 +20,7 @@ class BlogEloquent implements BlogRepo
 
     /**
      * Get all the active blog post
-     * 
+     *
      * @return object
      */
     private function get(): object
@@ -30,7 +30,7 @@ class BlogEloquent implements BlogRepo
 
     /**
      * Get all of active the blog post
-     * 
+     *
      * @return object
      */
     public function all(): object
@@ -56,7 +56,11 @@ class BlogEloquent implements BlogRepo
      */
     public function findBySlug(string $slug)
     {
-        return $this->blog->where('slug', $slug)->firstOrFail();
+        return $this->blog->where(function ($query) use ($slug) {
+            return $query->where('slug', $slug)
+                ->where('deleted_at', null)
+                ->where('status', ProjectStatus::PUBLISH);
+        })->firstOrFail();
     }
 
     /**

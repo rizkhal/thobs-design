@@ -1,8 +1,8 @@
 <x-front-layout title="Semua Postingan">
     @section('content')
     <!-- Breadcumbs -->
-    <x-front.breadcumbs active="Blog Pos">
-        Postingan Blog
+    <x-front.breadcumbs active="Blog">
+        Halaman Blog
     </x-front.breadcumbs>
     <!-- All post-->
     <section class="section section-md bg-gray-lighter text-center">
@@ -41,14 +41,6 @@
           </div>
           <!-- Pagination-->
           {!! $posts->links() !!}
-          {{-- <ul class="pagination-custom">
-            <li class="pagination-control"><a href="#">Prev</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li class="active"><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li class="pagination-control"><a href="#">Next</a></li>
-          </ul> --}}
         </div>
       </section>
     @stop
