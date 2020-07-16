@@ -3,7 +3,7 @@
   <!-- projects -->
   <section class="section bg-white text-center">
     <div class="shell-fluid">
-      <p class="heading-1">Projects</p>
+      <p class="heading-1" style="padding-top:1em!important;">Projects</p>
       <div class="isotope thumb-ruby-wrap wow fadeIn" data-isotope-layout="masonry" data-isotope-group="gallery" data-lightgallery="group">
         <div class="row">
           @forelse ($projects as $project)

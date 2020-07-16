@@ -135,9 +135,9 @@ class ProjectController extends Controller
 
     public function frontIndex()
     {
-        return view('front.project.index', [
-            'projects'   => $projects = $this->project->project(),
-            'categories' => $this->category->hasProject($projects),
-        ]);
+        $projects   = $this->project->project();
+        $categories = $this->category->hasProject($projects);
+
+        return view('front.project.index', compact('projects', 'categories'));
     }
 }

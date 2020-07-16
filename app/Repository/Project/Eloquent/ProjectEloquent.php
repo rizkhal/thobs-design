@@ -33,7 +33,7 @@ class ProjectEloquent implements ProjectRepo
      */
     public function project(): object
     {
-        return $this->project->active()->latest()->paginate(6);
+        return $this->project->active()->latest()->paginate(24);
     }
 
     /**
@@ -76,6 +76,7 @@ class ProjectEloquent implements ProjectRepo
             'title'       => $data['title'],
             'category_id' => $data['category_id'],
             'description' => $data['description'],
+            'created_by'  => logged_in_user()->id,
         ]);
 
         $project->file()->create([

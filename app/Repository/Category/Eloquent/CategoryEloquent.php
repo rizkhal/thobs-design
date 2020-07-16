@@ -37,8 +37,8 @@ class CategoryEloquent implements CategoryRepo
         $c = $data->map(function ($item) use ($data) {
             return $item;
         });
-
-        return $this->category->whereIn('id', $c->flatMap->categories->pluck('id'))->get();
+        
+        return $this->category->whereIn('id', $c->pluck('category_id'))->get();
     }
 
     /**

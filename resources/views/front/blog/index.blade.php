@@ -25,7 +25,7 @@
                       </li>
                       <li><span class="icon icon-sm material-icons-loyalty"></span>
                         <ul class="list-comma">
-                          <li><a href="#">{{$post->category->name}}</a></li>
+                          <li><a href="?category={{strtolower($post->category->name)}}">{{$post->category->name}}</a></li>
                         </ul>
                       </li>
                     </ul>

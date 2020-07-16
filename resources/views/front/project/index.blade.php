@@ -20,7 +20,7 @@
             <div class="isotope" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
               <div class="row">
                 @forelse($projects as $project)
-                  <div class="col-xs-12 col-sm-6 col-md-4 isotope-item" data-filter="{{$project->category->pluck('name')->first()}}">
+                  <div class="col-xs-12 col-sm-6 col-md-4 isotope-item" data-filter="{{$project->category->name}}">
                     <a class="thumb-ruby" href="{{$project->project_file_url}}" data-lightgallery="item">
                       <img class="thumb-ruby__image" src="{{$project->project_file_url}}" alt="" width="371" height="276"/>
                       <div class="thumb-ruby__caption">
@@ -30,7 +30,7 @@
                     </a>
                   </div>
                 @empty
-                  <h3>Sorry, galery is empty</h3>
+                  <x-front.empty-message>project</x-front.empty-message>
                 @endforelse
               </div>
             </div>

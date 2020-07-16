@@ -19,23 +19,23 @@ class BlogEloquent implements BlogRepo
     }
 
     /**
-     * Get all the active blog post
-     *
-     * @return object
-     */
-    private function get(): object
-    {
-        return $this->blog->active()->latest();
-    }
-
-    /**
      * Get all of active the blog post
+     * And filter where category request
      *
      * @return object
      */
     public function all(): object
     {
-        return $this->get()->paginate(2);
+        $where = function ($query) {
+            if ($filter = request()->get('category')) {
+                return $query->active()->whereHas('category', function ($query) use ($filter) {
+                    $query->where('name', $filter);
+                });
+            }
+        };
+
+        $posts = $this->blog->active()->where($where)->latest()->paginate(2);
+        return $posts->appends(request()->only('category'));
     }
 
     /**
@@ -45,7 +45,7 @@ class BlogEloquent implements BlogRepo
      */
     public function widget(): object
     {
-        return $this->get()->take(3)->get();
+        return $this->blog->active()->take(3)->get();
     }
 
     /**
