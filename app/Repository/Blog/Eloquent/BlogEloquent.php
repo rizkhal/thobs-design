@@ -56,11 +56,17 @@ class BlogEloquent implements BlogRepo
      */
     public function findBySlug(string $slug)
     {
-        return $this->blog->where(function ($query) use ($slug) {
+        $post = $this->blog->where(function ($query) use ($slug) {
             return $query->where('slug', $slug)
                 ->where('deleted_at', null)
                 ->where('status', ProjectStatus::PUBLISH);
         })->firstOrFail();
+
+        if (!auth()->user()) {
+            $post->increment('view');
+        }
+
+        return $post;
     }
 
     /**

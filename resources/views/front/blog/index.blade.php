@@ -1,12 +1,9 @@
 <x-front-layout title="Semua Postingan">
     @section('content')
-    <!-- Breadcumbs -->
-    <x-front.breadcumbs active="Blog">
-        Halaman Blog
-    </x-front.breadcumbs>
     <!-- All post-->
-    <section class="section section-md bg-gray-lighter text-center">
+    <section class="section section-md bg-gray-lighter text-center" style="padding-top: 2.5em!important;">
         <div class="shell">
+          <p class="heading-1">Blog</p>
           <div class="range range-xs-center range-30">
             @forelse($posts as $key => $post)
               <div class="cell-sm-9 cell-md-6">

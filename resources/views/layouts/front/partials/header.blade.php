@@ -20,7 +20,7 @@
             <div class="rd-navbar-element">
               <ul class="list-icons list-inline-sm">
                 @foreach ($socials as $key => $social)
-                  <li><a href="#" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
+                  <li><a href="{{$social->link}}" target="_blank" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
                 @endforeach
               </ul>
             </div>
