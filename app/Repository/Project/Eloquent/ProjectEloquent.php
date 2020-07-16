@@ -33,7 +33,7 @@ class ProjectEloquent implements ProjectRepo
      */
     public function project(): object
     {
-        return $this->project->active()->latest()->paginate(9);
+        return $this->project->active()->latest()->paginate(6);
     }
 
     /**
