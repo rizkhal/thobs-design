@@ -48,6 +48,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
 Route:: as ('application.')->group(function () {
     Route::get('/', 'ApplicationController@index')->name('index');
     Route::prefix('pages')->group(function () {
+        Route::get('blog', 'BlogController@frontIndex')->name('blog.index');
         Route::get('blog/{slug}', 'BlogController@frontShow')->name('blog.show');
     });
 });

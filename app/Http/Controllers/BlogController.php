@@ -146,6 +146,13 @@ class BlogController extends Controller
         }
     }
 
+    public function frontIndex()
+    {
+        return view('frontend::blog.index', [
+            'posts' => $this->blog->all(),
+        ]);
+    }
+
     /**
      * Show the blog post on frontend page
      *

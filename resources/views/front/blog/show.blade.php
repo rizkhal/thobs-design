@@ -1,28 +1,10 @@
 <x-front-layout :title="$post->title">
     @section('content')
     <!-- Breadcumbs -->
-    <section class="breadcrumbs-custom bg-image" style="background-image: url(images/breadcrumbs-image.jpg);">
-        <div class="shell">
-            <h1 class="breadcrumbs-custom__title">
-                Blog Post
-            </h1>
-            <ul class="breadcrumbs-custom__path">
-                <li>
-                    <a href="index.html">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Pages
-                    </a>
-                </li>
-                <li class="active">
-                    Blog Post
-                </li>
-            </ul>
-        </div>
-    </section>
+    <x-front.breadcumbs active="Blog Post">
+      Halaman Blog
+    </x-front-breadcumbs>
+    
      <!-- Single post-->
       <section class="section section-variant-1 bg-white text-center">
         <div class="shell">

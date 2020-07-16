@@ -17,7 +17,7 @@
             </a>
           </div>
           @empty
-          <h3>Maaf untuk saat ini belum ada file yang diupload.</h3>
+            <x-front.empty-message>project</x-front.empty-message>
           @endforelse
         </div>
       </div>
@@ -55,7 +55,7 @@
             </article>
           </div>
         @empty
-          <h3>Maaf untuk saat ini belum ada postingan untuk ditampilkan.</h3>
+        <h3>Maaf untuk saat ini belum ada postingan untuk ditampilkan.</h3>
         @endforelse
       </div>
     </div>

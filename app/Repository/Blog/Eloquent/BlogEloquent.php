@@ -19,13 +19,33 @@ class BlogEloquent implements BlogRepo
     }
 
     /**
-     * Get all the active blog posts
-     *
+     * Get all the active blog post
+     * 
+     * @return object
+     */
+    private function get(): object
+    {
+        return $this->blog->active()->latest();
+    }
+
+    /**
+     * Get all of active the blog post
+     * 
      * @return object
      */
     public function all(): object
     {
-        return $this->blog->active()->latest()->take(3)->get();
+        return $this->get()->paginate(2);
+    }
+
+    /**
+     * Take 3 the active blog posts
+     *
+     * @return object
+     */
+    public function widget(): object
+    {
+        return $this->get()->take(3)->get();
     }
 
     /**

@@ -8,11 +8,18 @@ if (! interface_exists('BlogRepo')) {
     interface BlogRepo
     {
         /**
-         * Get all of the active blog posts
+         * Get all of active the blog post
          * 
          * @return object
          */
         public function all(): object;
+
+        /**
+         * Take 3 of the active blog posts
+         * 
+         * @return object
+         */
+        public function widget(): object;
 
         /**
          * Find the blog post where slug
