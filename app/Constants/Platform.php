@@ -12,10 +12,9 @@ class Platform extends BaseConstant
     const TWITTER   = 4;
     const TELEGRAM  = 5;
     const GITHUB    = 6;
-    const REDDIT    = 7;
-    const WEBSITE   = 8;
+    const YOUTUBE   = 7;
 
-    public static function labels():  ? array
+    public static function labels(): array
     {
         return [
             self::FACEBOOK  => "FACEBOOK",
@@ -24,8 +23,7 @@ class Platform extends BaseConstant
             self::TWITTER   => "TWITTER",
             self::TELEGRAM  => "TELEGRAM",
             self::GITHUB    => "GITHUB",
-            self::REDDIT    => "REDDIT",
-            self::WEBSITE   => "WEBSITE",
+            self::YOUTUBE   => "YOUTUBE",
         ];
     }
 }

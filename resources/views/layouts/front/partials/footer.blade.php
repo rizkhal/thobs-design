@@ -8,7 +8,7 @@
             <li><a href="{{$social->link}}" target="_blank" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
           @endforeach
         </ul>
-        <p class="rights">Copyright <span>&copy;&nbsp;</span><span class="copyright-year"></span>. Daeng Tobs Digital Design.</p>
+        <p class="rights">Copyright <span>&copy;&nbsp;</span><span class="copyright-year"></span>Daeng Tobs Digital Design.</p>
       </div>
     </div>
   </div>
