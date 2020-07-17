@@ -14,12 +14,17 @@ class BladeServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->components()->loadViews()->shareViews();
     }
 
-    private function components()
+    /**
+     * Define layout for backend blade view
+     * 
+     * @return self
+     */
+    private function components(): self
     {
         Blade::component('layouts.back.app', 'back-layout');
         Blade::component('layouts.front.app', 'front-layout');
@@ -27,7 +32,12 @@ class BladeServiceProvider extends ServiceProvider
         return $this;
     }
 
-    private function loadViews()
+    /**
+     * Load backend view blade
+     * 
+     * @return self
+     */
+    private function loadViews(): self
     {
         $this->loadViewsFrom(resource_path('views/back'), 'backend');
         $this->loadViewsFrom(resource_path('views/front'), 'frontend');
@@ -35,11 +45,17 @@ class BladeServiceProvider extends ServiceProvider
         return $this;
     }
 
-    private function shareViews()
+    /**
+     * Share socials data to views
+     * 
+     * @return self
+     */
+    private function shareViews(): self
     {
         $socials = resolve(SocialMediaRepo::class)->all();
 
         View::composer([
+            'front.contact.index',
             'layouts.front.partials.header',
             'layouts.front.partials.footer',
         ], function ($view) use ($socials) {

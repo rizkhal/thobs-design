@@ -25,6 +25,9 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
             Route::get('/', 'ProfileController@profile')->name('index');
             Route::post('update', 'ProfileController@update')->name('update');
         });
+
+        /** Contact */
+
     });
 
     /** Category */
@@ -60,5 +63,6 @@ Route:: as ('application.')->group(function () {
         Route::get('blog', 'BlogController@frontIndex')->name('blog.index');
         Route::get('blog/{slug}', 'BlogController@frontShow')->name('blog.show');
         Route::get('projects', 'ProjectController@frontIndex')->name('project.index');
+        Route::get('contact', 'ContactController@frontIndex')->name('contact.index');
     });
 });

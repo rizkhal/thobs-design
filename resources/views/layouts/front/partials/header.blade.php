@@ -9,11 +9,14 @@
           <div class="rd-navbar-panel">
             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
             <!-- RD Navbar Brand-->
-            <div class="rd-navbar-brand"><a class="brand" href="{{ url('/') }}">
+            <div class="rd-navbar-brand">
+              <a class="brand" href="{{ url('/') }}">
                 <div class="brand__name">
                   <img class="brand__logo-dark" src="{{ asset('images/logo.jpg') }}" alt="" width="243" height="57"/>
                   {{-- <img class="brand__logo-light" src="{{ asset('front/images/logo-inverse-243x57.png') }}" alt="" width="243" height="57"/> --}}
-                </div></a></div>
+                </div>
+              </a>
+            </div>
           </div>
           <!-- RD Navbar Nav-->
           <div class="rd-navbar-nav-wrap">
@@ -29,7 +32,7 @@
               <li class="{{ active('/') }}"><a href="{{ route('application.index') }}">Home</a></li>
               <li class="{{ active('pages/projects*') }}"><a href="{{ route('application.project.index') }}">Project</a></li>
               <li class="{{ active('pages/blog*') }}"><a href="{{ route('application.blog.index') }}">Blog</a></li>
-              <li class=""><a href="#">Kontak</a></li>
+              <li class="{{ active('pages/contact*') }}"><a href="{{ route('application.contact.index') }}">Kontak</a></li>
               <li class=""><a href="#">Tentang</a></li>
             </ul>
           </div>
