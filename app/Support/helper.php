@@ -46,11 +46,11 @@ if (!function_exists("active")) {
     /**
      * Active url
      *
-     * @param  string  $path
+     * @param  array|string  $path
      * @param  string  $active
      * @return string
      */
-    function active(string $path, string $active = "active"): string
+    function active($path, string $active = "active"): string
     {
         return call_user_func_array("Request::is", (array) $path) ? $active : '';
     }

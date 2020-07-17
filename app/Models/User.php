@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile_picture'
     ];
 
     /**
@@ -47,7 +47,7 @@ class User extends Authenticatable
                 . $this->profile_picture
             );
         }
-
-        return 'https://via.placeholder.com/40';
+        
+        return asset('images/user.png');
     }
 }

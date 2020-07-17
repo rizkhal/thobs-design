@@ -13,12 +13,15 @@
                     <a href="{{ route('admin.projects.index') }}" class="{{ active('manage/projects*') }}"><i class="lnr lnr-store"></i> <span>Project</span></a>
                 </li>
                 <li>
-                    <a href="#setting" data-toggle="collapse" class="{{ active('manage/setting*') }}">
+                    <a href="#setting" data-toggle="collapse" class="{{ active(['manage/setting*']) }}">
                         <i class="lnr lnr-cog"></i><span>Setting</span>
                         <i class="icon-submenu lnr lnr-chevron-left"></i>
                     </a>
-                    <div id="setting" class="collapse {{ active('manage/setting*') }}">
+                    <div id="setting" class="collapse {{ active(['manage/setting*']) }}">
                         <ul class="nav">
+                            <li>
+                                <a href="{{ route('admin.setting.profile.index') }}" class="{{ active('manage/setting/profile*') }}"><i class="lnr lnr-cog"></i> <span>Profile</span></a>
+                            </li>
                             <li>
                                 <a href="{{ route('admin.setting.social.index') }}" class="{{ active('manage/setting/social*') }}"><i class="lnr lnr-star-half"></i> <span>Social Media</span></a>
                             </li>

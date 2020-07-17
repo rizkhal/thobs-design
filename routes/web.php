@@ -17,7 +17,14 @@ Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     /** Setting */
     Route::prefix('setting')->as('setting.')->group(function () {
+        /** Social Media */
         Route::resource('social', 'SocialMediaController');
+
+        /** Profile */
+        Route::prefix('profile')->as('profile.')->group(function() {
+            Route::get('/', 'ProfileController@profile')->name('index');
+            Route::post('update', 'ProfileController@update')->name('update');
+        });
     });
 
     /** Category */

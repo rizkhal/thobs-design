@@ -35,13 +35,13 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="https://via.placeholder.com/35x35" class="img-circle" alt="Avatar">
+                        <img src="{{logged_in_user()->profile_picture_url}}" class="img-circle" alt="Avatar">
                         <span>{{ logged_in_user()->name }}</span>
                         <i class="icon-submenu lnr lnr-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/') }}" target="_blank"><i class="lnr lnr-earth"></i> <span>View Site</span></a></li>
-                        <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                        <li><a href="{{ route('admin.setting.profile.index') }}"><i class="lnr lnr-user"></i> <span>Profile</span></a></li>
                         <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
                         <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
                         <li>
