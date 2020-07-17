@@ -16,7 +16,7 @@
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="pagination-control">
+                    <li>
                         <a href="javascript:void(0)">{{ $element }}</a>
                     </li>
                 @endif
@@ -25,11 +25,11 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li class="pagination-control active">
+                            <li class="active">
                                 <a href="javascript:void(0)">{{ $page }}</a>
                             </li>
                         @else
-                            <li class="pagination-control">
+                            <li>
                                 <a href="{{ $url }}">{{ $page }}</a>
                             </li>
                         @endif
