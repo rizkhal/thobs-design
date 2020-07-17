@@ -4,8 +4,10 @@
       <div class="shell">
         <div class="range range-md-center">
           <div class="cell-md-11 cell-lg-10">
-            <h2 class="text-bold">Kontak Saya</h2>
-            <p><span class="box-width-2">We are available 24/7 by fax, e-mail or by phone. You can also use our quick contact form to ask a question about our services and projects.</span></p>
+            <h2 class="text-bold">Kontak</h2>
+            <p><span class="box-width-2">
+              Kami tersedia 24/7 melalui email, atau telepon. Anda juga dapat menggunakan formulir kontak cepat kami untuk mengajukan pertanyaan tentang layanan dan proyek kami.
+            </span></p>
             <div class="layout-columns"> 
               <div class="layout-columns__main">
                 <div class="layout-columns__main-inner">
@@ -13,23 +15,23 @@
                   <form method="POST" action="">
                     @csrf
                     <div class="form-wrap">
-                      <input class="form-input" id="subject-name" type="text" name="subject" data-constraints="@Required">
-                      <label class="form-label" for="subject-name">Subject</label>
-                    </div>
-                    <div class="form-wrap">
                       <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
-                      <label class="form-label" for="contact-name">Your Name</label>
+                      <label class="form-label" for="contact-name">Nama Anda</label>
                     </div>
                     <div class="form-wrap">
                       <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
-                      <label class="form-label" for="contact-email">E-mail</label>
+                      <label class="form-label" for="contact-email">Alamat Email</label>
                     </div>
                     <div class="form-wrap">
-                      <label class="form-label" for="contact-message">Your Message</label>
+                      <input class="form-input" id="subject-name" type="text" name="subject" data-constraints="@Required">
+                      <label class="form-label" for="subject-name">Subjek Pesan</label>
+                    </div>
+                    <div class="form-wrap">
+                      <label class="form-label" for="contact-message">Pesan Anda</label>
                       <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
                     </div>
                     <div class="form-wrap form-button offset-1">
-                      <button class="button button-block button-primary-outline button-ujarak" type="submit">SEND MESSAGE</button>
+                      <button class="button button-block button-primary-outline button-ujarak" type="submit">kirim pesan</button>
                     </div>
                   </form>
                 </div>

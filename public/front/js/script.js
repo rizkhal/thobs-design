@@ -311,11 +311,11 @@ $document.ready(function () {
 		var regularConstraintsMessages = [
 			{
 				type: regula.Constraint.Required,
-				newMessage: "The text field is required."
+				newMessage: "Bidang ini tidak boleh kosong."
 			},
 			{
 				type: regula.Constraint.Email,
-				newMessage: "The email is not a valid email."
+				newMessage: "Email yang anda masukan tidak valid."
 			},
 			{
 				type: regula.Constraint.Numeric,
