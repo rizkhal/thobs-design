@@ -391,13 +391,14 @@ $document.ready(function () {
 
 
 	/**
+	 * Removed from footer
 	 * Copyright Year
 	 * @description  Evaluates correct copyright year
 	 */
-	var o = $(".copyright-year");
-	if (o.length) {
-		o.text(initialDate.getFullYear());
-	}
+	// var o = $(".copyright-year");
+	// if (o.length) {
+	// 	o.text(initialDate.getFullYear());
+	// }
 
 	/**
 	 * Page loader
