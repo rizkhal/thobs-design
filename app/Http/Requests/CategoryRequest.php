@@ -31,4 +31,18 @@ class CategoryRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:100'],
         ];
     }
+
+    /**
+     * Get the data from incoming request
+     *
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'id'          => $this->id,
+            'name'        => $this->name,
+            'description' => $this->description,
+        ];
+    }
 }

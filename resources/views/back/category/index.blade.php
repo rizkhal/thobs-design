@@ -4,63 +4,31 @@
         @endpush
 
     @push('scripts')
-        <script src="{{ asset('vendor/datatables/datatables.min.js') }}">
-        </script>
-        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}">
-        </script>
-        <script src="{{ asset('vendor/datatables/sweetalert.min.js') }}">
-        </script>
-        <script src="{{ asset('js/larajax.js') }}">
-        </script>
+        <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('js/ayu.js') }}"></script>
         {{$dataTable->scripts()}}
         <script lang="javascript">
-            $(document).ready(function() {
-                const form  = $(".form"),
-                      modal = $(".modal");
+            $(".buttons-create").click(function(e) {
+                $(".modal-create").modal("show");
+            });
 
-                $(".buttons-create").click(function(e) {
-                    modal.modal("show");
-                    modal.find("form")[0].reset();
-                    modal.find("input[name='_method']").remove();
-                    modal.find("button[type='submit']").text("Save");
-                    form.attr("action", "{{route('admin.category.store')}}");
-                });
+            $(".table").on("click", ".btn-edit", function() {
+                $(".modal-edit").modal("show");
+                Ayu.edit($("#form"), $(this).attr("data-get"));
+            });
 
-                Larajax.save(form, function() {
-                    modal.modal("hide");
+            $(".table").on("click", ".btn-destroy", function() {
+                Ayu.destroy($(this), function() {
                     $(".table").DataTable().ajax.reload();
-                });
-
-                $(".table").on("click", ".btn-edit", function() {
-                    modal.modal("show");
-
-                    let _this = $(this);
-                    let token = modal.find("input[name='_token']");
-                    let indent = `<input type='hidden' name='id' value='${_this.data('put')}'>`;
-                    let put = "<input type='hidden' name='_method' value='PUT'>";
-
-                    token.after(put);
-                    token.after(indent);
-
-                    Larajax.get(_this.data('get'));
-                    form.attr("action", _this.data('put'));
-                });
-
-                Larajax.edit($(".form"), function() {
-                    modal.modal("hide");
-                    $(".table").DataTable().ajax.reload();
-                });
-                
-                $(".table").on("click", ".btn-destroy", function() {
-                    Larajax.delete($(this), function() {
-                        $(".table").DataTable().ajax.reload();
-                    });
                 });
             });
         </script>
-        @endpush
+    @endpush
 
     @section('app')
+        @include('back.category.partials.edit')
         @include('back.category.partials.create')
         <div class="container-fluid">
             <div class="row">

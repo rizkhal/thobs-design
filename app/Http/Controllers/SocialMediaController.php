@@ -25,12 +25,28 @@ class SocialMediaController extends Controller
 
     public function store(SocialMediaRequest $request)
     {
-        if ($request->ajax()) {
-            $this->socialMedia->save($request->all());
-            return response()->json([
-                'status'  => 'success',
-                'message' => 'Berhasil menambah social media.',
-            ], 200);
+        if ($this->socialMedia->save($request->data())) {
+            notice('success', 'Successfully save the social media.');
+            return redirect()->route('admin.setting.social.index');
+        } else {
+            notice('danger', 'Something went wrong, please contact the administrator.');
+            return redirect()->route('admin.setting.social.index');
+        }
+    }
+
+    public function edit(string $id)
+    {
+        return $this->socialMedia->edit($id);
+    }
+
+    public function update(SocialMediaRequest $request)
+    {
+        if ($this->socialMedia->update($request->data())) {
+            notice('success', 'Successfully update the social media.');
+            return redirect()->route('admin.setting.social.index');
+        } else {
+            notice('danger', 'Something went wrong, please contact the administrator.');
+            return redirect()->route('admin.setting.social.index');
         }
     }
 

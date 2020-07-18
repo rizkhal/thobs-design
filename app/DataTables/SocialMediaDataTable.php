@@ -25,18 +25,18 @@ class SocialMediaDataTable extends DataTable
         return datatables()
             ->eloquent($this->query)
             ->addIndexColumn()
-            ->editColumn('link', function($model) {
-                return '<a href="'.$model->link.'" target="_blank">'.$model->link.'</a>';
-            })
             ->editColumn('platform', function($model) {
                 return strtolower(Platform::label($model->platform));
             })
             ->editColumn('created_at', function($model) {
                 return convert_date($model->created_at);
             })
+            ->addColumn('icon', function($model) {
+                return '<i class="fa fa-'.social_render($model->platform).'"></i>';
+            })
             ->addColumn('action', function($model) {
                 return '
-                    <button type="button" data-url="'.route('admin.setting.social.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                    <button type="button" data-put="'.route('admin.setting.social.update', $model->id).'" data-get="'.route('admin.setting.social.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
                     <button type="button" data-url="'.route('admin.setting.social.destroy', $model->id).'" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })

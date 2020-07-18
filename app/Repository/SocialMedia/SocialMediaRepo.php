@@ -22,6 +22,22 @@ interface SocialMediaRepo
     public function save(array $data): object;
 
     /**
+     * Get social for where id
+     *
+     * @param  string $id
+     * @return object
+     */
+    public function edit(string $id): object;
+
+    /**
+     * Update social
+     *
+     * @param  array  $data
+     * @return bool
+     */
+    public function update(array $data): bool;
+
+    /**
      * Delete social media
      * 
      * @param  string $id

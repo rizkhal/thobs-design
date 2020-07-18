@@ -55,12 +55,12 @@ class CategoryEloquent implements CategoryRepo
     /**
      * Update category
      *
-     * @param  string $id
+     * @param  array $data
      * @return bool
      */
-    public function update(string $id, array $data): bool
+    public function update(array $data): bool
     {
-        $category = $this->category->findOrFail($id);
+        $category = $this->category->findOrFail($data['id']);
         return $category->update($data);
     }
 

@@ -25,11 +25,13 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-    	$category = $this->category->save($request->all());
-    	return response()->json([
-    		'status' => 'success',
-    		'message' => 'Berhasil menambah category'
-    	], 200);
+        if ($this->category->save($request->data())) {
+        	notice('success', 'Successfully save the category.');
+            return redirect()->route('admin.category.index');
+        } else {
+            notice('danger', 'Something went wrong, please contact the administrator.');
+            return redirect()->route('admin.category.index');
+        }
     }
 
     public function edit(string $id)
@@ -37,20 +39,15 @@ class CategoryController extends Controller
         return $this->category->edit($id);
     }
 
-    public function update(CategoryRequest $request, string $id)
+    public function update(CategoryRequest $request)
     {
-        if ($this->category->update($id, $request->all())) {
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Successfully update the category.',
-            ], 200);
+        if ($this->category->update($request->data())) {
+            notice('success', 'Successfully update the category.');
+            return redirect()->route('admin.category.index');
         } else {
-            return response()->json([
-                'status' => 'danger',
-                'message' => 'Something went wrong, please contact the administrator.',
-            ], 200);
+            notice('danger', 'Something went wrong, please contact the administrator.');
+            return redirect()->route('admin.category.index');
         }
-
     }
 
     public function destroy(string $id)

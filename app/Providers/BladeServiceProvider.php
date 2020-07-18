@@ -16,12 +16,16 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->components()->loadViews()->shareViews();
+        $this
+            ->components()
+            ->loadViews()
+            ->shareViews()
+            ->directive();
     }
 
     /**
      * Define layout for backend blade view
-     * 
+     *
      * @return self
      */
     private function components(): self
@@ -34,7 +38,7 @@ class BladeServiceProvider extends ServiceProvider
 
     /**
      * Load backend view blade
-     * 
+     *
      * @return self
      */
     private function loadViews(): self
@@ -47,7 +51,7 @@ class BladeServiceProvider extends ServiceProvider
 
     /**
      * Share socials data to views
-     * 
+     *
      * @return self
      */
     private function shareViews(): self
@@ -60,6 +64,20 @@ class BladeServiceProvider extends ServiceProvider
             'layouts.front.partials.footer',
         ], function ($view) use ($socials) {
             $view->with('socials', $socials);
+        });
+
+        return $this;
+    }
+
+    /**
+     * Directive for ids identification
+     *
+     * @return self
+     */
+    private function directive(): self
+    {
+        Blade::directive('update', function () {
+            return "<input type='hidden' name='id'>";
         });
 
         return $this;

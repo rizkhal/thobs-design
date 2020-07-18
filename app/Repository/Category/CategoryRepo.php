@@ -49,11 +49,10 @@ interface CategoryRepo
     /**
      * Update category
      *
-     * @param  string $id
      * @param  array  $data
      * @return bool
      */
-    public function update(string $id, array $data): bool;
+    public function update(array $data): bool;
 
     /**
      * Delete category

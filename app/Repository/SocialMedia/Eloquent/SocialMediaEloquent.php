@@ -38,6 +38,29 @@ class SocialMediaEloquent implements SocialMediaRepo
     }
 
     /**
+     * Edit social
+     *
+     * @param  string $id
+     * @return object
+     */
+    public function edit(string $id): object
+    {
+        return $this->model->findOrFail($id);
+    }
+
+    /**
+     * Update social
+     *
+     * @param  array $data
+     * @return bool
+     */
+    public function update(array $data): bool
+    {
+        $model = $this->model->findOrFail($data['id']);
+        return $model->update($data);
+    }
+
+    /**
      * Delete social media
      * 
      * @param  string $id

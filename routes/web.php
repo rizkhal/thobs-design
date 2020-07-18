@@ -23,7 +23,8 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
         Route::post('contact', 'SettingController@contact')->name('contact');
 
         /** Social Media */
-        Route::resource('social', 'SocialMediaController');
+        Route::resource('social', 'SocialMediaController')->except('update');
+        Route::put('social/update', 'SocialMediaController@update')->name('social.update');
 
         /** Profile */
         Route::prefix('profile')->as('profile.')->group(function () {
@@ -33,7 +34,8 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     });
 
     /** Category */
-    Route::resource('category', 'CategoryController');
+    Route::resource('category', 'CategoryController')->except('update');
+    Route::put('category/update', 'CategoryController@update')->name('category.update');
     Route::prefix('select2')->as('select2.')->group(function () {
         Route::get('category', 'Service\Select2Controller@category')->name('category');
     });
