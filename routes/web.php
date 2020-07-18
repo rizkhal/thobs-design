@@ -18,9 +18,9 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     /** Setting */
     Route::prefix('setting')->as('setting.')->group(function () {
         /** Setting Pages */
-        Route::get('pages', 'SettingController@pages')->name('pages');
+        Route::get('/', 'SettingController@pages')->name('pages');
         Route::post('about', 'SettingController@about')->name('about');
-        Route::post('contact', 'SettingController@contact')->name('contact');
+        Route::put('contact', 'SettingController@contact')->name('contact');
 
         /** Social Media */
         Route::resource('social', 'SocialMediaController')->except('update');

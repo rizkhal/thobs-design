@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setLocale(env('LOCALE', 'id'));
+        date_default_timezone_set('Asia/Makassar');
     }
 }

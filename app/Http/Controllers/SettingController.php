@@ -6,31 +6,49 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AboutRequest;
 use App\Http\Requests\ContactRequest;
+use App\Repository\Setting\SettingRepo;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    protected $setting;
+
+    public function __construct(SettingRepo $setting)
+    {
+        $this->setting = $setting;
+    }
+
     public function pages()
     {
-        return view('backend::setting.index');
+        return view('backend::setting.index', [
+            'setting' => $this->setting->all(),
+        ]);
     }
 
     public function contact(ContactRequest $request)
     {
-        if (! $request->has('contact')) {
-            // /
+        if ($request->has('contact')) {
+            if ($this->setting->contact($request->data())) {
+                notice('success', 'Successfully setting contact pages.');
+                return redirect()->back();
+            } else {
+                notice('danger', 'Something went wrong, please contact the administrator.');
+                return redirect()->back();
+            }
+        } else {
+            abort(500);
         }
     }
 
     /**
      * Store or update the data of about page
-     * 
+     *
      * @param  AboutRequest $request
      * @return \Illuminate\Http\Response
      */
     public function about(AboutRequest $request)
     {
-        if (! $request->has('about')) {
+        if (!$request->has('about')) {
             notice('danger', 'Something went wrong, please contact the administrator.');
             return redirect()->back();
         }

@@ -44,6 +44,7 @@ class ContactRequest extends FormRequest
     public function data(): array
     {
         return [
+            'id'          => $this->id,
             'open'        => $this->open,
             'close'       => $this->close,
             'phone'       => $this->phone,

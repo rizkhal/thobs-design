@@ -76,8 +76,12 @@ class BladeServiceProvider extends ServiceProvider
      */
     private function directive(): self
     {
-        Blade::directive('update', function () {
-            return "<input type='hidden' name='id'>";
+        Blade::directive('update', function ($id) {
+            if (is_null($id)) {
+                return "<input type='hidden' name='id'/>";
+            }
+
+            return "<input type='hidden' name='id' value='{$id}'/>";
         });
 
         return $this;
