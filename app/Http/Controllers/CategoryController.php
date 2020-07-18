@@ -37,9 +37,20 @@ class CategoryController extends Controller
         return $this->category->edit($id);
     }
 
-    public function update(string $id, array $request)
+    public function update(CategoryRequest $request, string $id)
     {
-        # code...
+        if ($this->category->update($id, $request->all())) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully update the category.',
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'danger',
+                'message' => 'Something went wrong, please contact the administrator.',
+            ], 200);
+        }
+
     }
 
     public function destroy(string $id)

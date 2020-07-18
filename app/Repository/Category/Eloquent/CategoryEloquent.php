@@ -37,7 +37,7 @@ class CategoryEloquent implements CategoryRepo
         $c = $data->map(function ($item) use ($data) {
             return $item;
         });
-        
+
         return $this->category->whereIn('id', $c->pluck('category_id'))->get();
     }
 
@@ -53,12 +53,24 @@ class CategoryEloquent implements CategoryRepo
     }
 
     /**
+     * Update category
+     *
+     * @param  string $id
+     * @return bool
+     */
+    public function update(string $id, array $data): bool
+    {
+        $category = $this->category->findOrFail($id);
+        return $category->update($data);
+    }
+
+    /**
      * Save category
      *
      * @param  array  $data
-     * @return bool
+     * @return object
      */
-    public function save(array $data): bool
+    public function save(array $data): object
     {
         return $this->category->create($data);
     }

@@ -35,7 +35,7 @@ class CategoryDataTable extends DataTable
             })
             ->addColumn('action', function($model) {
                 return '
-                    <button type="button" data-url="'.route('admin.category.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                    <button type="button" data-put="'.route('admin.category.update', $model->id).'" data-get="'.route('admin.category.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
                     <button type="button" data-url="'.route('admin.category.destroy', $model->id).'" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })

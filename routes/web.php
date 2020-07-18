@@ -17,17 +17,19 @@ Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     /** Setting */
     Route::prefix('setting')->as('setting.')->group(function () {
+        /** Setting Pages */
+        Route::get('pages', 'SettingController@pages')->name('pages');
+        Route::post('about', 'SettingController@about')->name('about');
+        Route::post('contact', 'SettingController@contact')->name('contact');
+
         /** Social Media */
         Route::resource('social', 'SocialMediaController');
 
         /** Profile */
-        Route::prefix('profile')->as('profile.')->group(function() {
+        Route::prefix('profile')->as('profile.')->group(function () {
             Route::get('/', 'ProfileController@profile')->name('index');
             Route::post('update', 'ProfileController@update')->name('update');
         });
-
-        /** Contact */
-
     });
 
     /** Category */
@@ -63,6 +65,5 @@ Route:: as ('application.')->group(function () {
         Route::get('blog', 'BlogController@frontIndex')->name('blog.index');
         Route::get('blog/{slug}', 'BlogController@frontShow')->name('blog.show');
         Route::get('projects', 'ProjectController@frontIndex')->name('project.index');
-        Route::get('contact', 'ContactController@frontIndex')->name('contact.index');
     });
 });

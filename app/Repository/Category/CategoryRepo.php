@@ -26,9 +26,9 @@ interface CategoryRepo
      * Save into database
      *
      * @param  array  $data
-     * @return bool
+     * @return object
      */
-    public function save(array $data): bool;
+    public function save(array $data): object;
 
     /**
      * Handle select2 request
@@ -45,6 +45,15 @@ interface CategoryRepo
      * @return object
      */
     public function edit(string $id): object;
+
+    /**
+     * Update category
+     *
+     * @param  string $id
+     * @param  array  $data
+     * @return bool
+     */
+    public function update(string $id, array $data): bool;
 
     /**
      * Delete category

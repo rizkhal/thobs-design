@@ -1,7 +1,7 @@
 <div class="modal modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form" method="post" action="{{ route('admin.category.store') }}">
+            <form class="form" method="post" action="">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">New Category</h5>

@@ -43,16 +43,16 @@
                     <div class="collapse {{ active(['manage/setting*']) }}" id="setting">
                         <ul class="nav">
                             <li>
-                                <a class="{{ active('manage/setting/profile*') }}" href="{{ route('admin.setting.profile.index') }}">
+                                <a class="{{ active('manage/setting/pages*') }}" href="{{ route('admin.setting.pages') }}">
                                     <span>
-                                        Profile
+                                        Pages
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ active('manage/setting/social*') }}" href="{{ route('admin.setting.social.index') }}">
+                                <a class="{{ active('manage/setting/profile*') }}" href="{{ route('admin.setting.profile.index') }}">
                                     <span>
-                                        About
+                                        Profile
                                     </span>
                                 </a>
                             </li>

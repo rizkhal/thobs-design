@@ -1,40 +1,53 @@
 <x-back-layout title="Category Page">
     @push('styles')
-        <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
-        <style scoped="css">
-            .dt-buttons {
-                float: left;
-            }
-        </style>
-    @endpush
+    <link href="{{ asset('vendor/datatables/datatables.min.css') }}" rel="stylesheet">
+        @endpush
 
     @push('scripts')
-        <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
-        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-        <script src="{{ asset('vendor/datatables/sweetalert.min.js') }}"></script>
-        <script src="{{ asset('js/larajax.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/datatables.min.js') }}">
+        </script>
+        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}">
+        </script>
+        <script src="{{ asset('vendor/datatables/sweetalert.min.js') }}">
+        </script>
+        <script src="{{ asset('js/larajax.js') }}">
+        </script>
         {{$dataTable->scripts()}}
-
         <script lang="javascript">
             $(document).ready(function() {
+                const form  = $(".form"),
+                      modal = $(".modal");
+
                 $(".buttons-create").click(function(e) {
-                    $(".modal").modal("show");
-                    $(".modal").find("form")[0].reset();
-                    $(".modal").find("button[type='submit']").text("Save");
+                    modal.modal("show");
+                    modal.find("form")[0].reset();
+                    modal.find("input[name='_method']").remove();
+                    modal.find("button[type='submit']").text("Save");
+                    form.attr("action", "{{route('admin.category.store')}}");
                 });
 
-                Larajax.save($(".form"), function() {
-                    $(".modal").modal("hide");
+                Larajax.save(form, function() {
+                    modal.modal("hide");
                     $(".table").DataTable().ajax.reload();
                 });
 
                 $(".table").on("click", ".btn-edit", function() {
-                    $(".modal").modal("show");
-                    Larajax.get($(this).data("url"));
+                    modal.modal("show");
+
+                    let _this = $(this);
+                    let token = modal.find("input[name='_token']");
+                    let indent = `<input type='hidden' name='id' value='${_this.data('put')}'>`;
+                    let put = "<input type='hidden' name='_method' value='PUT'>";
+
+                    token.after(put);
+                    token.after(indent);
+
+                    Larajax.get(_this.data('get'));
+                    form.attr("action", _this.data('put'));
                 });
 
                 Larajax.edit($(".form"), function() {
-                    $(".modal").modal("hide");
+                    modal.modal("hide");
                     $(".table").DataTable().ajax.reload();
                 });
                 
@@ -45,11 +58,11 @@
                 });
             });
         </script>
-    @endpush
+        @endpush
 
     @section('app')
         @include('back.category.partials.create')
-    	<div class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-headline">
@@ -58,7 +71,8 @@
                         </div>
                     </div>
                 </div>
-            </div>   
+            </div>
         </div>
-    @stop
+        @stop
+    </link>
 </x-back-layout>

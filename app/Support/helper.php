@@ -26,7 +26,7 @@ if (!function_exists('notice')) {
      * @param  string $message
      * @return void
      */
-    function notice(string $type, string $message): void
+    function notice(string $type, string $message)
     {
         $notices = session()->get('notice');
         if (!is_array($notices)) {

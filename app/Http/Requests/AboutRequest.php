@@ -5,9 +5,8 @@ declare (strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class CategoryRequest extends FormRequest
+class AboutRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +26,19 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => ['required', 'string', Rule::unique('categories')->ignore($this->id)],
-            'description' => ['nullable', 'string', 'max:100'],
+            'link' => ['sometimes', 'string'],
+        ];
+    }
+
+    /**
+     * Get value from incoming request
+     * 
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'link' => $this->link
         ];
     }
 }
