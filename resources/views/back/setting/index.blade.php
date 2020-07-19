@@ -86,29 +86,63 @@
                     <div class="panel-body">
                         <form method="POST" action="{{ route('admin.setting.about') }}" class="needs-validation">
                             @csrf
+                            @method("PUT")
+                            @update({{$setting['about']->id}})
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>Route</label>
-                                        <input class="form-control" type="text" name="route">
+                                        <input class="form-control" value="{{old('route', $setting['about']->route)}}" type="text" name="route">
+                                        @error("route")
+                                            <div class="text-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Background</label>
+                                        <input class="form-control" type="file" name="background">
+                                        @error("background")
+                                            <div class="text-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" value="{{old('description', $setting['about']->description)}}" name="description" class="form-control">
+                                        @error("description")
+                                            <div class="text-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div id="links" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group" id="links">
                                         <label>External Url</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" name="url[]">
+                                            <input class="form-control" type="text" name="external_url[]">
                                             <span class="input-group-btn">
                                                 <button type="button" id="clone" class="btn btn-default">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </span>
                                         </div>
+                                        @error("external_url")
+                                            <div class="text-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                     <div class="form-group">
-                                        <button class="btn btn-primary" type="submit">Update</button>
+                                        <button name="about" class="btn btn-primary" type="submit">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,21 +159,31 @@
             let counter = 0,
                 btn = document.getElementById('clone');
 
-            btn.addEventListener('click', () => {
-                counter++;
-
-                var element = `
+            const element = (indent, value = '') => {
+                return `
                     <div class="input-group">
-                        <input class="form-control" type="text" name="url[]">
+                        <input class="form-control" value="${value}" type="text" name="external_url[]">
                         <span class="input-group-btn">
-                            <button onclick="javascript:removeElements('link-${counter}'); return false;" type="button" class="btn btn-danger">
+                            <button onclick="javascript:removeElements('link-${indent}'); return false;" type="button" class="btn btn-danger">
                                 <i class="fa fa-minus"></i>
                             </button>
                         </span>
                     </div>
                 `;
+            };
 
-                createElements('links', 'div.form-group.', 'link-' + counter, element);
+            window.addEventListener('load', () => {
+                let links = {!! json_encode($setting['about']->external_url, JSON_FORCE_OBJECT) !!};
+                let data = JSON.parse(links);
+
+                data.forEach(function(value, key) {
+                    createElements('links', 'div.form-group.', 'link-' + key, element(key, value));
+                });
+            }, false);
+
+            btn.addEventListener('click', () => {
+                counter++;
+                createElements('links', 'div.form-group.', 'link-' + counter, element(counter));
             }, false);
 
             const createElements = (parentId, elementTag, elementId, html) => {

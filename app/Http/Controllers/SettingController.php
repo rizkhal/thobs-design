@@ -48,10 +48,16 @@ class SettingController extends Controller
      */
     public function about(AboutRequest $request)
     {
-        dd($request->data());
-        if (!$request->has('about')) {
-            notice('danger', 'Something went wrong, please contact the administrator.');
-            return redirect()->back();
+        if ($request->has('about')) {
+            if ($this->setting->about($request->data())) {
+                notice('success', 'Successfully update the about page.');
+                return redirect()->back();
+            } else {
+                notice('danger', 'Something went wrong, please contact the administrator.');
+                return redirect()->back();
+            }
+        } else {
+            abort(500);
         }
     }
 }

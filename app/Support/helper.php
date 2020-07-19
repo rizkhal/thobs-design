@@ -5,6 +5,19 @@ declare (strict_types = 1);
 use App\Constants\Platform;
 use Illuminate\Support\Facades\Auth;
 
+if (! function_exists('filter_url')) {
+    /**
+     * Filter Link
+     * 
+     * @param  string $str
+     * @return string
+     */
+    function filter_url($str)
+    {
+        return $str;
+    }
+}
+
 if (! function_exists('market_time')) {
     /**
      * Fix market time

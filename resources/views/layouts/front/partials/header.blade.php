@@ -33,7 +33,7 @@
               <li class="{{ active('pages/projects*') }}"><a href="{{ route('application.project.index') }}">Project</a></li>
               <li class="{{ active('pages/blog*') }}"><a href="{{ route('application.blog.index') }}">Blog</a></li>
               <li class="{{ active('pages/contact*') }}"><a href="{{ route('application.contact') }}">Kontak</a></li>
-              <li class=""><a href="#">Tentang</a></li>
+              <li class="{{ active($route) }}"><a href="{{ url($route) }}">Tentang</a></li>
             </ul>
           </div>
         </div>

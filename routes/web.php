@@ -1,5 +1,6 @@
 <?php
 
+use App\Repository\Setting\SettingRepo;
 use Illuminate\Support\Facades\Route;
 
 /** Auth */
@@ -19,7 +20,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     Route::prefix('setting')->as('setting.')->group(function () {
         /** Setting Pages */
         Route::get('/pages', 'SettingController@pages')->name('pages');
-        Route::post('about', 'SettingController@about')->name('about');
+        Route::put('about', 'SettingController@about')->name('about');
         Route::put('contact', 'SettingController@contact')->name('contact');
 
         /** Social Media */
@@ -62,6 +63,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
 Route:: as ('application.')->group(function () {
     /** Root */
     Route::get('/', 'ApplicationController@index')->name('index');
+
     /** Pages */
     Route::prefix('pages')->group(function () {
         Route::get('blog', 'BlogController@frontIndex')->name('blog.index');
@@ -70,3 +72,7 @@ Route:: as ('application.')->group(function () {
         Route::get('contact', 'ApplicationController@contact')->name('contact');
     });
 });
+
+$setting = resolve(SettingRepo::class)->all();
+
+Route::get("/{$setting['about']->route}", 'ApplicationController@about');

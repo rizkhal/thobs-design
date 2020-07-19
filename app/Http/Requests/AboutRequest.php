@@ -26,19 +26,26 @@ class AboutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => ['sometimes', 'string'],
+            'route'        => ['sometimes', 'string'],
+            'background'    => ['sometimes', 'string', 'nullable'],
+            'external_url' => ['sometimes', 'array'],
+            'description'  => ['sometimes', 'string'],
         ];
     }
 
     /**
      * Get value from incoming request
-     * 
+     *
      * @return array
      */
     public function data(): array
     {
         return [
-            'link' => $this->link
+            'id'           => $this->id,
+            'route'        => $this->route,
+            'background'    => $this->backround,
+            'external_url' => $this->external_url,
+            'description'  => $this->description,
         ];
     }
 }

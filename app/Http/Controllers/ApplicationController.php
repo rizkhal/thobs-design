@@ -37,4 +37,11 @@ class ApplicationController extends Controller
             'app' => $this->setting->all()
         ]);
     }
+
+    public function about()
+    {
+        return view('front.about.index', [
+            'setting' => $this->setting->all(),
+        ]);
+    }
 }
