@@ -15,15 +15,4 @@ class ContactEloquent implements ContactRepo
     {
         $this->contact = $contact;
     }
-
-    /**
-     * firstOrUpdate the contact
-     * 
-     * @param  array  $data
-     * @return bool
-     */
-    public function firstOrUpdate(array $data): bool
-    {
-        // 
-    }
 }

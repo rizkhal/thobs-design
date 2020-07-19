@@ -48,6 +48,7 @@ class SettingController extends Controller
      */
     public function about(AboutRequest $request)
     {
+        dd($request->data());
         if (!$request->has('about')) {
             notice('danger', 'Something went wrong, please contact the administrator.');
             return redirect()->back();

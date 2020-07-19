@@ -18,7 +18,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
     /** Setting */
     Route::prefix('setting')->as('setting.')->group(function () {
         /** Setting Pages */
-        Route::get('/', 'SettingController@pages')->name('pages');
+        Route::get('/pages', 'SettingController@pages')->name('pages');
         Route::post('about', 'SettingController@about')->name('about');
         Route::put('contact', 'SettingController@contact')->name('contact');
 
@@ -67,5 +67,6 @@ Route:: as ('application.')->group(function () {
         Route::get('blog', 'BlogController@frontIndex')->name('blog.index');
         Route::get('blog/{slug}', 'BlogController@frontShow')->name('blog.show');
         Route::get('projects', 'ProjectController@frontIndex')->name('project.index');
+        Route::get('contact', 'ApplicationController@contact')->name('contact');
     });
 });

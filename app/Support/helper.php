@@ -5,6 +5,19 @@ declare (strict_types = 1);
 use App\Constants\Platform;
 use Illuminate\Support\Facades\Auth;
 
+if (! function_exists('market_time')) {
+    /**
+     * Fix market time
+     * 
+     * @param  string $time
+     * @return string
+     */
+    function market_time($time)
+    {
+        return date('H:i', strtotime($time));
+    }
+}
+
 if (!function_exists('social_render')) {
     /**
      * Get the social name

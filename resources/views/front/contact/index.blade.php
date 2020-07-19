@@ -5,9 +5,11 @@
         <div class="range range-md-center">
           <div class="cell-md-11 cell-lg-10">
             <h2 class="text-bold">Kontak</h2>
-            <p><span class="box-width-2">
-              Kami tersedia 24/7 melalui email, atau telepon. Anda juga dapat menggunakan formulir kontak cepat kami untuk mengajukan pertanyaan tentang layanan dan proyek kami.
-            </span></p>
+            <p>
+              <span class="box-width-2">
+                {{$app['contact']->description}}
+              </span>
+            </p>
             <div class="layout-columns"> 
               <div class="layout-columns__main">
                 <div class="layout-columns__main-inner">
@@ -51,7 +53,7 @@
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary material-icons-local_phone"></span></div>
-                    <div class="unit__body"><a href="callto:#">1-800-1234-567</a></div>
+                    <div class="unit__body"><a href="callto:#">{{$app['contact']->phone}}</a></div>
                   </div>
                 </div>
                 <div class="layout-columns__aside-item">
@@ -59,7 +61,7 @@
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary material-icons-location_on"></span></div>
-                    <div class="unit__body"><a href="#">267 Park Avenue New York, NY 90210</a></div>
+                    <div class="unit__body"><a href="#">{{$app['contact']->address}}</a></div>
                   </div>
                 </div>
                 <div class="layout-columns__aside-item">
@@ -67,7 +69,7 @@
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary mdi mdi-clock"></span></div>
-                    <div class="unit__body"><span>We work every day 9:00–23:00</span></div>
+                    <div class="unit__body"><span>Kami bekerja setiap hari {{market_time($app['contact']->open)}} – {{market_time($app['contact']->close)}}</span></div>
                   </div>
                 </div>
               </div>
