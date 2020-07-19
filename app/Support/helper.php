@@ -5,10 +5,30 @@ declare (strict_types = 1);
 use App\Constants\Platform;
 use Illuminate\Support\Facades\Auth;
 
-if (! function_exists('filter_url')) {
+if (!function_exists('profile_picture_url')) {
+    /**
+     * Get profile picture
+     * 
+     * @param  string $filename
+     * @return string
+     */
+    function profile_picture_url($filename)
+    {
+        if (!is_null($filename)) {
+            $file = asset('storage/uploads/users/' . $filename);
+            if (!empty($file)) {
+                return $file;
+            }
+        }
+
+        return asset('images/user.png');
+    }
+}
+
+if (!function_exists('filter_url')) {
     /**
      * Filter Link
-     * 
+     *
      * @param  string $str
      * @return string
      */
@@ -18,10 +38,10 @@ if (! function_exists('filter_url')) {
     }
 }
 
-if (! function_exists('market_time')) {
+if (!function_exists('market_time')) {
     /**
      * Fix market time
-     * 
+     *
      * @param  string $time
      * @return string
      */

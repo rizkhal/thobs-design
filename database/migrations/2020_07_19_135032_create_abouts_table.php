@@ -18,7 +18,7 @@ class CreateAboutsTable extends Migration
             $table->string('route');
             $table->string('background')->nullable();
             $table->json('external_url');
-            $table->string('description');
+            $table->foreignId('created_by');
             $table->timestamps();
         });
     }

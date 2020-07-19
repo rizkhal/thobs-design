@@ -22,26 +22,20 @@ class SettingEloquent implements SettingRepo
     }
 
     /**
-     * Query get limit one row from table
-     *
-     * @param  string $table
-     * @return array
-     */
-    private function query(string $table): array
-    {
-        return DB::select("SELECT * FROM $table LIMIT 1");
-    }
-
-    /**
      * Get all of the setting data
      *
      * @return array
      */
     public function all(): array
     {
+        $contact = DB::select("SELECT * FROM contacts LIMIT 1");
+
+        $about = DB::select("SELECT a.*, u.`name`, u.`description`, u.`profile_picture` FROM abouts AS a
+                             LEFT JOIN users AS u ON a.`created_by` = u.`id`");
+
         return [
-            'about'   => $this->query("abouts")[0],
-            'contact' => $this->query("contacts")[0],
+            'about'   => $about[0],
+            'contact' => $contact[0],
         ];
     }
 

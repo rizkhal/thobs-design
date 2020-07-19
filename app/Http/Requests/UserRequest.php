@@ -26,8 +26,9 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'                      => ['nullable', 'string', 'max:20'],
-            'profile_picture'           => ['nullable', 'string'],
+            'name'                      => ['sometimes', 'string', 'max:20'],
+            'description'               => ['sometimes', 'string'],
+            'profile_picture'           => ['sometimes', 'string'],
             'new_password'              => ['nullable', 'string', 'min:6'],
             'new_password_confirmation' => ['nullable', 'required_with:new_password', 'same:new_password'],
             'current_password'          => ['required', 'min:6', function ($attribute, $value, $failed) {
@@ -49,6 +50,7 @@ class UserRequest extends FormRequest
             'name'            => $this->name,
             'password'        => (!is_null($this->new_password)) ? bcrypt($this->new_password) : bcrypt($this->current_password),
             'profile_picture' => $this->file,
+            'description'     => $this->description,
         ];
     }
 }

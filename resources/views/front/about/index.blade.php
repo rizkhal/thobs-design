@@ -15,11 +15,11 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="text-center">
-                        <img alt="profile" class="rounded-circle img-fluid border mb-4 profile-img w-50" src="../assets/img/algazeliya/img-profile.png"/>
+                        <img alt="profile" style="max-width: 10rem!important;" class="rounded-circle img-fluid border mb-4 profile-img w-50" src="{{profile_picture_url($setting['about']->profile_picture)}}"/>
                     </div>
                     <h2 class="text-center text-white" style="font-family: Montserrat, sans-serif;">
                         <strong>
-                            dwnjw
+                            {{$setting['about']->name}}
                         </strong>
                         <br/>
                     </h2>

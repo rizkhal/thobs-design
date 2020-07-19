@@ -75,6 +75,17 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <div class="form-group">
+                                                <label>Profile Picture</label>
+                                                <textarea name="description" cols="30" rows="10" class="form-control">{{old('description', $user->description)}}</textarea>
+                                                @error("file")
+                                                    <div class="text-danger">
+                                                        {{$message}}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group right">
                                                 <button class="btn btn-primary" type="submit">Update</button>
                                             </div>
