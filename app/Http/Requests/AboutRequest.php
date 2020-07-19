@@ -29,7 +29,6 @@ class AboutRequest extends FormRequest
             'route'        => ['sometimes', 'string'],
             'background'    => ['sometimes', 'string', 'nullable'],
             'external_url' => ['sometimes', 'array'],
-            'description'  => ['sometimes', 'string'],
         ];
     }
 
@@ -44,8 +43,7 @@ class AboutRequest extends FormRequest
             'id'           => $this->id,
             'route'        => $this->route,
             'background'    => $this->backround,
-            'external_url' => $this->external_url,
-            'description'  => $this->description,
+            'external_url' => $this->external_url
         ];
     }
 }

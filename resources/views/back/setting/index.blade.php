@@ -57,17 +57,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <input class="form-control" value="{{ old('description', $setting['contact']->description) }}" type="text" name="description">
-                                        @error('description')
-                                            <div class="text-danger">
-                                                {{$message}}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                     <div class="form-group">
                                         <button name="contact" class="btn btn-primary" type="submit">Update</button>

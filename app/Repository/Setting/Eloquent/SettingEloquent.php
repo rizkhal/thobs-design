@@ -57,8 +57,7 @@ class SettingEloquent implements SettingRepo
             return $about->update([
                 'route'        => $data['route'],
                 'background'   => $data['background'],
-                'external_url' => $links,
-                'description'  => $data['description'],
+                'external_url' => $links
             ]);
         } else {
             return false;
