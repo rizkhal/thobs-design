@@ -5,6 +5,20 @@ declare (strict_types = 1);
 use App\Constants\Platform;
 use Illuminate\Support\Facades\Auth;
 
+if (!function_exists('background_url')) {
+    function background_url($filename)
+    {
+        if (!is_null($filename)) {
+            $file = asset('storage/uploads/setting/' . $filename);
+            if (!empty($file)) {
+                return $file;
+            }
+        }
+
+        return asset('images/about.png');
+    }
+}
+
 if (!function_exists('profile_picture_url')) {
     /**
      * Get profile picture
@@ -22,19 +36,6 @@ if (!function_exists('profile_picture_url')) {
         }
 
         return asset('images/user.png');
-    }
-}
-
-if (!function_exists('filter_url')) {
-    /**
-     * Filter Link
-     *
-     * @param  string $str
-     * @return string
-     */
-    function filter_url($str)
-    {
-        return $str;
     }
 }
 

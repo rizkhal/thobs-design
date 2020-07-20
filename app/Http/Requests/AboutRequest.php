@@ -26,9 +26,10 @@ class AboutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'route'        => ['sometimes', 'string'],
-            'background'    => ['sometimes', 'string', 'nullable'],
-            'external_url' => ['sometimes', 'array'],
+            'key'        => ['sometimes', 'array'],
+            'value'      => ['sometimes', 'array'],
+            'route'      => ['sometimes', 'string'],
+            'background' => ['sometimes', 'file'],
         ];
     }
 
@@ -40,10 +41,11 @@ class AboutRequest extends FormRequest
     public function data(): array
     {
         return [
-            'id'           => $this->id,
-            'route'        => $this->route,
-            'background'    => $this->backround,
-            'external_url' => $this->external_url
+            'id'         => $this->id,
+            'key'        => $this->key,
+            'value'      => $this->value,
+            'route'      => $this->route,
+            'background' => $this->background,
         ];
     }
 }

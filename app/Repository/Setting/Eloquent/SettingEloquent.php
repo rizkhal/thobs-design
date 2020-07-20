@@ -8,6 +8,7 @@ use App\Models\About;
 use App\Models\Contact;
 use App\Repository\Setting\SettingRepo;
 use Illuminate\Support\Facades\DB;
+use Upload;
 
 class SettingEloquent implements SettingRepo
 {
@@ -48,16 +49,39 @@ class SettingEloquent implements SettingRepo
         }
     }
 
+    private function uploadFile($request)
+    {
+        return Upload::from($request)
+            ->to('setting')
+            ->type('image')
+            ->generateName('background')
+            ->return();
+    }
+
+    private function clean($array)
+    {
+        return array_values(array_filter($array));
+    }
+
     public function about(array $data): bool
     {
         if ($about = $this->about->find($data['id'])) {
-            $links      = json_encode(array_values(array_filter($data['external_url'])));
-            $background = (is_null($data['background'])) ? $about->background : $data['background'];
+            
+            if (!is_null($data['background'])) {
+                $filename = $this->uploadFile($data['background']);
+            } else {
+                $filename = $about->background;
+            }
 
+            $key   = $this->clean($data['key']);
+            $value = $this->clean($data['value']);
+
+            $external_url['external_url'] = array_combine($key, $value);
+         
             return $about->update([
                 'route'        => $data['route'],
-                'background'   => $data['background'],
-                'external_url' => $links
+                'background'   => $filename,
+                'external_url' => $external_url,
             ]);
         } else {
             return false;

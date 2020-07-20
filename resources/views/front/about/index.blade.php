@@ -6,10 +6,10 @@
     <title>Daeng Tobs - Tentang</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="https://intip.link/assets/css/styles.min.css" rel="stylesheet">
+    <link href="{{ asset('front/css/about.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
 </head>
-<body class="mx-auto" style='background-image: url("{{asset("images/about.png")}}");background-position: bottom;background-size: auto;background-repeat: no-repeat;background-color: #000000;'>
+<body class="mx-auto" style='background-image: url("{{background_url($setting['about']->background)}}");background-position: bottom;background-size: auto;background-repeat: no-repeat;background-color: #000000;'>
     <div class="container d-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-xl-center align-items-xl-center" style="min-height: 90vh;">
         <div class="my-auto p-4" style="background-position: bottom;background-size: auto;background-repeat: no-repeat;">
             <div class="row">
@@ -30,14 +30,14 @@
                         </p>
                     </div>
                     <div class="text-center mt-2">
-                        <h4 style="font-size: 1em;color: #dba514;">
+                        <h4 style="font-size: 1em;color: #fff;">
                             Contact Me
                         </h4>
-                        <div class="mx-auto mb-3" style="width: 40px;height: 2.5px;background-color: #dba514;">
+                        <div class="mx-auto mb-3" style="width: 40px;height: 2.5px;background-color: #4374e0;">
                         </div>
                         <div class="mt-3">
                             @foreach ($socials as $key => $social)
-                                <a aria-label="social-link" class="m-3 mx-4" href="{{$social->link}}">
+                                <a class="m-3 mx-4 social-link" target="_blank" href="{{$social->link}}">
                                     <i class="fa fa-{{social_render($social->platform)}}"></i>
                                 </a>
                             @endforeach
@@ -47,12 +47,12 @@
                 <div class="col-lg-12 col-xl-12 py-4">
                     <div class="text-center d-lg-flex d-xl-flex align-items-lg-center justify-content-xl-center align-items-xl-center h-100">
                         <div class="btn-group-vertical w-100" role="group">
-                            @foreach (json_decode($setting['about']->external_url) as $url)
-                                <a aria-label="Kunjungi Situs" class="btn border rounded border-info d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center my-3 btn-border algazelia-border" href="{{$url}}" role="button" style="height: 50px;color: #dba514;background-color: #000000;font-family: Montserrat, sans-serif;">
-                                    <strong>
-                                        {{filter_url($url)}}
-                                    </strong>
-                                </a>
+                            @php
+                                $args = (array)json_decode($setting['about']->external_url);
+                            @endphp
+
+                            @foreach ($args['external_url'] as $key => $url)
+                                <a class="btn btn-primary border rounded d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center my-3 algazelia-border algazelia-button" target="_blank" href="{{$url}}"><strong>{{ucfirst($key)}}</strong></a>
                             @endforeach
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 </strong>
             </a>
         </p>
-        <div class="mx-auto mt-3 mb-2" style="width: 40px;height: 2.5px;background-color: #dba514;">
+        <div class="mx-auto mt-3 mb-2" style="width: 40px;height: 2.5px;background-color: #4374e0;">
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">

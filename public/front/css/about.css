@@ -1,0 +1,46 @@
+.social-link {
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+.social-link:hover {
+    text-decoration: none;
+}
+.btn-primary {
+    font-family: Montserrat, sans-serif;
+    color: rgb(0, 0, 0);
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: transparent;
+}
+.zect-color {
+    color: #214478
+}
+.btn-border {
+    border-color: #4374e0!important
+}
+.algazelia-border {
+    border-color: #062569!important
+}
+.text-center.w-100.footer {
+    bottom: 0;
+    display: block
+}
+body {
+    background: #000
+}
+.profile-img {
+    border: 5px solid #4374e0!important
+}
+.fa-social {
+    font-size: 1.5em
+}
+.algazelia-button {
+    height: 50px;
+    background-color: #4374e0
+}
+.zectstudio {
+    background-color: #f5f5ff!important
+}
