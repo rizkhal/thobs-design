@@ -8,8 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="{{ asset('front/css/about.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
+    <!-- icons -->
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/icon1.ico') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('images/icon2.ico')}}">
 </head>
-<body class="mx-auto" style='background-image: url("{{background_url($setting['about']->background)}}");background-position: bottom;background-size: auto;background-repeat: no-repeat;background-color: #000000;'>
+<body class="mx-auto" style='background-image: url("{{background_url($setting['about']->background)}}");background-position: center;background-size: cover;background-repeat: no-repeat;background-color: #000000;'>
     <div class="container d-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-xl-center align-items-xl-center" style="min-height: 90vh;">
         <div class="my-auto p-4" style="background-position: bottom;background-size: auto;background-repeat: no-repeat;">
             <div class="row">
@@ -31,7 +34,7 @@
                     </div>
                     <div class="text-center mt-2">
                         <h4 style="font-size: 1em;color: #fff;">
-                            Contact Me
+                            Kontak Saya
                         </h4>
                         <div class="mx-auto mb-3" style="width: 40px;height: 2.5px;background-color: #4374e0;">
                         </div>
@@ -62,10 +65,9 @@
     </div>
     <div class="text-center w-100">
         <p class="p-0 m-0 text-white">
-            <a aria-label="intipLink" class="text-white" href="https://intip.link">
-                <strong>
-                    Daeng Tobs Digital Studio
-                </strong>
+            Design By.
+            <a class="text-white" href="https://instagram/daengtobstudio">
+                <strong>@daengtobstudio</strong>
             </a>
         </p>
         <div class="mx-auto mt-3 mb-2" style="width: 40px;height: 2.5px;background-color: #4374e0;">

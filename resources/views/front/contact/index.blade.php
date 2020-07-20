@@ -40,7 +40,7 @@
               </div>
               <div class="layout-columns__aside">
                 <div class="layout-columns__aside-item">
-                  <p class="heading-5">Socials</p>
+                  <p class="heading-5">Sosial Media</p>
                   <div class="divider-modern"></div>
                   <ul class="list-inline-xs">
                     @foreach ($socials as $key => $social)
@@ -49,7 +49,7 @@
                   </ul>
                 </div>
                 <div class="layout-columns__aside-item">
-                  <p class="heading-5">Phone</p>
+                  <p class="heading-5">Nomor Handphone</p>
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary material-icons-local_phone"></span></div>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div class="layout-columns__aside-item">
-                  <p class="heading-5">Address</p>
+                  <p class="heading-5">Alamat</p>
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary material-icons-location_on"></span></div>
@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 <div class="layout-columns__aside-item">
-                  <p class="heading-5">opening hours</p>
+                  <p class="heading-5">Jam Kerja</p>
                   <div class="divider-modern"></div>
                   <div class="unit unit-horizontal unit-spacing-xxs">
                     <div class="unit__left"><span class="icon icon-md icon-primary mdi mdi-clock"></span></div>

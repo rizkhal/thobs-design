@@ -17,8 +17,8 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- icons -->
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/apple-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('images/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/icon1.ico') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('images/icon2.ico')}}">
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <!-- push stack styles -->
