@@ -37,7 +37,7 @@
                         </div>
                         <div class="mt-3">
                             @foreach ($socials as $key => $social)
-                                <a class="m-3 mx-4 social-link" target="_blank" href="{{$social->link}}">
+                                <a class="m-2 mx-2 social-link" target="_blank" href="{{$social->link}}">
                                     <i class="fa fa-{{social_render($social->platform)}}"></i>
                                 </a>
                             @endforeach
