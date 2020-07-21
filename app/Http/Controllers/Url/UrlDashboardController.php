@@ -11,4 +11,9 @@ class UrlDashboardController extends Controller
     {
         return view('backend::shortener.index');
     }
+
+    public function create()
+    {
+        return view('backend::shortener.create');
+    }
 }
