@@ -31,6 +31,15 @@
                     </a>
                 </li>
                 <li>
+                    <a class="{{ active('manage/shortener*') }}" href="{{ route('admin.url.index') }}">
+                        <i class="lnr lnr-pie-chart">
+                        </i>
+                        <span>
+                            Shortener
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a class="{{ active(['manage/setting*']) }}" data-toggle="collapse" href="#setting">
                         <i class="lnr lnr-cog">
                         </i>

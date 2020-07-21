@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'profile_picture', 'description'
+        'name', 'email', 'password', 'profile_picture', 'description',
     ];
 
     /**
@@ -47,7 +47,7 @@ class User extends Authenticatable
                 . $this->profile_picture
             );
         }
-        
+
         return asset('images/user.png');
     }
 }
