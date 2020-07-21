@@ -28,9 +28,7 @@ jobs:
                     key: composer-${{ hashFiles('composer.lock') }}
 
             -   name: Run composer install
-                run: composer install -n --prefer-dist
-                env:
-                    COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+                run: composer install -n --prefer-dist --no-interaction --no-suggest --no-progress
 
             -   name: Prepare Laravel Application
                 run: |
