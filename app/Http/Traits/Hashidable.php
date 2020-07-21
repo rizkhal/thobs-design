@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace App\Http\Traits;
+
+use Vinkla\Hashids\Facades\Hashids;
 
 trait Hashidable
 {

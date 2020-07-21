@@ -5,14 +5,14 @@ declare (strict_types = 1);
 namespace App\Models;
 
 use App\Http\Traits\Hashidable;
-use App\Models\SpatieUrl;
-use App\Models\Visit;
 use Embed\Embed;
 use GeoIp2\Database\Reader;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use RandomLib\Factory as RandomLibFactory;
+use Spatie\Url\Url as SpatieUrl;
 
 class Url extends Model
 {
@@ -23,7 +23,7 @@ class Url extends Model
      *
      * @var array
      */
-    protected $guraded = [];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -96,7 +96,7 @@ class Url extends Model
      */
     public function setLongUrlAttribute($value): void
     {
-        $this->attribute['long_url'] = rtrim($values, '/');
+        $this->attributes['long_url'] = rtrim($value, '/');
     }
 
     /**
@@ -106,7 +106,7 @@ class Url extends Model
      */
     public function getShortUrlAttribute(): string
     {
-        return url("/" . $this->attribute['keyword']);
+        return url("/" . $this->attributes['keyword']);
     }
 
     /*

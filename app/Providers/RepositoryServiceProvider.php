@@ -42,5 +42,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repository\Setting\SettingRepo::class,
             \App\Repository\Setting\Eloquent\SettingEloquent::class
         );
+
+        $this->app->bind(
+            \App\Repository\Shortener\UrlRepo::class,
+            \App\Repository\Shortener\Eloquent\UrlEloquent::class
+        );
     }
 }
