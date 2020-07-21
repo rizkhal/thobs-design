@@ -6,6 +6,18 @@ jobs:
     run-tests:
         name: Run tests
         runs-on: ubuntu-latest
+        services:
+            mariadb:
+                image: mariadb:10.4.12-bionic
+                env:
+                    MYSQL_ALLOW_EMPTY_PASSWORD: true
+                    MYSQL_DATABASE: rizkhal-testing
+                    MYSQL_USER: rizkhal
+                    MYSQL_PASSWORD: rizkhal
+                ports:
+                    - 33060:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
         steps:
             -   uses: actions/checkout@v1
 
@@ -16,19 +28,14 @@ jobs:
                     extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
                     coverage: none
 
-            -   name: create db
-                run: |
-                    sudo /etc/init.d/mysql start
-                    mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS tobs_test;'
-
-            -   name: Cache composer dependencies
+            -   name: Cache dependencies
                 uses: actions/cache@v1
                 with:
                     path: vendor
                     key: composer-${{ hashFiles('composer.lock') }}
 
             -   name: Run composer install
-                run: composer install -n --prefer-dist --no-interaction --no-suggest --no-progress
+                run: composer update --${{ matrix.dependency }} --prefer-dist --no-interaction --no-suggest --no-progress
 
             -   name: Prepare Laravel Application
                 run: |
@@ -38,4 +45,7 @@ jobs:
             -   name: Run tests
                 run: ./vendor/bin/phpunit
                 env:
-                    DB_PASSWORD: root
+                  DB_PORT: ${{ job.services.mariadb.ports[3306] }}
+                  DB_DATABASE: rizkhal-testing
+                  DB_USERNAME: rizkhal
+                  DB_PASSWORD: rizkhal
