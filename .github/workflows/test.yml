@@ -37,12 +37,7 @@ jobs:
             -   name: Run composer install
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-            -   name: Prepare Laravel Application
-                run: |
-                    cp .env.example .env
-                    php artisan key:generate
-
-            -   name: Run tests
+            -   name: Execute tests
                 run: ./vendor/bin/phpunit
                 env:
                   DB_PORT: ${{ job.services.mariadb.ports[3306] }}
