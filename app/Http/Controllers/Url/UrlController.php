@@ -3,14 +3,23 @@
 namespace App\Http\Controllers\Url;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Service\UrlService;
+use App\Http\Requests\UrlRequest;
+use Illuminate\Http\Request;
 
 class UrlController extends Controller
 {
-    protected $urlService;
-
-    public function __construct(UrlService $urlService)
+    public function index()
     {
-        $this->urlService = $urlService;
+        return view('backend::shortener.index');
+    }
+
+    public function create()
+    {
+        return view('backend::shortener.create');
+    }
+
+    public function store(UrlRequest $request)
+    {
+        dd($request->data());
     }
 }
