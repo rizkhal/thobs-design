@@ -158,7 +158,8 @@
     @push('scripts')
         <script lang="javascript">
             let counter = 0,
-                btn = document.getElementById('clone');
+                btn = document.getElementById('clone'),
+                obj = {};
 
             const element = (indent, obj = {}) => {
                 return `
@@ -193,7 +194,6 @@
                 var x = data.external_url;
                 
                 counter = 0;
-                let obj = {};
                 for (var prop in x) {
                     counter++;
                     obj = {
@@ -207,7 +207,11 @@
 
             btn.addEventListener('click', () => {
                 counter++;
-                createElements('links', 'div.form-group.', 'link-' + counter, element(counter));
+                obj = {
+                    key: "",
+                    value: ""
+                };
+                createElements('links', 'div.form-group.', 'link-' + counter, element(counter, obj));
             }, false);
 
             const createElements = (parentId, elementTag, elementId, html) => {

@@ -7,7 +7,7 @@
         <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
         <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
         <script src="{{ asset('vendor/datatables/sweetalert.min.js') }}"></script>
-        <script src="{{ asset('js/larajax.js') }}"></script>
+        <script src="{{ asset('js/ayu.js') }}"></script>
         {{$dataTable->scripts()}}
         <script lang="javascript">
             $(document).ready(function() {
@@ -16,13 +16,13 @@
                 });
 
                 $(".table").on("click", ".btn-destroy", function() {
-                    Larajax.delete($(this), function() {
+                    Ayu.destroy($(this), function() {
                         $(".table").DataTable().ajax.reload();
                     });
                 });
 
                 $('.table').on('click', '.btn-status', function() {
-                    Larajax.dialog($(this), function() {
+                    Ayu.dialog($(this), function() {
                         $(".table").DataTable().ajax.reload();
                     });
                 });
