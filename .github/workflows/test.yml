@@ -1,4 +1,4 @@
-name: Run PHPUnit tests
+name: Run Test
 
 on:
   push:
@@ -9,19 +9,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
-    services:
-      mariadb:
-        image: mariadb:10.4.12-bionic
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_DATABASE: rizkhal-testing
-          MYSQL_USER: rizkhal
-          MYSQL_PASSWORD: rizkhal
-        ports:
-          - 33060:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
+    
     strategy:
       fail-fast: true
       matrix:
