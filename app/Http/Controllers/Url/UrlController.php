@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Url;
 use App\DataTables\ShortenerDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UrlRequest;
-use App\Models\Url;
 use App\Repository\Shortener\UrlRepo;
 
 class UrlController extends Controller
@@ -19,16 +18,14 @@ class UrlController extends Controller
 
     /**
      * List all of the url
+     *
      * @param  ShortenerDataTable $dataTable [description]
      * @return \Illumintae\Http\Response
      */
     public function index(ShortenerDataTable $dataTable)
     {
         return $dataTable->render('backend::shortener.index', [
-            'keyCapacity'   => $this->urlRepo->model()->keyCapacity(),
-            'keyRemaining'  => $this->urlRepo->model()->keyRemaining(),
-            'shortUrlCount' => $this->urlRepo->model()->shortUrlCount(),
-            'clickCount'    => $this->urlRepo->model()->clickCount(),
+            'countWhereWeek' => $this->urlRepo->countWhereWeek()
         ]);
     }
 
@@ -61,6 +58,7 @@ class UrlController extends Controller
 
     /**
      * View edit the url
+     *
      * @param  string $id
      * @return \Illumintae\Http\Response
      */
@@ -91,6 +89,7 @@ class UrlController extends Controller
 
     /**
      * Delete the shortened url
+     *
      * @param  string $id
      * @return \Illumintae\Http\Response
      */

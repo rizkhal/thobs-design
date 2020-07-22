@@ -25,7 +25,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->bootDateConfig();
+    }
+
+    /**
+     * Boot set date time locale
+     *
+     * @return self
+     */
+    public function bootDateConfig(): self
+    {
         Carbon::setLocale(env('LOCALE', 'id'));
         date_default_timezone_set('Asia/Makassar');
+
+        return $this;
     }
 }
