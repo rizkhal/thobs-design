@@ -24,7 +24,12 @@ class UrlController extends Controller
      */
     public function index(ShortenerDataTable $dataTable)
     {
-        return $dataTable->render('backend::shortener.index');
+        return $dataTable->render('backend::shortener.index', [
+            'keyCapacity'   => $this->urlRepo->model()->keyCapacity(),
+            'keyRemaining'  => $this->urlRepo->model()->keyRemaining(),
+            'shortUrlCount' => $this->urlRepo->model()->shortUrlCount(),
+            'clickCount'    => $this->urlRepo->model()->clickCount(),
+        ]);
     }
 
     /**

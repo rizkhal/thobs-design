@@ -1,6 +1,7 @@
 <x-back-layout title="Shortener Page">
     @section('app')
         <div class="container-fluid">
+            <a href="{{ route('admin.shortener.index') }}" class="btn btn-primary" style="margin-bottom: 1em;">Back</a>
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-headline">
