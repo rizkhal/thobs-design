@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Url;
 use App\DataTables\ShortenerDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UrlRequest;
+use App\Models\Url;
 use App\Repository\Shortener\UrlRepo;
 
 class UrlController extends Controller
