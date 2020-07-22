@@ -50,7 +50,7 @@ class Url extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User')->withDefault([
+        return $this->belongsTo(User::class)->withDefault([
             'name' => 'Guest',
         ]);
     }
@@ -120,7 +120,7 @@ class Url extends Model
      *
      * @return int
      */
-    public function showUrlCount(): int
+    public function shortUrlCount(): int
     {
         return self::count('keyword');
     }
@@ -132,7 +132,7 @@ class Url extends Model
      */
     public function clickCount(): int
     {
-        return self::sum('clicks');
+        return (int)self::sum('clicks');
     }
 
     /**
@@ -175,16 +175,16 @@ class Url extends Model
      *
      * @return int
      */
-    public function keyCapacity(): int
+    public function keyCapacity()
     {
-        $length   = urlConfig('hash_length');
         $alphabet = strlen(urlConfig('hash_char'));
+        $length = urlConfig('hash_length');
 
         if ($length == 0) {
             return 0;
         }
 
-        return pow($alphabet, $length);
+        return (int)pow($alphabet, $length);
     }
 
     /**
