@@ -8,11 +8,11 @@ if (!interface_exists('UrlRepo')) {
     interface UrlRepo
     {
         /**
-         * Object of the model Url
-         *
-         * @return object
+         * Raw charts
+         * 
+         * @return array
          */
-        public function model(): object;
+        public function countWhereWeek();
 
         /**
          * Shorten of the url

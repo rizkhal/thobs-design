@@ -6,6 +6,7 @@ namespace App\Repository\Shortener\Eloquent;
 
 use App\Models\Url;
 use App\Repository\Shortener\UrlRepo;
+use Illuminate\Support\Facades\DB;
 
 class UrlEloquent implements UrlRepo
 {
@@ -16,9 +17,21 @@ class UrlEloquent implements UrlRepo
         $this->url = $url;
     }
 
-    public function model(): object
+    public function countWhereWeek()
     {
-        return $this->url;
+        $query = DB::select("
+            SELECT COUNT(visits.`id`) AS visit, COUNT(urls.`clicks`) AS clicked, WEEK(urls.`created_at`) AS week
+            FROM urls LEFT JOIN visits ON urls.`id` = visits.`url_id`
+            GROUP BY WEEK(urls.`created_at`) ORDER BY WEEK(urls.`created_at`) ASC
+        ");
+
+        foreach ($query as $key => $value) {
+            $week[]   = $value->week;
+            $visits[] = $value->visit;
+            $clicks[] = $value->clicked;
+        }
+
+        return compact('week', 'visits', 'clicks');
     }
 
     /**
