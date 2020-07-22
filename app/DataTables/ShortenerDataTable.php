@@ -28,14 +28,18 @@ class ShortenerDataTable extends DataTable
                 return '<span class="text-muted">' . urlRemoveScheme($url) . '</span>';
             })
             ->editColumn('long_url', function ($model) {
-                return '<a href="' . $model->long_url . '" target="_blank" title="' . $model->long_url . '" class="text-muted">' . Str::limit($model->long_url, 70) . '</a>';
+                return '
+                    <span style="font-weight:bold;">'.$model->meta_title.'</span>
+                    <br>
+                    <a href="' . $model->long_url . '" target="_blank" title="' . $model->long_url . '" class="text-muted">' . Str::limit($model->long_url, 50) . '</a>
+                    ';
             })
             ->editColumn('created_at', function ($model) {
                 return $model->created_at->diffForHumans();
             })
             ->addColumn('action', function ($model) {
                 return '
-                    <a href="'.route('admin.shortener.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="' . route('admin.shortener.edit', $model->id) . '" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                     <button type="button" data-url="' . route('admin.shortener.destroy', $model->id) . '" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })
