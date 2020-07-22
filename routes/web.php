@@ -60,7 +60,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
 });
 
 /** Application */
-Route:: as ('application.')->group(function () {
+Route::as('application.')->group(function () {
     /** Root */
     Route::get('/', 'ApplicationController@index')->name('index');
 
@@ -72,7 +72,3 @@ Route:: as ('application.')->group(function () {
         Route::get('contact', 'ApplicationController@contact')->name('contact');
     });
 });
-
-$setting = resolve(SettingRepo::class)->all();
-
-Route::get("/{$setting['about']->route}", 'ApplicationController@about');

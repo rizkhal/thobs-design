@@ -13,7 +13,7 @@ class CreateVisitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('visists', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('url_id')->constrained('urls')->onDelete('cascade');
             $table->string('referer', 300)->nullable()->default(0);
@@ -36,6 +36,6 @@ class CreateVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('viststs');
+        Schema::dropIfExists('visits');
     }
 }

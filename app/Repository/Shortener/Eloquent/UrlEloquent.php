@@ -9,11 +9,11 @@ use App\Repository\Shortener\UrlRepo;
 
 class UrlEloquent implements UrlRepo
 {
-    protected $model;
+    protected $url;
 
     public function __construct(Url $url)
     {
-        $this->model = $url;
+        $this->url = $url;
     }
 
     /**
@@ -25,13 +25,16 @@ class UrlEloquent implements UrlRepo
      */
     public function shortenUrl(string $id, array $data): object
     {
+        $title = $this->url->getRemoteTitle($data['long_url']);
+        $key   = $data['custom_key'] ?? $this->url->randomKey();
+
         return Url::create([
             'user_id'    => $id,
-            'long_url'   => $data['long_url'],
-            'meta_title' => $data['long_url'],
-            'keyword'    => $data['custom_key'] ?? $this->model->randomKey(),
-            'is_custom'  => $data['custom_key'] ? 1 : 0,
+            'keyword'    => $key,
+            'meta_title' => $title,
             'ip'         => request()->ip(),
+            'long_url'   => $data['long_url'],
+            'is_custom'  => $data['custom_key'] ? 1 : 0,
         ]);
     }
 }

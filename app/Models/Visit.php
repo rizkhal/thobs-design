@@ -12,7 +12,9 @@ class Visit extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $guarded = [];
+
+    protected $table = "visits";
 
     /*
     |--------------------------------------------------------------------------

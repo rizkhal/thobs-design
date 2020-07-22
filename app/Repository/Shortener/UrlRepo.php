@@ -9,7 +9,7 @@ if (!interface_exists('UrlRepo')) {
     {
         /**
          * Shorten of the url
-         * 
+         *
          * @param  string $id
          * @param  array  $data
          * @return object
