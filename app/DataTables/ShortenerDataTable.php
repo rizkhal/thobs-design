@@ -35,8 +35,8 @@ class ShortenerDataTable extends DataTable
             })
             ->addColumn('action', function ($model) {
                 return '
-                    <button type="button" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></button>
-                    <button type="button" data-url="' . route('admin.url.destroy', $model->id) . '" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
+                    <a href="'.route('admin.shortener.edit', $model->id).'" class="btn btn-edit btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                    <button type="button" data-url="' . route('admin.shortener.destroy', $model->id) . '" class="btn btn-danger btn-destroy btn-sm"><i class="fa fa-trash"></i></button>
                 ';
             })
             ->rawColumns(['keyword', 'long_url', 'created_at', 'action']);

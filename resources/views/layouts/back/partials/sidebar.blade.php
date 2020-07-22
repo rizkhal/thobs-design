@@ -43,12 +43,12 @@
                     <div class="collapse {{ active(['manage/shortener*']) }}" id="shortener">
                         <ul class="nav">
                             <li>
-                                <a class="" href="{{ route('admin.url.index') }}">
+                                <a class="" href="{{ route('admin.shortener.index') }}">
                                     <span>
                                         All Urls
                                     </span>
                                 </a>
-                                <a class="" href="{{ route('admin.url.index') }}">
+                                <a class="" href="{{ route('admin.shortener.index') }}">
                                     <span>
                                         Statistics
                                     </span>
