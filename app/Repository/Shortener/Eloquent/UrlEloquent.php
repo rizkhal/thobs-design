@@ -16,6 +16,11 @@ class UrlEloquent implements UrlRepo
         $this->url = $url;
     }
 
+    public function model(): object
+    {
+        return $this->url;
+    }
+
     /**
      * Shorten of the url
      *

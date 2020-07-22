@@ -31,31 +31,13 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{ active(['manage/shortener*']) }}" data-toggle="collapse" href="#shortener">
-                        <i class="lnr lnr-cog">
+                    <a class="{{ active('manage/shortener*') }}" href="{{ route('admin.shortener.index') }}">
+                        <i class="lnr lnr-chart-bars">
                         </i>
                         <span>
-                            Shortener
+                            Short Url
                         </span>
-                        <i class="icon-submenu lnr lnr-chevron-left">
-                        </i>
                     </a>
-                    <div class="collapse {{ active(['manage/shortener*']) }}" id="shortener">
-                        <ul class="nav">
-                            <li>
-                                <a class="{{ active('manage/shortener*') }}" href="{{ route('admin.shortener.index') }}">
-                                    <span>
-                                        All Urls
-                                    </span>
-                                </a>
-                                <a class="{{ active('manage/shortener/stats*') }}" href="{{ route('admin.shortener.index') }}">
-                                    <span>
-                                        Statistics
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li>
                     <a class="{{ active(['manage/setting*']) }}" data-toggle="collapse" href="#setting">

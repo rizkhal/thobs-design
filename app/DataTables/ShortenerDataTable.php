@@ -25,11 +25,13 @@ class ShortenerDataTable extends DataTable
             ->addIndexColumn()
             ->editColumn('keyword', function ($model) {
                 $url = config('app.url') . "/$model->keyword";
-                return '<span class="text-muted">' . urlRemoveScheme($url) . '</span>';
+                return '<span class="text-muted" id="shorturl" data-url="'.$url.'">'
+                        . urlRemoveScheme($url) .
+                        '</span>';
             })
             ->editColumn('long_url', function ($model) {
                 return '
-                    <span style="font-weight:bold;">'.$model->meta_title.'</span>
+                    <span style="font-weight:bold;">'.Str::limit($model->meta_title, 50).'</span>
                     <br>
                     <a href="' . $model->long_url . '" target="_blank" title="' . $model->long_url . '" class="text-muted">' . Str::limit($model->long_url, 50) . '</a>
                     ';
@@ -70,11 +72,8 @@ class ShortenerDataTable extends DataTable
             ->addTableClass('table table-hover')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
-            ->orderBy(1)
-            ->buttons(
-                Button::make('create')
-            );
+            ->dom('lfrtip')
+            ->orderBy(4);
     }
 
     /**

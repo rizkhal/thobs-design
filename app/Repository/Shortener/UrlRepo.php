@@ -8,6 +8,13 @@ if (!interface_exists('UrlRepo')) {
     interface UrlRepo
     {
         /**
+         * Object of the model Url
+         *
+         * @return object
+         */
+        public function model(): object;
+
+        /**
          * Shorten of the url
          *
          * @param  string $id
@@ -18,7 +25,7 @@ if (!interface_exists('UrlRepo')) {
 
         /**
          * Find the url
-         * 
+         *
          * @param  string $id
          * @return object
          */
@@ -26,7 +33,7 @@ if (!interface_exists('UrlRepo')) {
 
         /**
          * Edit the url
-         * 
+         *
          * @param  string $id
          * @param  array  $data
          * @return bool
@@ -35,7 +42,7 @@ if (!interface_exists('UrlRepo')) {
 
         /**
          * Delete the url
-         * 
+         *
          * @param  string $id
          * @return bool
          */
