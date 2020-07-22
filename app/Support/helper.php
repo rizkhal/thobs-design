@@ -10,9 +10,9 @@ if (!function_exists('function_name')) {
      * Remove url scheme
      * 
      * @param  string|array $value
-     * @return array
+     * @return string|array
      */
-    function urlRemoveScheme($value): array
+    function urlRemoveScheme($value)
     {
         return str_replace([
             'http://',
@@ -24,7 +24,7 @@ if (!function_exists('function_name')) {
 
 if (!function_exists('urlConfig')) {
     /**
-     * uHub('option') is equal to config('urlhub.option').
+     * urlConfig('option') is equal to config('shortener.option').
      *
      * @param string $value
      * @return mixed

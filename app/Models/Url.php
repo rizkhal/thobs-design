@@ -141,9 +141,9 @@ class Url extends Model
      * @codeCoverageIgnore
      * @return string
      */
-    public function randomKey(): string
+    public function randomKey()
     {
-        $randomKey          = $this->randomStringGenerator();
+        $randomKey = $this->randomStringGenerator();
         $generatedRandomKey = self::whereKeyword($randomKey)->first();
 
         while ($generatedRandomKey) {
@@ -161,9 +161,8 @@ class Url extends Model
      */
     public function randomStringGenerator(): string
     {
-        $length   = urlConfig('hash_char');
-        $alphabet = urlConfig('hash_length');
-
+        $alphabet     = urlConfig('hash_char');
+        $length       = urlConfig('hash_length');
         $factory      = new RandomLibFactory();
         $randomString = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
 

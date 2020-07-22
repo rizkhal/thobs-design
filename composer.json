@@ -21,6 +21,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "jenssegers/agent": "^2.6",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "php-parallel-lint/php-console-color": "^0.2.0",
