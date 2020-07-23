@@ -5,19 +5,6 @@ declare (strict_types = 1);
 use App\Constants\Platform;
 use Illuminate\Support\Facades\Auth;
 
-if (!function_exists('periode_date')) {
-    /**
-     * Format periode date
-     * 
-     * @param  string $date
-     * @return string
-     */
-    function periode_date(string $date): string
-    {
-        return date('F d, Y', strtotime($date));
-    }
-}
-
 if (!function_exists('numberFormatShort')) {
     /**
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+,
@@ -27,7 +14,7 @@ if (!function_exists('numberFormatShort')) {
      * @param int $n
      * @return string
      */
-    function numberFormatShort(int $n): string
+    function numberFormatShort(?float $n): string
     {
         if ($n >= 0 && $n < pow(10, 3)) {
             // 1 - 999
@@ -79,9 +66,9 @@ if (!function_exists('numbPrec')) {
      *
      * @param number $number
      * @param int    $precision
-     * @return number
+     * @return float
      */
-    function numbPrec($number, $precision = 2)
+    function numbPrec($number, $precision = 2): float
     {
         return floor($number * pow(10, $precision)) / pow(10, $precision);
     }
