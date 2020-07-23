@@ -9,75 +9,92 @@ use App\Models\Url;
 use App\Repository\Shortener\UrlRepo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UrlEloquent implements UrlRepo
 {
-    protected $url, $builder;
+    protected $url;
 
     public function __construct(Url $url)
     {
-        $this->url     = $url;
-        $this->builder = new UrlChartBuilder;
+        $this->url = $url;
     }
 
-    public function countWhereWeek()
+    /**
+     * Count all clicked and visits
+     *
+     * @return array
+     */
+    public function allCount(): array
     {
-        //
-    }
+        $query = DB::select("
+                    SELECT 
+                        MIN(`created_at`) AS first,
+                        MAX(`created_at`) AS latest
+                    FROM
+                        `urls`")[0];
 
-    public function countAllPeriod()
-    {
         return [
-            'clickCount' => $this->url->clickCount(),
-            'shortCount' => $this->url->shortUrlCount(),
+            'clicks'   => $this->url->clickCount(),
+            'shorts'   => $this->url->shortUrlCount(),
+            'capacity' => $this->url->keyCapacity(),
+            'overview' => $query,
         ];
     }
 
-    public function bannerChart()
+    /**
+     * Line charts clicks and redirect
+     *
+     * @return object
+     */
+    public function bannerChart(): object
     {
+        $template = [
+            'backgroundColor'           => "rgba(0, 129, 194, 0.31)",
+            'borderColor'               => "rgba(0, 129, 194, 0.7)",
+            "pointBorderColor"          => "rgba(0, 129, 194, 0.7)",
+            "pointBackgroundColor"      => "rgba(0, 129, 194, 0.7)",
+            "pointHoverBackgroundColor" => "#fff",
+            "pointHoverBorderColor"     => "rgba(220,220,220,1)",
+        ];
+
         $query = DB::select("
-            SELECT COUNT(visits.`id`) AS visit, COUNT(urls.`clicks`) AS clicked, WEEK(urls.`created_at`) AS week
-            FROM urls LEFT JOIN visits ON urls.`id` = visits.`url_id`
+            SELECT COUNT(urls.`clicks`) AS click, WEEK(urls.`created_at`) AS week
+            FROM urls
             GROUP BY WEEK(urls.`created_at`) ORDER BY WEEK(urls.`created_at`) DESC
         ");
 
         for ($i = 0; $i < count($query); $i++) {
-            $labels[]  = $query[$i]->week;
-            $visited[] = $query[$i]->visit;
-            $clicked[] = $query[$i]->clicked;
+            $clicks[] = $query[$i]->click;
+            $labels[] = "Week " . $query[$i]->week;
         }
 
-        return $this->builder
-            ->name('bannerChart')
-            ->type('line')
+        $data[] = array_merge($template, ["data" => array_reverse($clicks)], ["label" => "Click and Redirect"]);
+
+        return $this->charts("Click and Redirect in Week", array_reverse($labels), $data);
+    }
+
+    /**
+     * Charts helper
+     *
+     * @param  string $title
+     * @param  array  $labels
+     * @param  array  $data
+     * @param  string $type
+     * @return object
+     */
+    public function charts(string $title, array $labels, array $data, string $type = 'line'): object
+    {
+        return (new UrlChartBuilder())
+            ->name(Str::camel($title))
+            ->type($type)
             ->size(['width' => 400, 'height' => 200])
-            ->labels(array_reverse($labels))
-            ->datasets([
-                [
-                    "label"                     => "Totoal Click",
-                    'backgroundColor'           => "rgba(38, 185, 154, 0.31)",
-                    'borderColor'               => "rgba(38, 185, 154, 0.7)",
-                    "pointBorderColor"          => "rgba(38, 185, 154, 0.7)",
-                    "pointBackgroundColor"      => "rgba(38, 185, 154, 0.7)",
-                    "pointHoverBackgroundColor" => "#fff",
-                    "pointHoverBorderColor"     => "rgba(220,220,220,1)",
-                    'data'                      => array_reverse($clicked),
-                ],
-                [
-                    "label"                     => "Total Visit",
-                    'backgroundColor'           => "rgba(38, 185, 154, 0.31)",
-                    'borderColor'               => "rgba(38, 185, 154, 0.7)",
-                    "pointBorderColor"          => "rgba(38, 185, 154, 0.7)",
-                    "pointBackgroundColor"      => "rgba(38, 185, 154, 0.7)",
-                    "pointHoverBackgroundColor" => "#fff",
-                    "pointHoverBorderColor"     => "rgba(220,220,220,1)",
-                    'data'                      => array_reverse($visited),
-                ],
-            ])
+            ->labels($labels)
+            ->datasets($data)
             ->options([
                 'title' => [
                     'display' => true,
-                    'text'    => 'Total Click and Visit in Week',
+                    'text'    => $title,
                 ],
             ]);
     }

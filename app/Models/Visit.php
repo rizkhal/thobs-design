@@ -14,6 +14,11 @@ class Visit extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The name of table
+     * 
+     * @var string
+     */
     protected $table = "visits";
 
     /*

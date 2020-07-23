@@ -116,6 +116,23 @@ class Url extends Model
      */
 
     /**
+     * Key Capacity
+     * 
+     * @return int
+     */
+    public function keyCapacity()
+    {
+        $alphabet = strlen(urlConfig('hash_char'));
+        $length   = urlConfig('hash_length');
+
+        if ($length == 0) {
+            return 0;
+        }
+
+        return pow($alphabet, $length);
+    }
+
+    /**
      * Get count url
      *
      * @return int

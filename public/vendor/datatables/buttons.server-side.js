@@ -260,9 +260,14 @@
         text: function (dt) {
             return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Create');
         },
-        // action: function (e, dt, button, config) {
-        //     window.location = window.location.href.replace(/\/+$/, "") + '/create';
-        // }
+    };
+
+    DataTable.ext.buttons.stats = {
+        className: 'buttons-stats btn-info',
+
+        text: function (dt) {
+            return '<i class="fa fa-eye"></i> ' + dt.i18n('buttons.stats', 'Stats');
+        },
     };
 
     if (typeof DataTable.ext.buttons.copyHtml5 !== 'undefined') {

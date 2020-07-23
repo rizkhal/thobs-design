@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{ active('manage/shortener*') }}" href="{{ route('admin.shortener.index') }}">
+                    <a class="{{ active(['manage/shortener*', 'manage/stats*']) }}" href="{{ route('admin.shortener.index') }}">
                         <i class="lnr lnr-chart-bars">
                         </i>
                         <span>

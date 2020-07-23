@@ -23,6 +23,10 @@
                     window.location = window.location.href.replace(/\/+$/, "") + '/create';
                 });
 
+                $('.buttons-stats').click(function() {
+                    window.location = window.location.href = '/manage/stats';
+                });
+
                 function copyUrl(url) {
                     var input = document.body.appendChild(document.createElement("input"));
                       input.value = url;
@@ -56,7 +60,6 @@
 
     @section('app')
         <div class="container-fluid">
-            @include('backend::shortener.stats')
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-headline">
