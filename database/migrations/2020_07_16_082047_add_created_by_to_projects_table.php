@@ -14,7 +14,7 @@ class AddCreatedByToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->foreignId('created_by')->after('category_id');
+            $table->foreignId('created_by')->nullable()->after('category_id');
         });
     }
 

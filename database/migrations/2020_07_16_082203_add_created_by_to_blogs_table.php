@@ -14,7 +14,7 @@ class AddCreatedByToBlogsTable extends Migration
     public function up()
     {
         Schema::table('blogs', function (Blueprint $table) {
-            $table->foreignId('created_by')->after('status');
+            $table->foreignId('created_by')->nullable()->after('status');
         });
     }
 
