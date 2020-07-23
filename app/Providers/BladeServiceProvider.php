@@ -46,7 +46,7 @@ class BladeServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(resource_path('views/back'), 'backend');
         $this->loadViewsFrom(resource_path('views/front'), 'frontend');
-        $this->loadViewsFrom(resource_path('views/back/shortener'), 'chart-template');
+        $this->loadViewsFrom(resource_path('views/back/shortener/stats'), 'chart-template');
 
         return $this;
     }

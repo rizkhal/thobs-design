@@ -75,7 +75,8 @@ class ShortenerDataTable extends DataTable
             ->dom('Bfrtip')
             ->orderBy(4, 'desc')
             ->buttons(
-                Button::make('create')
+                Button::make('create'),
+                Button::make('stats')
             );
     }
 

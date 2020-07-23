@@ -8,15 +8,18 @@ if (!interface_exists('UrlRepo')) {
     interface UrlRepo
     {
         /**
-         * Raw charts
+         * Count all clicked and visits
          * 
          * @return array
          */
-        public function countWhereWeek();
+        public function allCount(): array;
 
-        public function countAllPeriod();
-
-        public function bannerChart();
+        /**
+         * Banner stats clicks and redirect charts
+         * 
+         * @return object
+         */
+        public function bannerChart(): object;
 
         /**
          * Shorten of the url
