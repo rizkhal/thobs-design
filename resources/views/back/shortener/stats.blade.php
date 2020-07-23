@@ -4,22 +4,8 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<script src="{{ asset('js/chart.js') }}"></script>
-
 <script lang="javascript">
-
-    Stats.line('chart', [
-        {
-            label: "Clicks",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [1,2,3]
-        }
-    ]);
+    
 </script>
 @endpush
 
@@ -50,9 +36,9 @@
             </div>
             <div class="col-md-3">
                 <div class="metric">
-                    <span class="icon"><i class="fa fa-eye"></i></span>
+                    <span class="icon"><i class="fa fa-link"></i></span>
                     <p>
-                        <span class="number">10</span>
+                        <span class="number">{{$url}}</span>
                         <span class="title">Total Url</span>
                     </p>
                 </div>
@@ -61,7 +47,7 @@
                 <div class="metric">
                     <span class="icon"><i class="fa fa-bar-chart"></i></span>
                     <p>
-                        <span class="number">10</span>
+                        <span class="number">{{$click}}</span>
                         <span class="title">Total Click</span>
                     </p>
                 </div>
@@ -70,8 +56,8 @@
 
         <div class="row">
             <div class="col-md-9">
-                {{-- <div id="chart" class="ct-chart"></div> --}}
-                <canvas id="chart" width="400" height="200"></canvas>
+                {{-- charts js --}}
+                {!!$chartjs->render()!!}
             </div>
             <div class="col-md-3">
                 <div class="weekly-summary text-right">

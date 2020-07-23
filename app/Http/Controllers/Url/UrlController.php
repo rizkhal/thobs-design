@@ -25,7 +25,9 @@ class UrlController extends Controller
     public function index(ShortenerDataTable $dataTable)
     {
         return $dataTable->render('backend::shortener.index', [
-            'countWhereWeek' => $this->urlRepo->countWhereWeek()
+            'click'   => numberFormatShort($this->urlRepo->countAllPeriod()['clickCount']),
+            'url'     => numberFormatShort($this->urlRepo->countAllPeriod()['shortCount']),
+            'chartjs' => $this->urlRepo->bannerChart(),
         ]);
     }
 

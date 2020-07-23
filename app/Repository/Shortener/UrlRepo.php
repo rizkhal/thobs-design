@@ -14,6 +14,10 @@ if (!interface_exists('UrlRepo')) {
          */
         public function countWhereWeek();
 
+        public function countAllPeriod();
+
+        public function bannerChart();
+
         /**
          * Shorten of the url
          *
