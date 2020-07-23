@@ -56,7 +56,6 @@
 
     @section('app')
         <div class="container-fluid">
-            <a href="{{ route('admin.shortener.create') }}" class="btn btn-primary" style="margin-bottom: 1em;">Create</a>
             @include('backend::shortener.stats')
             <div class="row">
                 <div class="col-md-12">

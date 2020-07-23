@@ -72,8 +72,11 @@ class ShortenerDataTable extends DataTable
             ->addTableClass('table table-hover')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('lfrtip')
-            ->orderBy(4);
+            ->dom('Bfrtip')
+            ->orderBy(4, 'desc')
+            ->buttons(
+                Button::make('create')
+            );
     }
 
     /**
