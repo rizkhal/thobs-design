@@ -14,7 +14,7 @@ class AddDescriptionToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('description')->after('profile_picture');
+            $table->text('description')->nullable()->after('profile_picture');
         });
     }
 
