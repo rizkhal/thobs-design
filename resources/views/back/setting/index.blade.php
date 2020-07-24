@@ -80,17 +80,6 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label>Route</label>
-                                        <input class="form-control" value="{{old('route', $setting['about']->route)}}" type="text" name="route">
-                                        @error("route")
-                                            <div class="text-danger">
-                                                {{$message}}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
                                         <label>Background</label>
                                         <input class="form-control" value="{{old('background', $setting['about']->background)}}" type="file" name="background">
                                         @error("background")

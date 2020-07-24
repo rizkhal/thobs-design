@@ -20,7 +20,7 @@ class BladeServiceProvider extends ServiceProvider
         $this
             ->components()
             ->loadViews()
-            // ->shareViews()
+            ->shareViews()
             ->directive();
     }
 
