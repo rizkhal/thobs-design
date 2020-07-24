@@ -5,6 +5,7 @@ declare (strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class UserRequest extends FormRequest
             'new_password'              => ['nullable', 'string', 'min:6'],
             'new_password_confirmation' => ['nullable', 'required_with:new_password', 'same:new_password'],
             'current_password'          => ['required', 'min:6', function ($attribute, $value, $failed) {
-                if (!\Hash::check($value, logged_in_user()->password)) {
+                if (!Hash::check($value, logged_in_user()->password)) {
                     return $failed(__('The current password is incorrect.'));
                 }
             }],

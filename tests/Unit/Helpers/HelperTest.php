@@ -7,9 +7,10 @@ use Tests\TestCase;
 class HelperTest extends TestCase
 {
     /**
+     * @test
      * @group u-helper
      */
-    public function testConfigUrl()
+    public function configUrl()
     {
         $expected = config('shortener.hash_length');
         $actual   = urlConfig('hash_length');
@@ -19,9 +20,10 @@ class HelperTest extends TestCase
     }
 
     /**
+     * @test
      * @group u-helper
      */
-    public function testConvertDate()
+    public function convertDate()
     {
         $expected = date('d F Y');
         $actual   = convert_date($expected);
