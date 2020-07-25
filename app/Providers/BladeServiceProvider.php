@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Repository\Setting\SettingRepo;
-use App\Repository\SocialMedia\SocialMediaRepo;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -18,10 +16,10 @@ class BladeServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this
-            ->components()
             ->loadViews()
-            ->shareViews()
-            ->directive();
+            ->directive()
+            ->components()
+            ->shareViews();
     }
 
     /**
@@ -58,20 +56,9 @@ class BladeServiceProvider extends ServiceProvider
      */
     private function shareViews(): self
     {
-        $socials = resolve(SocialMediaRepo::class)->all();
-        $setting = resolve(SettingRepo::class)->all();
-
-        View::composer([
-            'front.about.index',
-            'front.contact.index',
-            'layouts.front.partials.header',
-            'layouts.front.partials.footer',
-        ], function ($view) use ($socials, $setting) {
-            $view->with([
-                'socials' => $socials,
-                'route'   => $setting['about']->route,
-            ]);
-        });
+        View::composer(
+            '*', 'App\Http\View\Composers\SocialComposer'
+        );
 
         return $this;
     }

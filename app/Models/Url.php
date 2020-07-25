@@ -117,7 +117,7 @@ class Url extends Model
 
     /**
      * Key Capacity
-     * 
+     *
      * @return int
      */
     public function keyCapacity()
@@ -212,9 +212,9 @@ class Url extends Model
      * Won't work on things like 'localhost'.
      *
      * @param string $url
-     * @return mixed
+     * @return string
      */
-    public function getDomain($url): mixed
+    public function getDomain($url): string
     {
         $url = SpatieUrl::fromString($url);
 

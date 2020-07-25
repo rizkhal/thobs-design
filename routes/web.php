@@ -1,6 +1,5 @@
 <?php
 
-use App\Repository\Setting\SettingRepo;
 use Illuminate\Support\Facades\Route;
 
 /** Auth */
@@ -60,7 +59,7 @@ Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
 });
 
 /** Application */
-Route::as('application.')->group(function () {
+Route:: as ('application.')->group(function () {
     /** Root */
     Route::get('/', 'ApplicationController@index')->name('index');
 
@@ -70,5 +69,6 @@ Route::as('application.')->group(function () {
         Route::get('blog/{slug}', 'BlogController@frontShow')->name('blog.show');
         Route::get('projects', 'ProjectController@frontIndex')->name('project.index');
         Route::get('contact', 'ApplicationController@contact')->name('contact');
+        Route::get('about', 'ApplicationController@about')->name('about');
     });
 });
