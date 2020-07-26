@@ -14,6 +14,8 @@ class ProjectController extends Controller
 
     public function __construct(ProjectRepo $project, CategoryRepo $category)
     {
+        $this->middleware("role:super-admin|admin");
+
         $this->project  = $project;
         $this->category = $category;
     }

@@ -15,6 +15,8 @@ class CategoryController extends Controller
 
 	public function __construct(CategoryRepo $category)
 	{
+        $this->middleware("role:super-admin");
+
 		$this->category = $category;
 	}
 

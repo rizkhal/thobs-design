@@ -3,18 +3,20 @@
 use Illuminate\Support\Facades\Route;
 
 /** Auth */
-Auth::routes();
-
-/** Laravel File Manager */
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+Auth::routes(['verify' => true]);
 
 /** Dashboard */
-Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::group(["middleware" => ["auth", "verified"]], function() {
+    /** Laravel File Manager */
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'verified']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
+    Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+});
 
 /** Admin Manage Group */
-Route::prefix('manage')->as('admin.')->middleware('auth')->group(function () {
+Route::prefix('manage')->as('admin.')->middleware(['auth', 'verified'])->group(function () {
     /** Setting */
     Route::prefix('setting')->as('setting.')->group(function () {
         /** Setting Pages */

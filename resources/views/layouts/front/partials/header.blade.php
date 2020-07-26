@@ -23,7 +23,7 @@
             <div class="rd-navbar-element">
               <ul class="list-icons list-inline-sm">
                 @foreach ($socials as $key => $social)
-                  <li><a href="{{$social->link}}" target="_blank" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
+                <li><a href="{{$social->link}}" target="_blank" class="icon icon-sm fa fa-{{social_render($social->platform)}} icon-style-camera"><span></span><span></span><span></span><span></span></a></li>
                 @endforeach
               </ul>
             </div>
@@ -34,6 +34,16 @@
               <li class="{{ active('pages/blog*') }}"><a href="{{ route('application.blog.index') }}">Blog</a></li>
               <li class="{{ active('pages/contact*') }}"><a href="{{ route('application.contact') }}">Kontak</a></li>
               <li class="{{ active('pages/about') }}"><a href="{{ route('application.about') }}">Tentang</a></li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user" style="font-style: normal!important;"></i>
+                </a>
+                <!-- RD Navbar Dropdown-->
+                <ul class="rd-navbar-dropdown">
+                  <li><a href="{{ route('register') }}">Daftar</a></li>
+                  <li><a href="{{ route('login') }}">Masuk</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="fullscreen-bg">
 <head>
-    <title>Login | Daeng Tobs Digital Design</title>
+    <title>{{(isset($title) ? $title : "Daeng Tobs")}} | Daeng Tobs Digital Design</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">

@@ -13,6 +13,8 @@ class SocialMediaController extends Controller
 
     public function __construct(SocialMediaRepo $repo)
     {
+        $this->middleware("role:super-admin");
+
         $this->socialMedia = $repo;
     }
 

@@ -15,6 +15,8 @@ class SettingController extends Controller
 
     public function __construct(SettingRepo $setting)
     {
+        $this->middleware("role:super-admin");
+
         $this->setting = $setting;
     }
 

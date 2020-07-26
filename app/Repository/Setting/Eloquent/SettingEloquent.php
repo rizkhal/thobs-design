@@ -30,8 +30,7 @@ class SettingEloquent implements SettingRepo
     public function all(): array
     {
         $contact = DB::select("SELECT * FROM contacts LIMIT 1");
-
-        $about = DB::select("SELECT a.*, u.`name`, u.`description`, u.`profile_picture` FROM abouts AS a
+        $about   = DB::select("SELECT a.*, u.`name`, u.`description`, u.`profile_picture` FROM abouts AS a
                              LEFT JOIN users AS u ON a.`created_by` = u.`id`");
 
         return [
@@ -66,7 +65,7 @@ class SettingEloquent implements SettingRepo
     public function about(array $data): bool
     {
         if ($about = $this->about->find($data['id'])) {
-            
+
             if (!is_null($data['background'])) {
                 $filename = $this->uploadFile($data['background']);
             } else {
@@ -77,7 +76,7 @@ class SettingEloquent implements SettingRepo
             $value = $this->clean($data['value']);
 
             $external_url['external_url'] = array_combine($key, $value);
-         
+
             return $about->update([
                 'route'        => $data['route'],
                 'background'   => $filename,

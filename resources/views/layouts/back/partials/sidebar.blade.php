@@ -12,6 +12,7 @@
                         </span>
                     </a>
                 </li>
+                @role('super-admin|admin')
                 <li>
                     <a class="{{ active('manage/blog*') }}" href="{{ route('admin.blog.index') }}">
                         <i class="lnr lnr-bullhorn">
@@ -39,6 +40,7 @@
                         </span>
                     </a>
                 </li>
+                @endrole
                 <li>
                     <a class="{{ active(['manage/setting*']) }}" data-toggle="collapse" href="#setting">
                         <i class="lnr lnr-cog">
@@ -51,17 +53,11 @@
                     </a>
                     <div class="collapse {{ active(['manage/setting*']) }}" id="setting">
                         <ul class="nav">
+                            @role('super-admin')
                             <li>
                                 <a class="{{ active('manage/setting/pages*') }}" href="{{ route('admin.setting.pages') }}">
                                     <span>
                                         Pages
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{ active('manage/setting/profile*') }}" href="{{ route('admin.setting.profile.index') }}">
-                                    <span>
-                                        Profile
                                     </span>
                                 </a>
                             </li>
@@ -72,9 +68,18 @@
                                     </span>
                                 </a>
                             </li>
+                            @endrole
+                            <li>
+                                <a class="{{ active('manage/setting/profile*') }}" href="{{ route('admin.setting.profile.index') }}">
+                                    <span>
+                                        Profile
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
+                @role('super-admin')
                 <li>
                     <a class="{{ active('manage/category') }}" data-toggle="collapse" href="#master">
                         <i class="lnr lnr-database">
@@ -97,6 +102,7 @@
                         </ul>
                     </div>
                 </li>
+                @endrole
             </ul>
         </nav>
     </div>

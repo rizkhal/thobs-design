@@ -14,6 +14,8 @@ class BlogController extends Controller
 
     public function __construct(BlogRepo $blog, CategoryRepo $category)
     {
+        $this->middleware("role:super-admin|admin");
+
         $this->blog     = $blog;
         $this->category = $category;
     }
