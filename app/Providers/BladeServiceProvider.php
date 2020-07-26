@@ -57,7 +57,11 @@ class BladeServiceProvider extends ServiceProvider
     private function shareViews(): self
     {
         View::composer(
-            '*', 'App\Http\View\Composers\SocialComposer'
+            [
+                'front.about.index',
+                'layouts.front.app',
+            ],
+            'App\Http\View\Composers\SocialComposer'
         );
 
         return $this;

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repository\Blog\BlogRepo;
-use App\Repository\Category\CategoryRepo;
 use App\Repository\Project\ProjectRepo;
 use App\Repository\Setting\SettingRepo;
 
@@ -14,13 +13,11 @@ class ApplicationController extends Controller
     public function __construct(
         BlogRepo $blog,
         ProjectRepo $project,
-        CategoryRepo $category,
         SettingRepo $setting
     ) {
-        $this->blog     = $blog;
-        $this->project  = $project;
-        $this->category = $category;
-        $this->setting  = $setting;
+        $this->blog    = $blog;
+        $this->project = $project;
+        $this->setting = $setting;
     }
 
     public function index()
@@ -34,7 +31,7 @@ class ApplicationController extends Controller
     public function contact()
     {
         return view('front.contact.index', [
-            'app' => $this->setting->all()
+            'app' => $this->setting->all(),
         ]);
     }
 
