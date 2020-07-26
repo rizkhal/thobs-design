@@ -14,8 +14,7 @@
               <div class="layout-columns__main">
                 <div class="layout-columns__main-inner">
                   <!-- RD Mailform-->
-                  <form method="POST" action="">
-                    @csrf
+                  <form action="javascript:void(0)">
                     <div class="form-wrap">
                       <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
                       <label class="form-label" for="contact-name">Nama Anda</label>

@@ -15,7 +15,6 @@ class CreateAboutsTable extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('route');
             $table->string('background')->nullable();
             $table->json('external_url');
             $table->foreignId('created_by');

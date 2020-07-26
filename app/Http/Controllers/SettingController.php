@@ -48,6 +48,7 @@ class SettingController extends Controller
      */
     public function about(AboutRequest $request)
     {
+        dd($request->all());
         if ($request->has('about')) {
             if ($this->setting->about($request->data())) {
                 notice('success', 'Successfully update the about page.');

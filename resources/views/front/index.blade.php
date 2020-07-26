@@ -17,7 +17,7 @@
             </a>
           </div>
           @empty
-            <x-front.empty-message>project</x-front.empty-message>
+          <x-front.empty-message>project</x-front.empty-message>
           @endforelse
         </div>
       </div>
@@ -28,8 +28,9 @@
   <section class="section section-md bg-gray-lighter text-center">
     <div class="shell">
       <p class="heading-1">Blog</p>
+      @if ($posts->count() > 0)
       <div class="range range-30">
-        @forelse($posts as $key => $post)
+        @foreach ($posts as $post)
           <div class="cell-sm-6 cell-md-4 wow fadeInLeftSmall" data-wow-delay=".15s">
             <!-- Post boxed-->
             <article class="post-boxed">
@@ -55,10 +56,11 @@
               </div>
             </article>
           </div>
-        @empty
-        <h3>Maaf untuk saat ini belum ada postingan untuk ditampilkan.</h3>
-        @endforelse
+        @endforeach
       </div>
+      @else
+        <x-front.empty-message>postingan</x-front.empty-message>
+      @endif
     </div>
   </section>
   @stop

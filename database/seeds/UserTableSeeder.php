@@ -24,9 +24,8 @@ class UserTableSeeder extends Seeder
         ]);
 
         About::create([
-            'route'        => 'HaloDaengTobs',
             'background'   => 'https://via.placeholder/720',
-            'external_url' => '["google:https://google.com","facebook:https://facebook.com","twitter:https://twitter.com"]',
+            'external_url' => '{"external_url": {"Blog": "https://rizkhal.github.io", "Medium": "https://medium.com/@rizkhallamaau", "Dribbble": "https://dribbble.com/rizkhal"}}',
             'created_by'   => $user->id,
         ]);
     }
