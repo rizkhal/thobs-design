@@ -1004,22 +1004,24 @@ ul.activity-list > li {
     width: 42%;
     height: 100%;
     padding: 0 30px;
-    text-align: center; }
-    .auth-box .left:before {
-      display: inline-block;
-      vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
-      content: ' ';
-      vertical-align: middle;
-      height: 100%; }
+    /*text-align: center;*/
+  }
+    /*.auth-box .left:before {*/
+      /*display: inline-block;*/
+      /*vertical-align: middle;*/
+      /**vertical-align: auto;*/
+      /**zoom: 1;*/
+      /**display: inline;*/
+      /*content: ' ';*/
+      /*vertical-align: middle;*/
+      /*height: 100%;*/
+    /*}*/
   .auth-box .right {
     float: right;
     width: 58%;
     height: 100%;
     position: relative;
-    background-image: url("../../assets/img/login-bg.jpg");
+    /*background-image: url("../../img/login-bg.jpg");*/
     background-repeat: no-repeat;
     background-size: cover; }
     .auth-box .right:before {
