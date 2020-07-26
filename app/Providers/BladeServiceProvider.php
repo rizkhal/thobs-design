@@ -58,10 +58,8 @@ class BladeServiceProvider extends ServiceProvider
     {
         View::composer(
             [
-                'front.about.index',
                 'layouts.front.app',
-            ],
-            'App\Http\View\Composers\SocialComposer'
+            ], 'App\Http\View\Composers\SocialComposer'
         );
 
         return $this;
